@@ -248,6 +248,13 @@
 
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
+  /* Language toggle */
+  .lang-toggle{position:fixed;top:16px;right:16px;z-index:100;background:#fff;border:1.5px solid var(--ink);display:flex;font-size:11px;letter-spacing:.18em;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,.08);font-family:inherit}
+  .lang-toggle button{background:none;border:none;padding:8px 14px;cursor:pointer;color:var(--muted);font-family:inherit;letter-spacing:inherit;font-weight:inherit;transition:all .15s ease}
+  .lang-toggle button:hover{color:var(--ink)}
+  .lang-toggle button.active{background:var(--ink);color:var(--paper)}
+  @media print{.lang-toggle{display:none}}
+
   @media print{body{background:#fff}.wrap{padding:24px}section{page-break-inside:avoid}}
   @media (max-width:900px){
     .diag-dual,.hypo-three,.road,.decs,.stack,.pitch,.guards,.corridor,.pent,.unit-econ,.ns-compare,.state-row,.sign-block,.pm-row{grid-template-columns:1fr}
@@ -259,6 +266,10 @@
 </style>
 </head>
 <body>
+<div class="lang-toggle" id="langToggle">
+  <button data-lang="es" class="active">ES</button>
+  <button data-lang="en">EN</button>
+</div>
 <div class="wrap">
 
 <header>
@@ -746,6 +757,194 @@
 </footer>
 
 </div>
+
+<script>
+// ===== i18n · Spanish (default) ↔ English =====
+(function(){
+  var LKEY='caua:roadmap:lang';
+  var DICT = {
+    "Caúa Corp · Spec-Driven Strategy":"Caúa Corp · Spec-Driven Strategy",
+    "Ruta de 6 meses":"6-Month Roadmap",
+    "Autor":"Author",
+    "Co-firmante":"Co-signer",
+    "Fecha":"Date",
+    "ARR por suscripción":"ARR by subscription",
+    "Diagnóstico · dos marcas, dos estados":"Diagnosis · two brands, two states",
+    "Operativo":"Live",
+    "Qué encontré":"What I found",
+    "Tensión":"Tension",
+    "Insight central":"Core insight",
+    "Hipótesis estratégica · Caúa Corp como holding":"Strategic hypothesis · Caúa Corp as holding",
+    "Operación impecable":"Flawless operations",
+    "Brand global premium":"Global premium brand",
+    "Suscripción como producto":"Subscription as product",
+    "North Star 6 M · ARR por suscripción recurrente":"North Star 6M · ARR by recurring subscription",
+    "Ruta 6 meses · 1 sprint = 1 spec firmada":"6-month roadmap · 1 sprint = 1 signed spec",
+    "Diferenciación":"Differentiation",
+    "Qué dice cada URL":"What each URL says",
+    "Suscripción Core":"Core Subscription",
+    "Producto recurrente":"Recurring product",
+    "Tienda global activa":"Global store live",
+    "Cosecha 2":"Harvest 2",
+    "Operación continua":"Continuous operations",
+    "Storytelling":"Storytelling",
+    "Capa editorial cross":"Editorial cross-layer",
+    "Escala":"Scale",
+    "Segundo mercado o ronda":"Second market or round",
+    "Owner · A + D":"Owner · A + D",
+    "Owner · Amaury":"Owner · Amaury",
+    "Owner · David":"Owner · David",
+    "5 decisiones macro · antes de arrancar M1":"5 macro decisions · before starting M1",
+    "¿Cauaculture lanza con producto real o sigue como brand-only?":"Does Cauaculture launch with a real product or stay brand-only?",
+    "Si no vende producto, no es marca — es manifesto. Decisión binaria.":"If it doesn't sell product, it isn't a brand — it's a manifesto. Binary decision.",
+    "¿Pricing único o dual entre CO y US?":"Single pricing or dual between CO and US?",
+    "$30 DTC US vs precio CO. Misma barra, dos audiencias. Define márgenes.":"$30 DTC US vs CO price. Same bar, two audiences. Defines margins.",
+    "¿1 Guardián foco o los 5 desde el día 0?":"1 focus Guardian or all 5 from day 0?",
+    "Lucho ancla. Los otros 4 entran en M4-M6 o todos juntos. Operación vs narrativa.":"Lucho anchors. The other 4 enter in M4-M6 or all together. Operations vs narrative.",
+    "¿Quotes de Huberman/Hyman/Asprey: explícitos o se retiran?":"Huberman/Hyman/Asprey quotes: explicit or pulled?",
+    "Memoria: no inventar claims/reseñas. Riesgo legal y de marca si no son endorsements reales.":"Memory: do not invent claims/reviews. Legal and brand risk if not real endorsements.",
+    "España SL pausada · BFFood NO · sin LATAM expansion sin US validado.":"Spain SL paused · BFFood NO · no LATAM expansion without US validated.",
+    "Decisión 01 cerrada":"Decision 01 closed",
+    "Decisión 02 cerrada":"Decision 02 closed",
+    "Decisión 03 cerrada":"Decision 03 closed",
+    "Decisión 04 cerrada":"Decision 04 closed",
+    "Decisión 05 cerrada":"Decision 05 closed",
+    "Stack mínimo · lo que ya existe":"Minimum stack · what already exists",
+    "CauaColombia · tienda":"CauaColombia · store",
+    "Operativa. Mantener.":"Live. Keep.",
+    "Cauaculture · marca":"Cauaculture · brand",
+    "Conectar Shopify para producto real.":"Connect Shopify for real product.",
+    "Unificar listas entre las dos URLs.":"Unify lists across both URLs.",
+    "Suscripción":"Subscription",
+    "Core de M2.":"M2 core.",
+    "Logística":"Logistics",
+    "3PL hub US ya disponible.":"3PL US hub already available.",
+    "Agentic SEO":"Agentic SEO",
+    "Ya en CauaColombia. Replicar en Cauaculture.":"Already on CauaColombia. Replicate on Cauaculture.",
+    "El pitch · 2 minutos con David":"The pitch · 2 minutes with David",
+    "Cuatro frases":"Four sentences",
+    "No tenemos un problema de marca — tenemos un problema de simetría.":"We don't have a brand problem — we have a symmetry problem.",
+    "CauaColombia vende. Cauaculture promete. M1 es alinear las dos puertas.":"CauaColombia sells. Cauaculture promises. M1 is aligning the two doors.",
+    "6 sprints, 6 specs firmadas, 1 KPI: ARR por suscripción.":"6 sprints, 6 signed specs, 1 KPI: ARR by subscription.",
+    "Mes 1 no construimos nada — decidimos cuál puerta vende y cuál enseña.":"Month 1 we don't build — we decide which door sells and which teaches.",
+    "Por qué Spec-Driven":"Why Spec-Driven",
+    "Modo de fracaso":"Failure mode",
+    "Cómo se ve":"How it looks",
+    "Prob.":"Prob.",
+    "Daño":"Damage",
+    "Alta":"High","Media":"Medium","Letal":"Lethal","Alto":"High","Medio":"Medium","Casi cert.":"Near cert.",
+    "9 Guardrails · plan v1.1 reforzado":"9 Guardrails · reinforced plan v1.1",
+    "Welfare Guardian SA-01":"Welfare Guardian SA-01",
+    "Cosecha plan B":"Harvest plan B",
+    "URLs sin canibalización":"URLs without cannibalization",
+    "Claims auditados":"Audited claims",
+    "FDA + aduana primero":"FDA + customs first",
+    "Pricing dual firmado":"Dual pricing signed",
+    "A × D weekly":"A × D weekly",
+    "No-LATAM rule":"No-LATAM rule",
+    "Decision deadline 14d":"Decision deadline 14d",
+    "G1 activo":"G1 active","G2 activo":"G2 active","G3 activo":"G3 active","G4 activo":"G4 active","G5 activo":"G5 active","G6 activo":"G6 active","G7 activo":"G7 active","G8 activo":"G8 active","G9 activo":"G9 active",
+    "Stop-loss · cuándo se pausa todo":"Stop-loss · when everything pauses",
+    "Qué hace":"What it does",
+    "Corredor Caúa Corp":"Caúa Corp corridor",
+    "Un cacao · dos puertas · una tesis":"One cacao · two doors · one thesis",
+    "Unit economics · validadas en lote piloto":"Unit economics · validated in pilot batch",
+    "FOB Austin":"FOB Austin",
+    "Por barra 250g · costo aterrizado en WA'KA1":"Per 250g bar · landed cost at WA'KA1",
+    "DTC USA":"DTC USA",
+    "Precio consumidor final · márgen 79%":"End consumer price · 79% margin",
+    "Wholesale":"Wholesale",
+    "Canal B2B retailers premium":"B2B premium retailers channel",
+    "Estructura del holding · ya operativa":"Holding structure · already operational",
+    "USA · Top":"USA · Top",
+    "Austin TX · puerta global · USD revenue · hub fulfillment US":"Austin TX · global door · USD revenue · US fulfillment hub",
+    "Holding":"Holding",
+    "Caúa Corp":"Caúa Corp",
+    "Delaware · controla CO + paga royalty 5-8% al holding superior":"Delaware · controls CO + pays 5-8% royalty to top holding",
+    "Colombia · Ops":"Colombia · Ops",
+    "Caua Colombia SAS":"Caua Colombia SAS",
+    "Bogotá · operativa CO · origen · cosecha · cap table 15% empleados+agricultores":"Bogotá · CO ops · origin · harvest · cap table 15% employees+farmers",
+    "Visión":"Vision",
+    "La apuesta lateral · membership LatAm de bebidas/alimentos":"The side bet · LatAm membership of beverages/foods",
+    "Año 2 · expansión cross-LatAm con Caúa como hub origen":"Year 2 · cross-LatAm expansion with Caúa as origin hub",
+    "Acuerdo Caúa Corp · Spec-Driven v1.0 · 2026-05-14":"Caúa Corp Agreement · Spec-Driven v1.0 · 2026-05-14",
+    "Amaury Amed Blanquicet R × David Montoya · Roadmap 6 meses":"Amaury Amed Blanquicet R × David Montoya · 6-month Roadmap",
+    "Cláusula 1 · La base del acuerdo":"Clause 1 · Agreement baseline",
+    "GMV / pedidos sueltos · descartado":"GMV / one-off orders · discarded",
+    "Compra única no se proyecta":"One-off purchase doesn't project",
+    "Dependiente del marketing del mes":"Dependent on monthly marketing",
+    "CAC sin LTV es ruido":"CAC without LTV is noise",
+    "Inversores no valoran este número":"Investors don't value this number",
+    "Cada peso retorna 1 vez":"Each dollar returns 1 time",
+    "Múltiplo: 1–2× revenue":"Multiple: 1–2× revenue",
+    "ARR por suscripción · firmado":"ARR by subscription · signed",
+    "Predecible mes a mes":"Predictable month to month",
+    "LTV calculable desde el día 1":"LTV calculable from day 1",
+    "Cada cohort es un activo":"Each cohort is an asset",
+    "Tesis IPO 2034 descansa aquí":"IPO 2034 thesis rests here",
+    "Cada peso retorna 6–24 veces":"Each dollar returns 6–24 times",
+    "Múltiplo: 5–12× ARR":"Multiple: 5–12× ARR",
+    "Cláusula 2 · Compromisos firmados":"Clause 2 · Signed commitments",
+    "Al firmar abajo, ambos Co-CEOs se comprometen a:":"By signing below, both Co-CEOs commit to:",
+    "Cláusula 3 · Estado del acuerdo en este dispositivo":"Clause 3 · Agreement state on this device",
+    "Decisiones cerradas · §4":"Decisions closed · §4",
+    "Guardrails activos · §8":"Guardrails active · §8",
+    "Firmado":"Signed",
+    "Co-CEO / CTO · CauaColombia · origen + ops":"Co-CEO / CTO · CauaColombia · origin + ops",
+    "Co-CEO · Cauaculture · marca + DTC global":"Co-CEO · Cauaculture · brand + DTC global",
+    "Firmar el Pacto":"Sign the Pact",
+    "★  Pacto Caúa Corp firmado  ★":"★  Caúa Corp Pact signed  ★",
+    "North Star · ARR por suscripción":"North Star · ARR by subscription",
+    "Reiniciar pacto":"Reset pact",
+    "Caúa Corp · Spec-Driven Studio":"Caúa Corp · Spec-Driven Studio"
+  };
+
+  var originalCache = null;
+  function captureOriginal(){
+    if(originalCache) return originalCache;
+    var cache = [];
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var node;
+    while((node = walker.nextNode())){
+      var parent = node.parentNode;
+      if(parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
+      if(parent && parent.closest && parent.closest('.lang-toggle')) continue;
+      var txt = node.textContent;
+      if(txt && txt.trim()){ cache.push({node:node, original:txt}); }
+    }
+    originalCache = cache;
+    return cache;
+  }
+
+  function applyLang(lang){
+    var cache = captureOriginal();
+    if(lang === 'en'){
+      cache.forEach(function(item){
+        var trimmed = item.original.trim();
+        if(DICT[trimmed]){
+          item.node.textContent = item.original.replace(trimmed, DICT[trimmed]);
+        }
+      });
+    } else {
+      cache.forEach(function(item){ item.node.textContent = item.original; });
+    }
+    document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try{ localStorage.setItem(LKEY, lang); }catch(e){}
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
+    });
+    var saved = 'es';
+    try{ saved = localStorage.getItem(LKEY) || 'es'; }catch(e){}
+    if(saved === 'en') applyLang('en');
+  });
+})();
+</script>
 
 <script>
 (function(){
