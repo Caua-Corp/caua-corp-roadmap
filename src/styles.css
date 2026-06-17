@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --caua-pod: #87AA27;
+  --caua-white: #F7F1EE;
+  --caua-criollo: #881C79;
+  --caua-amazon: #1C3B26;
+  --caua-mazorca: #EEA110;
+  --caua-ink: #1A1A1A;
+}
+
+@theme inline {
+  --color-caua-pod: var(--caua-pod);
+  --color-caua-white: var(--caua-white);
+  --color-caua-criollo: var(--caua-criollo);
+  --color-caua-amazon: var(--caua-amazon);
+  --color-caua-mazorca: var(--caua-mazorca);
+  --color-caua-ink: var(--caua-ink);
+}
+
+body {
+  background-color: var(--caua-white);
+  color: var(--caua-ink);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.label-caps {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage-current-glow {
+  box-shadow: 0 0 0 2px var(--caua-pod), 0 0 16px 2px rgba(135,170,39,0.25);
+}

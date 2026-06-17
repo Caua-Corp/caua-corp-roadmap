@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Caúa Corp · Spec-Driven 6M · Pacto Amaury × David</title>
+<style>
+  :root{
+    --bg:#0b0a08;
+    --paper:#f1ebdc;
+    --ink:#1a1612;
+    --cacao:#4a2818;
+    --gold:#c8a661;
+    --green:#3d5a3f;
+    --muted:#7a7062;
+    --line:#2a2520;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Helvetica Neue","Inter","Arial",sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 32px 96px}
+
+  header{
+    border-bottom:2px solid var(--ink);
+    padding-bottom:24px;margin-bottom:48px;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .brand{display:flex;flex-direction:column;gap:4px}
+  .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--cacao);font-weight:700}
+  h1{margin:0;font-family:"Times New Roman",Georgia,serif;font-weight:400;font-size:clamp(34px,5.2vw,60px);letter-spacing:-0.02em;line-height:1.02}
+  h1 em{font-style:italic;color:var(--cacao)}
+  .meta{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.7}
+  .meta b{color:var(--ink);font-weight:600}
+
+  section{margin-bottom:64px}
+  h2{font-family:"Times New Roman",Georgia,serif;font-weight:400;font-size:32px;letter-spacing:-0.01em;margin:0 0 8px}
+  h2 .num{display:inline-block;width:38px;height:38px;border:2px solid var(--ink);border-radius:50%;text-align:center;line-height:34px;font-size:14px;font-family:"Helvetica Neue",sans-serif;font-weight:700;margin-right:14px;transform:translateY(-4px)}
+  .lede{font-size:18px;color:#333;max-width:780px;margin:0 0 24px}
+  h3.sub{font-family:"Times New Roman",Georgia,serif;font-weight:400;font-size:20px;margin:32px 0 14px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+
+  /* §1 · Diagnóstico — dual */
+  .diag-dual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .diag-brand{border:2px solid var(--ink);padding:24px 22px;background:#fff;position:relative}
+  .diag-brand.co{background:#fbf6e8}
+  .diag-brand.ct{background:#f3eee2}
+  .diag-flag{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cacao);font-weight:700;margin-bottom:4px}
+  .diag-url{font-family:"Times New Roman",Georgia,serif;font-size:22px;margin:0 0 16px;font-style:italic}
+  .diag-status{display:inline-block;padding:3px 10px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+  .diag-status.live{background:var(--green);color:var(--paper)}
+  .diag-status.early{background:#c47a2a;color:var(--paper)}
+  .diag-brand h4{font-size:13px;letter-spacing:.04em;margin:14px 0 4px;color:var(--cacao);font-weight:700}
+  .diag-brand ul{margin:0;padding-left:18px;font-size:13px;line-height:1.6}
+  .asym{background:var(--ink);color:var(--paper);padding:24px 28px;margin-top:18px;border-left:4px solid var(--gold)}
+  .asym-k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .asym p{margin:0;font-size:16px;line-height:1.55}
+  .asym em{color:var(--gold);font-style:italic;font-family:"Times New Roman",Georgia,serif;font-size:18px}
+
+  /* §2 · Hipótesis */
+  .hypo{background:var(--bg);color:var(--paper);padding:40px 36px}
+  .hypo .q{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:26px;line-height:1.35;margin:0 0 18px}
+  .hypo .q::before{content:"“";color:var(--gold);font-size:48px;line-height:0;vertical-align:-12px;margin-right:6px}
+  .hypo-three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .hypo-pillar{background:rgba(200,166,97,.08);border-left:3px solid var(--gold);padding:14px 16px}
+  .hypo-pillar b{color:var(--gold);font-size:11px;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:6px}
+  .hypo-pillar span{font-size:13px;line-height:1.5;color:#d8d2c5}
+  .star{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:8px 14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-top:18px}
+
+  /* §3 · Roadmap */
+  .road{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .month{border:2px solid var(--ink);padding:18px 16px;display:flex;flex-direction:column;gap:10px;background:#fff;min-height:280px}
+  .month .m{font-family:"Times New Roman",Georgia,serif;font-size:38px;line-height:1;margin:0}
+  .month .spec{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cacao);font-weight:700;border-top:1px solid var(--ink);padding-top:8px}
+  .month .title{font-size:15px;font-weight:600;margin:0;line-height:1.25}
+  .month .desc{font-size:13px;color:#333;margin:0;flex:1}
+  .month .who{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .month .kpi{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border-top:1px dashed var(--ink);padding-top:8px}
+  .month.focus{background:var(--ink);color:var(--paper)}
+  .month.focus .spec,.month.focus .kpi{color:var(--gold);border-color:var(--paper)}
+  .month.focus .desc{color:#d8d2c5}
+  .month.focus .who{color:var(--gold)}
+
+  /* §4 · Decisiones */
+  .decs{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .dec{border:1.5px solid var(--ink);padding:18px 16px;background:#fff;display:flex;flex-direction:column;gap:8px}
+  .dec .n{font-family:"Times New Roman",Georgia,serif;font-size:42px;line-height:1;color:var(--cacao)}
+  .dec .q{font-size:14px;font-weight:600;margin:0}
+  .dec .note{font-size:12px;color:var(--muted);margin:0}
+
+  /* Checkbox + meter */
+  .cbox{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none;margin-top:10px;padding:7px 12px;background:rgba(0,0,0,.03);border:1px dashed transparent;transition:all .2s ease}
+  .cbox:hover{border-color:var(--ink);background:rgba(74,40,24,.05)}
+  .cbox input{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1.5px solid var(--ink);background:#fff;cursor:pointer;position:relative;transition:all .2s ease;flex-shrink:0;margin:0}
+  .cbox input:checked{background:var(--cacao);border-color:var(--cacao)}
+  .cbox input:checked::after{content:'';position:absolute;left:5px;top:1px;width:5px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);animation:cboxTick .35s ease}
+  @keyframes cboxTick{0%{transform:rotate(45deg) scale(0)}70%{transform:rotate(45deg) scale(1.25)}100%{transform:rotate(45deg) scale(1)}}
+  .cbox-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao)}
+  .cbox input:checked + .cbox-label{color:var(--gold)}
+  .meter{display:flex;align-items:center;gap:12px}
+  .meter-track{flex:1;height:8px;background:#e8e3d0;position:relative;overflow:hidden;border:1px solid var(--ink)}
+  .meter-fill{height:100%;background:var(--gold);width:0;transition:width .6s cubic-bezier(.2,.8,.4,1)}
+  .meter-count{font-family:"Times New Roman",Georgia,serif;font-size:18px;min-width:42px;text-align:right}
+
+  /* §5 · Stack */
+  .stack{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink)}
+  .stack > div{padding:18px 20px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);background:#fff}
+  .stack > div:nth-child(3n){border-right:none}
+  .stack > div:nth-last-child(-n+3){border-bottom:none}
+  .stack .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cacao);font-weight:700;margin-bottom:4px}
+  .stack .v{font-size:15px;font-weight:600;margin:0 0 4px}
+  .stack .why{font-size:12px;color:var(--muted);margin:0}
+
+  /* §6 · Pitch */
+  .pitch{background:var(--cacao);color:var(--paper);padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .pitch h3{font-family:"Times New Roman",Georgia,serif;font-weight:400;font-size:22px;margin:0 0 12px;color:var(--gold)}
+  .pitch ol{margin:0;padding-left:20px;font-size:18px;line-height:1.55}
+  .pitch ol li{margin-bottom:8px;font-family:"Times New Roman",Georgia,serif;font-style:italic}
+  .pitch .ns{font-size:13px;line-height:1.6}
+  .pitch .ns b{color:var(--gold)}
+
+  /* §7 · Pre-mortem */
+  .pm{border:2px solid var(--ink);background:#fff}
+  .pm-row{display:grid;grid-template-columns:1.1fr 3fr 0.8fr 0.9fr;border-bottom:1px solid var(--ink)}
+  .pm-row:last-child{border-bottom:none}
+  .pm-row > div{padding:14px 16px;border-right:1px solid var(--ink);font-size:14px;display:flex;align-items:center;gap:8px}
+  .pm-row > div:last-child{border-right:none}
+  .pm-header{background:var(--ink);color:var(--paper);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%}
+  .dot-h{background:#a3251c}.dot-m{background:var(--gold)}
+  .bar{display:inline-block;height:6px;border-radius:2px}
+  .bar-1{width:24px;background:#7a7062}.bar-2{width:46px;background:var(--gold)}.bar-3{width:68px;background:#a3251c}
+
+  /* §8 · Guardrails */
+  .guards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+  .g{border:1.5px solid var(--ink);padding:18px;background:#fff;display:flex;flex-direction:column;gap:8px}
+  .g-h{font-family:"Times New Roman",Georgia,serif;font-size:14px;color:var(--paper);background:var(--cacao);width:38px;text-align:center;padding:4px 0}
+  .g-t{font-size:15px;font-weight:700;margin:0;line-height:1.25}
+  .g p{margin:0;font-size:13px;color:#333;line-height:1.55}
+  .stoploss{border:2px solid #a3251c;background:#fff5f3;padding:22px 26px;margin-top:8px}
+  .sl-title{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#a3251c;margin-bottom:10px}
+  .stoploss ul{margin:0 0 12px;padding-left:20px;font-size:14px;line-height:1.7}
+  .sl-rule{margin:0;font-size:14px;font-style:italic;color:#5a1813}
+
+  /* §10 · Brands corridor */
+  .corridor{display:grid;grid-template-columns:1fr 180px 1fr;gap:0;border:2px solid var(--ink);background:#fff}
+  .cor-side{padding:22px 24px;display:flex;flex-direction:column;gap:8px}
+  .cor-co{border-right:1px solid var(--ink);background:#fbf6e8}
+  .cor-ct{border-left:1px solid var(--ink);background:#f3eee2}
+  .cor-flag{font-size:14px;font-weight:700}
+  .cor-k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cacao);font-weight:700;margin-top:4px}
+  .corridor ul{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6}
+  .cor-mid{background:var(--ink);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px}
+  .cor-arrow{font-size:42px;color:var(--gold);font-family:"Times New Roman",Georgia,serif}
+  .cor-mid-k{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .cor-mid-t{font-size:12px;text-align:center;line-height:1.4;max-width:140px}
+
+  /* §11 · Guardianes Pentámera */
+  .pent{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .pent-card{border:1.5px solid var(--ink);background:#fff;padding:16px 14px;display:flex;flex-direction:column;gap:6px}
+  .pent-region{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cacao);font-weight:700}
+  .pent-name{font-family:"Times New Roman",Georgia,serif;font-size:18px;margin:0}
+  .pent-role{font-size:12px;color:#333;margin:0;flex:1}
+  .pent-tag{font-size:10px;letter-spacing:.06em;color:var(--muted);font-style:italic;border-top:1px dashed var(--ink);padding-top:6px;margin-top:auto}
+
+  /* §12 · Unit economics */
+  .unit-econ{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .ue-card{background:#fff;border:2px solid var(--ink);padding:20px 22px;text-align:center;display:flex;flex-direction:column;gap:6px}
+  .ue-card.middle{background:var(--ink);color:var(--paper)}
+  .ue-v{font-family:"Times New Roman",Georgia,serif;font-size:36px;line-height:1;color:var(--cacao)}
+  .ue-card.middle .ue-v{color:var(--gold)}
+  .ue-k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--cacao)}
+  .ue-card.middle .ue-k{color:var(--gold)}
+  .ue-p{font-size:12px;color:#333;margin:0}
+  .ue-card.middle .ue-p{color:#d8d2c5}
+
+  /* §13 · Holding */
+  .holding{display:grid;grid-template-columns:1fr 30px 1fr 30px 1fr;gap:8px;align-items:stretch;margin-bottom:18px}
+  .hold-tier{background:#fff;border:2px solid var(--ink);padding:18px 16px;display:flex;flex-direction:column;gap:6px;text-align:center}
+  .hold-tier.top{background:var(--ink);color:var(--paper)}
+  .hold-arrow{display:flex;align-items:center;justify-content:center;font-family:"Times New Roman",Georgia,serif;font-size:32px;color:var(--cacao)}
+  .hold-k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cacao);font-weight:700}
+  .hold-tier.top .hold-k{color:var(--gold)}
+  .hold-n{font-family:"Times New Roman",Georgia,serif;font-size:22px;line-height:1.1;margin:0}
+  .hold-d{font-size:11px;color:#333;margin:0}
+  .hold-tier.top .hold-d{color:#d8d2c5}
+  .ipo{background:var(--gold);color:var(--ink);padding:18px 26px;text-align:center;font-family:"Times New Roman",Georgia,serif;font-size:18px;font-style:italic}
+  .ipo b{font-style:normal;font-weight:700}
+
+  /* §14 · El Pacto */
+  .pacto{background:#f5efe2;border:2px solid var(--ink);padding:40px 36px;position:relative}
+  .pacto::before{content:'';position:absolute;inset:8px;border:1px solid #c9bfa6;pointer-events:none}
+  .pacto-preamble{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px dashed var(--ink)}
+  .pacto-meta{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .pacto-h{font-family:"Times New Roman",Georgia,serif;font-size:28px;margin:0;font-weight:400}
+  .clause{margin-bottom:32px;position:relative;z-index:1}
+  .clause-k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cacao);font-weight:700;margin-bottom:8px}
+  .clause-t{font-family:"Times New Roman",Georgia,serif;font-weight:400;font-size:22px;line-height:1.25;margin:0 0 12px}
+  .clause-t em{font-style:italic;color:var(--cacao)}
+  .clause-p{font-size:14px;line-height:1.6;margin:0 0 14px;color:#333}
+  .clause-quote{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:18px;text-align:center;color:var(--cacao);margin:18px 0 0;padding:14px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);line-height:1.4}
+  .ns-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+  .ns-col{background:#fff;border:1px solid var(--ink);padding:18px 20px}
+  .ns-col.good{background:#fffbf2;border:2px solid var(--gold)}
+  .ns-k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #e8e3d0}
+  .ns-k.bad{color:#999}.ns-k.ok{color:#7a5a18}
+  .ns-col ul{margin:0;padding-left:18px;font-size:13px;line-height:1.6}
+  .ns-col.good li{color:#222}
+  .ns-col:not(.good) li{color:#888}
+  .commit-list{margin:0;padding-left:20px;font-size:14px;line-height:1.7}
+  .commit-list li{margin-bottom:6px}
+  .state-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0}
+  .state-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--cacao);margin-bottom:8px}
+  .state-rule{font-size:12px;font-style:italic;color:var(--muted);margin:8px 0 0;text-align:center}
+
+  .sign-block{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:24px auto;opacity:.35;transition:all .6s ease;pointer-events:none;filter:grayscale(.7)}
+  .sign-block.unlocked{opacity:1;pointer-events:auto;filter:none}
+  .sign-card{background:#fff;border:1.5px solid var(--ink);padding:24px 24px 20px;position:relative}
+  .sign-stamp{position:absolute;top:-8px;right:-8px;background:var(--cacao);color:var(--paper);padding:5px 12px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;transform:rotate(0) scale(0);opacity:0;z-index:2}
+  .sign-card.signed .sign-stamp{animation:stampIn .55s cubic-bezier(.34,1.56,.64,1) forwards}
+  .sign-name{font-family:"Times New Roman",Georgia,serif;font-size:20px;margin:0 0 2px}
+  .sign-role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+  .sign-line{height:64px;border-bottom:2px solid var(--ink);position:relative;margin-bottom:24px}
+  .sign-line::after{content:'Firma';position:absolute;bottom:-18px;left:0;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .sign-svg{position:absolute;bottom:-4px;left:0;width:100%;height:100%}
+  .sign-svg path{stroke-dasharray:320;stroke-dashoffset:320}
+  .sign-card.signing .sign-svg path{animation:drawSign 1.4s cubic-bezier(.55,0,.1,1) forwards}
+  .sign-card.signed .sign-svg path{stroke-dashoffset:0}
+  @keyframes drawSign{to{stroke-dashoffset:0}}
+  .sign-btn{display:block;width:100%;margin-top:8px;padding:12px 18px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;font-family:inherit}
+  .sign-btn:hover{background:var(--cacao)}
+  .sign-card.signed .sign-btn,.sign-card.signing .sign-btn{display:none}
+  .sign-date{font-size:11px;color:var(--muted);margin:10px 0 0;min-height:14px;font-style:italic;text-align:center}
+  .sign-card.signed .sign-date{color:var(--cacao);font-style:normal;font-weight:600}
+  @keyframes stampIn{0%{transform:rotate(0) scale(0);opacity:0}60%{transform:rotate(-6deg) scale(1.2);opacity:1}100%{transform:rotate(8deg) scale(1);opacity:1}}
+
+  .seal{display:flex;align-items:center;justify-content:center;margin:32px 0 12px;min-height:140px}
+  .seal-emblem{background:var(--gold);color:var(--ink);padding:24px 52px;border:3px double var(--ink);transform:scale(0) rotate(-30deg);opacity:0;text-align:center}
+  .seal.stamp-in .seal-emblem{animation:sealIn 1.2s cubic-bezier(.34,1.56,.64,1) forwards}
+  @keyframes sealIn{0%{transform:scale(0) rotate(-30deg);opacity:0}50%{transform:scale(1.3) rotate(8deg);opacity:1}75%{transform:scale(.95) rotate(-2deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+  .seal-line{font-size:10px;letter-spacing:.32em;text-transform:uppercase;font-weight:700}
+  .seal-title{font-family:"Times New Roman",Georgia,serif;font-style:italic;font-size:26px;margin:6px 0 2px}
+  .seal-sub{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .pacto-foot{font-size:11px;color:var(--muted);text-align:center;font-style:italic;margin:18px 0 0;padding-top:18px;border-top:1px dashed var(--ink)}
+  .reset-link{font-size:10px;color:var(--muted);text-decoration:underline;cursor:pointer;background:none;border:none;letter-spacing:.1em;text-transform:uppercase;font-family:inherit}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  /* Language toggle */
+  .lang-toggle{position:fixed;top:16px;right:16px;z-index:100;background:#fff;border:1.5px solid var(--ink);display:flex;font-size:11px;letter-spacing:.18em;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,.08);font-family:inherit}
+  .lang-toggle button{background:none;border:none;padding:8px 14px;cursor:pointer;color:var(--muted);font-family:inherit;letter-spacing:inherit;font-weight:inherit;transition:all .15s ease}
+  .lang-toggle button:hover{color:var(--ink)}
+  .lang-toggle button.active{background:var(--ink);color:var(--paper)}
+  @media print{.lang-toggle{display:none}}
+
+  @media print{body{background:#fff}.wrap{padding:24px}section{page-break-inside:avoid}}
+  @media (max-width:900px){
+    .diag-dual,.hypo-three,.road,.decs,.stack,.pitch,.guards,.corridor,.pent,.unit-econ,.ns-compare,.state-row,.sign-block,.pm-row{grid-template-columns:1fr}
+    .holding{grid-template-columns:1fr}
+    .hold-arrow{transform:rotate(90deg)}
+    .stack > div{border-right:none}
+    .pm-row > div{border-right:none;border-bottom:1px dashed #ccc}
+  }
+</style>
+</head>
+<body>
+<div class="lang-toggle" id="langToggle">
+  <button data-lang="es" class="active">ES</button>
+  <button data-lang="en">EN</button>
+</div>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <span class="eyebrow">Caúa Corp · Spec-Driven Strategy</span>
+    <h1>Ruta de 6 meses<br/>Pacto <em>Amaury × David</em></h1>
+  </div>
+  <div class="meta">
+    <div><b>Autor</b> Amaury Amed Blanquicet R</div>
+    <div><b>Co-firmante</b> David Montoya</div>
+    <div><b>Fecha</b> 14 · 05 · 2026</div>
+    <div><b>North Star</b> ARR por suscripción</div>
+  </div>
+</header>
+
+<!-- §1 · Diagnóstico -->
+<section>
+  <h2><span class="num">1</span>Diagnóstico · dos marcas, dos estados</h2>
+  <p class="lede">Auditoría de <b>cauaculture.co</b> + <b>cauacolombia.co</b>. Lo que encontré: una asimetría brutal entre lo operativo y lo aspiracional. Y esa asimetría es la palanca, no el problema.</p>
+
+  <div class="diag-dual">
+    <div class="diag-brand co">
+      <div class="diag-flag">🇨🇴 CauaColombia.co · Amaury</div>
+      <p class="diag-url">"Daily Cacao Protocol · Single Source"</p>
+      <span class="diag-status live">Operativo</span>
+      <h4>Qué encontré</h4>
+      <ul>
+        <li>Shopify nativo · funcional · dominio agentic-ready (<code>llms.txt</code>, <code>agents.md</code>)</li>
+        <li>Posicionamiento sólido: cacao funcional, dosificado, single-source de Lucho (Hobo, Huila)</li>
+        <li>First Harvest Drop 01 · 500 unidades · countdown activo</li>
+        <li>Suscripción 15% off + free shipping &gt;$50 USD</li>
+        <li>Quotes de Huberman / Hyman / Asprey atribuidas (riesgo regulatorio)</li>
+        <li><b style="color:#87AA27">Act. 18 may ·</b> catálogo ya en <b>3 SKUs por origen</b>: Cacao Ceremonial 250g (Huila/Lucho · $44k COP) · Barra Criollo Elite 100g (Arauca·Meta·Cundinamarca · $29k) · Granulado 70% «Caúa Lite» (Santander · $89k)</li>
+        <li><b style="color:#87AA27">Act. 18 may ·</b> GTM clarificado en Spec v1.8 — «el Gruns del Cacao»: B2C worldwide, funnel de Meta ads, compra suelta + suscripción</li>
+        <li><b style="color:#87AA27">Act. 18 may ·</b> nueva línea <b>Caúa Lite</b> + programa de embajadora (Luisa · lifestyle influencer de Bucaramanga · acuerdo lean 100% por desempeño)</li>
+        <li><b style="color:#87AA27">Act. 18 may ·</b> 3 reseñas de cliente fabricadas detectadas en la home y retiradas en vivo — regla: cero prueba social inventada</li>
+      </ul>
+      <h4>Tensión</h4>
+      <ul>
+        <li><b style="color:#87AA27">Resuelto ·</b> catálogo pasó de 1 a 3 SKUs; audiencia clarificada por el GTM v1.8</li>
+        <li>Página <code>/luisa</code> (línea Caúa Lite) aún en 404 — el funnel de esa línea no está vivo</li>
+        <li>El programa de embajadora no debe arrancar hasta que el funnel Lite convierta — lección Volley / Jess Torres</li>
+        <li>Quotes de médicos aún sin endorsement firmado — riesgo regulatorio abierto (ver §4 D04 / §8 G4)</li>
+      </ul>
+    </div>
+    <div class="diag-brand ct">
+      <div class="diag-flag">🌎 Cauaculture.co · David</div>
+      <p class="diag-url">"BEYOND CHOCOLATE"</p>
+      <span class="diag-status early">Early build</span>
+      <h4>Qué encontré</h4>
+      <ul>
+        <li>Lovable build · 4 páginas (home · about · shop · science)</li>
+        <li>Mensaje global en inglés · steady energy · clear focus · 100% cacao</li>
+        <li>6 regiones / 5 partner farms / 1 mission declarados</li>
+        <li>Stack copy fuerte (Environmental · Circular · Biodiversity · Ethical)</li>
+        <li><b style="color:#87AA27">Act. 18 may ·</b> la tienda Shopify (<code>caua-9917.myshopify.com</code>) <b>ya tiene producto activo</b>: «CAÚA 100% Pure Organic Cacao — First Harvest 250 g» · $33 USD · variante disponible, página pública</li>
+      </ul>
+      <h4>Tensión</h4>
+      <ul>
+        <li><b style="color:#87AA27">Resuelto ·</b> producto activo + pasarela confirmada — 6 suscriptores Recharge, 60 compras</li>
+        <li><b style="color:#DB5527">Canibalización concreta ·</b> Cauaculture vende el <b>mismo</b> cacao First Harvest 250 g que CauaColombia ($33 USD vs $44k COP) — sin diferenciación. Es el riesgo §7-5 / G3, ahora real, no hipotético</li>
+        <li>Sin diferenciación de mensaje: ambas URLs hablan del mismo cacao single-source</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="asym">
+    <div class="asym-k">Insight central</div>
+    <p>La asimetría es el activo: <em>CauaColombia.co</em> ya vende. <em>Cauaculture.co</em> es la marca global que justifica el precio en mercados premium (US, EU). El error sería duplicar producto en dos sitios. La oportunidad: <em>una sola operación, dos puertas de entrada</em>.</p>
+  </div>
+</section>
+
+<!-- §2 · Hipótesis -->
+<section>
+  <h2><span class="num">2</span>Hipótesis estratégica · Caúa Corp como holding</h2>
+  <div class="hypo">
+    <p class="q">Caúa Corp no es una marca con dos URLs. Es un holding con dos motores: operación (CauaColombia) + mercado global (Cauaculture). El crecimiento no viene de más SKUs ni más marketing — viene de tres palancas firmadas por los dos Co-CEOs.</p>
+    <div class="hypo-three">
+      <div class="hypo-pillar">
+        <b>(a) Operación impecable</b>
+        <span>Lucho · Hobo · Huila como motor predecible. Drop 01 → cosecha continua. CauaColombia es la fábrica.</span>
+      </div>
+      <div class="hypo-pillar">
+        <b>(b) Brand global premium</b>
+        <span>Cauaculture lidera narrativa cross-border (US East Coast año 1). Justifica el precio con storytelling, no con descuento.</span>
+      </div>
+      <div class="hypo-pillar">
+        <b>(c) Suscripción como producto</b>
+        <span>El cubo dosificado convierte cacao en hábito. ARR predecible. Mes 6 = primer cohort retenido.</span>
+      </div>
+    </div>
+    <span class="star">North Star 6 M · ARR por suscripción recurrente</span>
+  </div>
+</section>
+
+<!-- §3 · Ruta 6 meses -->
+<section>
+  <h2><span class="num">3</span>Ruta 6 meses · 1 sprint = 1 spec firmada</h2>
+  <p class="lede">Disciplina Spec-Driven heredada del modelo Winery. Cada mes empieza con la spec firmada por <b>Amaury + David</b> antes de tocar nada. Cada sprint asigna owner: A (Amaury · ops/CO), D (David · brand/CT), o A+D (conjunto).</p>
+  <div class="road">
+    <div class="month focus">
+      <p class="m">M1</p>
+      <div class="spec">SPEC-01 · Diferenciación</div>
+      <p class="title">Qué dice cada URL</p>
+      <p class="desc">CauaColombia = origen + producto. Cauaculture = marca + cross-border. Sin canibalización.</p>
+      <p class="who">Owner · A + D</p>
+      <div class="kpi">KPI · 0 mensajes duplicados entre URLs</div>
+    </div>
+    <div class="month">
+      <p class="m">M2</p>
+      <div class="spec">SPEC-02 · Suscripción Core</div>
+      <p class="title">Producto recurrente</p>
+      <p class="desc">Onboarding email · drop mensual · cancel/skip habilitado · primer cohort de 50 suscriptores. <b style="color:#87AA27">+ Hito (act. 18 may):</b> construir el workflow n8n del funnel B2C (Shopify → HubSpot → email/SMS → atribución de embajadora · Spec RF-8); el workflow además alimenta en automático el dashboard de métricas con la data de venta/CRM.</p>
+      <p class="who">Owner · Amaury</p>
+      <div class="kpi">KPI · MRR baseline · churn 30d · workflow n8n en producción</div>
+    </div>
+    <div class="month">
+      <p class="m">M3</p>
+      <div class="spec">SPEC-03 · Cauaculture v1</div>
+      <p class="title">Tienda global activa</p>
+      <p class="desc">Cauaculture con producto real, checkout USD, fulfillment desde Austin (WA'KA1).</p>
+      <p class="who">Owner · David</p>
+      <div class="kpi">KPI · primer pedido US · CAC US</div>
+    </div>
+    <div class="month">
+      <p class="m">M4</p>
+      <div class="spec">SPEC-04 · Cosecha 2</div>
+      <p class="title">Operación continua</p>
+      <p class="desc">Segundo lote de Lucho · expansión a un Guardián más · QA documentado.</p>
+      <p class="who">Owner · Amaury</p>
+      <div class="kpi">KPI · % entregas a tiempo · NPS</div>
+    </div>
+    <div class="month">
+      <p class="m">M5</p>
+      <div class="spec">SPEC-05 · Storytelling</div>
+      <p class="title">Capa editorial cross</p>
+      <p class="desc">Contenido que conecta ambas URLs · 1 historia/semana · Lucho como protagonista.</p>
+      <p class="who">Owner · A + D</p>
+      <div class="kpi">KPI · tráfico orgánico · conv. lectura→sub</div>
+    </div>
+    <div class="month">
+      <p class="m">M6</p>
+      <div class="spec">SPEC-06 · Escala</div>
+      <p class="title">Segundo mercado o ronda</p>
+      <p class="desc">Decisión: profundizar US East Coast <i>o</i> abrir ronda seed con KPIs en mano.</p>
+      <p class="who">Owner · A + D</p>
+      <div class="kpi">KPI · ARR run-rate · LTV/CAC</div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 · 5 decisiones macro -->
+<section data-section="decisions">
+  <h2><span class="num">4</span>5 decisiones macro · antes de arrancar M1</h2>
+  <p class="lede">Decisiones que <b>Amaury y David</b> deben cerrar juntos. Sin estas, M1 no arranca. Cada casilla cerrada desbloquea las firmas del Pacto en §14.</p>
+  <div class="decs">
+    <div class="dec">
+      <div class="n">01</div>
+      <p class="q">¿Cauaculture lanza con producto real o sigue como brand-only?</p>
+      <p class="note">Si no vende producto, no es marca — es manifesto. Decisión binaria.</p>
+      <label class="cbox"><input type="checkbox" data-check="dec-1"/><span class="cbox-label">Decisión 01 cerrada</span></label>
+    </div>
+    <div class="dec">
+      <div class="n">02</div>
+      <p class="q">¿Pricing único o dual entre CO y US?</p>
+      <p class="note">$30 DTC US vs precio CO. Misma barra, dos audiencias. Define márgenes.</p>
+      <label class="cbox"><input type="checkbox" data-check="dec-2"/><span class="cbox-label">Decisión 02 cerrada</span></label>
+    </div>
+    <div class="dec">
+      <div class="n">03</div>
+      <p class="q">¿1 Guardián foco o los 5 desde el día 0?</p>
+      <p class="note">Lucho ancla. Los otros 4 entran en M4-M6 o todos juntos. Operación vs narrativa.</p>
+      <label class="cbox"><input type="checkbox" data-check="dec-3"/><span class="cbox-label">Decisión 03 cerrada</span></label>
+    </div>
+    <div class="dec">
+      <div class="n">04</div>
+      <p class="q">¿Quotes de Huberman/Hyman/Asprey: explícitos o se retiran?</p>
+      <p class="note">Memoria: no inventar claims/reseñas. Riesgo legal y de marca si no son endorsements reales.</p>
+      <label class="cbox"><input type="checkbox" data-check="dec-4"/><span class="cbox-label">Decisión 04 cerrada</span></label>
+    </div>
+    <div class="dec">
+      <div class="n">05</div>
+      <p class="q">¿Qué <i>no</i> hacemos en 2026?</p>
+      <p class="note">España SL pausada · BFFood NO · sin LATAM expansion sin US validado.</p>
+      <label class="cbox"><input type="checkbox" data-check="dec-5"/><span class="cbox-label">Decisión 05 cerrada</span></label>
+    </div>
+  </div>
+</section>
+
+<!-- §5 · Stack -->
+<section>
+  <h2><span class="num">5</span>Stack mínimo · lo que ya existe</h2>
+  <p class="lede">No hay refactor pendiente. Es disciplina, no tecnología. CauaColombia corre Shopify; Cauaculture corre Lovable.</p>
+  <div class="stack">
+    <div><div class="k">CauaColombia · tienda</div><p class="v">Shopify CO</p><p class="why">Operativa. Mantener.</p></div>
+    <div><div class="k">Cauaculture · marca</div><p class="v">Lovable + Shopify US</p><p class="why">Conectar Shopify para producto real.</p></div>
+    <div><div class="k">CRM / Email</div><p class="v">HubSpot</p><p class="why">Unificar listas entre las dos URLs. Implementación en Q2.</p></div>
+    <div><div class="k">Suscripción</div><p class="v">Recharge / Shopify Subs</p><p class="why">Core de M2.</p></div>
+    <div><div class="k">Logística</div><p class="v">CO local + WA'KA1 Austin</p><p class="why">3PL hub US ya disponible.</p></div>
+    <div><div class="k">Agentic SEO</div><p class="v">llms.txt + agents.md</p><p class="why">Ya en CauaColombia. Replicar en Cauaculture.</p></div>
+  </div>
+</section>
+
+<!-- §6 · Pitch -->
+<section>
+  <h2><span class="num">6</span>El pitch · 2 minutos con David</h2>
+  <div class="pitch">
+    <div>
+      <h3>Cuatro frases</h3>
+      <ol>
+        <li>No tenemos un problema de marca — tenemos un problema de simetría.</li>
+        <li>CauaColombia vende. Cauaculture promete. M1 es alinear las dos puertas.</li>
+        <li>6 sprints, 6 specs firmadas, 1 KPI: ARR por suscripción.</li>
+        <li>Mes 1 no construimos nada — decidimos cuál puerta vende y cuál enseña.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Por qué Spec-Driven</h3>
+      <p class="ns">
+        Porque <b>la mayoría de startups premium muere ejecutando rápido sin haber decidido bien</b>.
+        Cada mes una spec firmada por los dos Co-CEOs obliga a cerrar una decisión <b>antes</b> de mover recursos.
+        Eso reduce desperdicio, alinea al equipo, y deja un rastro auditable de cómo creció Caúa Corp.
+        <br/><br/>
+        Esta es la misma disciplina con la que asesoramos a The Winery — y por eso funciona donde se vende criterio, no commodity.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- §7 · Pre-mortem -->
+<section>
+  <h2><span class="num">7</span>Pre-Mortem · "es noviembre y el plan fracasó"</h2>
+  <p class="lede">Imaginemos <b>noviembre 2026</b>. 6 sprints cerrados sin ARR. <i>¿Qué pasó?</i> 8 modos de fracaso ordenados por daño.</p>
+  <div class="pm">
+    <div class="pm-row pm-header"><div>Modo de fracaso</div><div>Cómo se ve</div><div>Prob.</div><div>Daño</div></div>
+    <div class="pm-row"><div><b>1 · Cosecha fallida</b></div><div>Lucho tiene mala cosecha o sale del trato. Sin producto, sin suscripción.</div><div><span class="dot dot-m"></span>Media</div><div><span class="bar bar-3"></span>Letal</div></div>
+    <div class="pm-row"><div><b>2 · Welfare Amaury</b></div><div>Founder burnout o crisis financiera personal. Memoria: dimensión más débil declarada.</div><div><span class="dot dot-h"></span>Alta</div><div><span class="bar bar-3"></span>Letal</div></div>
+    <div class="pm-row"><div><b>3 · Cauaculture sin producto</b></div><div>David lanza marca sin tienda funcional. La promesa global se siente vacía.</div><div><span class="dot dot-h"></span>Alta</div><div><span class="bar bar-2"></span>Alto</div></div>
+    <div class="pm-row"><div><b>4 · Claims legales</b></div><div>Los quotes de Huberman/Hyman/Asprey atraen carta legal. Imagen golpeada.</div><div><span class="dot dot-m"></span>Media</div><div><span class="bar bar-2"></span>Alto</div></div>
+    <div class="pm-row"><div><b>5 · Canibalización CO/CT</b></div><div>Las dos URLs compiten por mismo cliente. CPC sube, conversión cae.</div><div><span class="dot dot-h"></span>Alta</div><div><span class="bar bar-2"></span>Alto</div></div>
+    <div class="pm-row"><div><b>6 · Cross-border friction</b></div><div>Aduana US, FDA, logística CO→TX. Costos no previstos comen margen.</div><div><span class="dot dot-h"></span>Alta</div><div><span class="bar bar-1"></span>Medio</div></div>
+    <div class="pm-row"><div><b>7 · A vs D fricción</b></div><div>Co-CEOs no alinean visión. Decisiones macro re-abiertas mes 3.</div><div><span class="dot dot-m"></span>Media</div><div><span class="bar bar-3"></span>Letal</div></div>
+    <div class="pm-row"><div><b>8 · Sin tracción US</b></div><div>Austin lanza, nadie compra. CAC US insostenible vs LTV.</div><div><span class="dot dot-h"></span>Alta</div><div><span class="bar bar-2"></span>Alto</div></div>
+  </div>
+</section>
+
+<!-- §8 · Guardrails -->
+<section data-section="guardrails">
+  <h2><span class="num">8</span>9 Guardrails · plan v1.1 reforzado</h2>
+  <p class="lede">Cada modo de fracaso del §7 necesita un guardrail. Marca cada uno cuando esté implementado.</p>
+  <div class="guards">
+    <div class="g"><div class="g-h">G1</div><div class="g-t">Welfare Guardian SA-01</div><p>Amaury declaró estabilidad financiera+emocional como dimensión más débil. SA-01 activo: verificar welfare antes de proponer carga nueva.</p><label class="cbox"><input type="checkbox" data-check="g-1"/><span class="cbox-label">G1 activo</span></label></div>
+    <div class="g"><div class="g-h">G2</div><div class="g-t">Cosecha plan B</div><p>Segundo Guardián (Santander · Ricardo) en pipeline desde M2. Si Lucho falla, Drop 02 cambia de origen sin parar.</p><label class="cbox"><input type="checkbox" data-check="g-2"/><span class="cbox-label">G2 activo</span></label></div>
+    <div class="g"><div class="g-h">G3</div><div class="g-t">URLs sin canibalización</div><p>CauaColombia = compra. Cauaculture = descubrimiento + US. SEO disjoint. Cero CPC bid contra ti mismo.</p><label class="cbox"><input type="checkbox" data-check="g-3"/><span class="cbox-label">G3 activo</span></label></div>
+    <div class="g"><div class="g-h">G4</div><div class="g-t">Claims auditados</div><p>O Huberman/Hyman/Asprey firman endorsement explícito, o se retiran las citas. Cero zona gris legal.</p><label class="cbox"><input type="checkbox" data-check="g-4"/><span class="cbox-label">G4 activo</span></label></div>
+    <div class="g"><div class="g-h">G5</div><div class="g-t">FDA + aduana primero</div><p>Antes del primer pedido US, registro FDA + broker aduanero firmado. No improvisar en envíos cross-border.</p><label class="cbox"><input type="checkbox" data-check="g-5"/><span class="cbox-label">G5 activo</span></label></div>
+    <div class="g"><div class="g-h">G6</div><div class="g-t">Pricing dual firmado</div><p>$30 DTC US vs precio CO definido y bloqueado. Margen mínimo 72% en ambos.</p><label class="cbox"><input type="checkbox" data-check="g-6"/><span class="cbox-label">G6 activo</span></label></div>
+    <div class="g"><div class="g-h">G7</div><div class="g-t">A × D weekly</div><p>Lunes 9am Bogotá: 30 min Amaury + David. Sin agenda, solo alineación. Sin esta reunión, el plan se quiebra.</p><label class="cbox"><input type="checkbox" data-check="g-7"/><span class="cbox-label">G7 activo</span></label></div>
+    <div class="g"><div class="g-h">G8</div><div class="g-t">No-LATAM rule</div><p>Memoria: España SL pausada, BFFood Galicia NO. M1-M6 = solo CO + US. LATAM no se menciona en pitches.</p><label class="cbox"><input type="checkbox" data-check="g-8"/><span class="cbox-label">G8 activo</span></label></div>
+    <div class="g"><div class="g-h">G9</div><div class="g-t">Decision deadline 14d</div><p>Las 5 decisiones macro firmadas en 14 días desde hoy. Sin decisión, no hay sprint.</p><label class="cbox"><input type="checkbox" data-check="g-9"/><span class="cbox-label">G9 activo</span></label></div>
+  </div>
+  <div class="stoploss">
+    <div class="sl-title">Stop-loss · cuándo se pausa todo</div>
+    <ul>
+      <li>Welfare de Amaury o David se degrada (declarado por el firmante).</li>
+      <li>Cosecha falla y plan B no está armado.</li>
+      <li>Carta legal por claims.</li>
+      <li>Co-CEOs sin reunión semanal durante 3 semanas seguidas.</li>
+    </ul>
+    <p class="sl-rule">Si cualquiera se dispara → <b>congelar sprint · abrir spec de revisión · no improvisar.</b></p>
+  </div>
+</section>
+
+<!-- §9 · Brand corridor (CauaColombia ↔ Cauaculture) -->
+<section>
+  <h2><span class="num">9</span>El corredor · <i>CauaColombia ↔ Cauaculture</i></h2>
+  <p class="lede">Dos marcas, una operación. CauaColombia produce y prueba; Cauaculture proyecta y vende a US. Lo que sale de Colombia tiene que llegar a Austin como historia coherente, no como copy-paste.</p>
+  <div class="corridor">
+    <div class="cor-side cor-co">
+      <div class="cor-flag">🇨🇴 CauaColombia.co</div>
+      <div class="cor-k">Qué hace</div>
+      <ul>
+        <li>Operación, cosecha, fermentación</li>
+        <li>Daily Cacao Protocol · single source</li>
+        <li>Drop 01 · 500 unidades Hobo</li>
+        <li>Brand: Heirloom White brutalist botanical</li>
+        <li>Owner: Amaury</li>
+      </ul>
+    </div>
+    <div class="cor-mid">
+      <div class="cor-arrow">⇄</div>
+      <div class="cor-mid-k">Corredor Caúa Corp</div>
+      <div class="cor-mid-t">Un cacao · dos puertas · una tesis</div>
+    </div>
+    <div class="cor-side cor-ct">
+      <div class="cor-flag">🌎 Cauaculture.co</div>
+      <div class="cor-k">Qué hace</div>
+      <ul>
+        <li>Brand global premium</li>
+        <li>"Beyond chocolate" · DTC US/EU</li>
+        <li>Storytelling científico</li>
+        <li>Brand: Heirloom White brutalist botanical</li>
+        <li>Owner: David</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- §10 · 5 Guardianes Pentámera -->
+<section>
+  <h2><span class="num">10</span>Pentámera · <i>los 5 Guardianes</i></h2>
+  <p class="lede">El sistema de origen no es "varias fincas". Es <b>5 Guardianes mapeados</b>, cada uno con cultivar y rol distinto. Lucho ancla la primera cosecha; los otros 4 entran en cascada.</p>
+  <div class="pent">
+    <div class="pent-card"><div class="pent-region">Huila</div><p class="pent-name">Lucho</p><p class="pent-role">Finca Santa María · Hobo · Híbrido Acriollado. Ancla operativa.</p><span class="pent-tag">Drop 01 · activo</span></div>
+    <div class="pent-card"><div class="pent-region">Santander</div><p class="pent-name">Ricardo</p><p class="pent-role">Origen secundario · plan B cosecha · diversificación geográfica.</p><span class="pent-tag">M2 · pipeline</span></div>
+    <div class="pent-card"><div class="pent-region">Meta</div><p class="pent-name">Fernando</p><p class="pent-role">Llanos · perfil aromático distinto · línea futura.</p><span class="pent-tag">M4 · onboarding</span></div>
+    <div class="pent-card"><div class="pent-region">Arauca</div><p class="pent-name">Marta</p><p class="pent-role">Frontera · cacao Heirloom · narrativa territorial.</p><span class="pent-tag">M5 · scouting</span></div>
+    <div class="pent-card"><div class="pent-region">Cundinamarca</div><p class="pent-name">Rafael</p><p class="pent-role">Cercanía Bogotá · hub logístico y demostraciones.</p><span class="pent-tag">M6 · showroom</span></div>
+  </div>
+</section>
+
+<!-- §11 · Unit economics -->
+<section>
+  <h2><span class="num">11</span>Unit economics · validadas en lote piloto</h2>
+  <p class="lede">Cifras de memoria (~80% certeza, lote 312kg). Estos números justifican la apuesta — pero antes de comprometernos a escala, los re-validamos en cosecha M2.</p>
+  <div class="unit-econ">
+    <div class="ue-card"><div class="ue-k">FOB Austin</div><div class="ue-v">$6.18</div><p class="ue-p">Por barra 250g · costo aterrizado en WA'KA1</p></div>
+    <div class="ue-card middle"><div class="ue-k">DTC USA</div><div class="ue-v">$30</div><p class="ue-p">Precio consumidor final · márgen 79%</p></div>
+    <div class="ue-card"><div class="ue-k">Wholesale</div><div class="ue-v">$24</div><p class="ue-p">Canal B2B retailers premium</p></div>
+  </div>
+  <p class="state-rule" style="margin-top:18px">Margen blended 72–86%. Estos números se re-firman en SPEC-04 (Cosecha 2) con data real del segundo lote.</p>
+</section>
+
+<!-- §12 · Holding structure -->
+<section>
+  <h2><span class="num">12</span>Estructura del holding · ya operativa</h2>
+  <p class="lede">No estamos inventando estructura legal: ya existe. La gráfica es <b>recordatorio</b> de los 3 paquetes y cómo fluyen las decisiones.</p>
+  <div class="holding">
+    <div class="hold-tier top">
+      <div class="hold-k">USA · Top</div>
+      <p class="hold-n">WA'KA1</p>
+      <p class="hold-d">Austin TX · puerta global · USD revenue · hub fulfillment US</p>
+    </div>
+    <div class="hold-arrow">↓</div>
+    <div class="hold-tier">
+      <div class="hold-k">Holding</div>
+      <p class="hold-n">Caúa Corp</p>
+      <p class="hold-d">Delaware · controla CO + paga royalty 5-8% al holding superior</p>
+    </div>
+    <div class="hold-arrow">↓</div>
+    <div class="hold-tier">
+      <div class="hold-k">Colombia · Ops</div>
+      <p class="hold-n">Caua Colombia SAS</p>
+      <p class="hold-d">Bogotá · operativa CO · origen · cosecha · cap table 15% empleados+agricultores</p>
+    </div>
+  </div>
+  <div class="ipo">
+    Visión <b>IPO 2034 · NASDAQ</b> · rango target $800M – $1.5B
+  </div>
+</section>
+
+<!-- §13 · Apuesta lateral -->
+<section>
+  <h2><span class="num">13</span>La apuesta lateral · membership LatAm de bebidas/alimentos</h2>
+  <p class="lede">Lo que <b>no</b> está en el roadmap de 6 meses pero debería ser parte de la tesis. Heredado del análisis Winery: <i>Caúa puede liderar el lado origen</i> de un marketplace LatAm de fine goods.</p>
+  <div class="hypo">
+    <p class="q">El roadmap te lleva al producto. La apuesta lateral te lleva a la categoría — y nos pone como el partner natural de cualquier curador premium del Cono Sur.</p>
+    <p style="margin:0 0 14px;color:#d8d2c5;font-size:14px">
+      Caúa Corp aporta: <b style="color:var(--gold)">trazabilidad</b> + <b style="color:var(--gold)">narrativa de origen</b> + <b style="color:var(--gold)">marca canónica</b>.<br/>
+      Partner (ej: The Winery CL): tráfico premium + logística regional + relación con marcas establecidas.
+    </p>
+    <span class="star">Año 2 · expansión cross-LatAm con Caúa como hub origen</span>
+  </div>
+</section>
+
+<!-- §14 · El Pacto Amaury × David -->
+<section>
+  <h2><span class="num">14</span>El Pacto · <i>firma digital Amaury × David</i></h2>
+  <p class="lede">Este es el contrato. La <b>North Star</b> que ambos defienden, los <b>compromisos</b> que firman como Co-CEOs, y la <b>firma</b> que sella la fase M0 del Spec-Driven de Caúa Corp.</p>
+
+  <div class="pacto">
+    <div class="pacto-preamble">
+      <p class="pacto-meta">Acuerdo Caúa Corp · Spec-Driven v1.0 · 2026-05-14</p>
+      <p class="pacto-h">Amaury Amed Blanquicet R × David Montoya · Roadmap 6 meses</p>
+    </div>
+
+    <div class="clause">
+      <div class="clause-k">Cláusula 1 · La base del acuerdo</div>
+      <h4 class="clause-t">Métrica única de éxito: <em>ARR por suscripción recurrente</em> — no GMV total, no followers, no impresiones.</h4>
+      <p class="clause-p">El crecimiento se mide por <b>ingreso anual recurrente</b> de suscriptores activos del Daily Cacao Protocol. Esa métrica es la base sobre la que descansan las cláusulas 2 y 3. Cada decisión operativa, de marca y de capital se evalúa contra ella.</p>
+      <div class="ns-compare">
+        <div class="ns-col">
+          <div class="ns-k bad">GMV / pedidos sueltos · descartado</div>
+          <ul>
+            <li>Compra única no se proyecta</li>
+            <li>Dependiente del marketing del mes</li>
+            <li>CAC sin LTV es ruido</li>
+            <li>Inversores no valoran este número</li>
+            <li>Cada peso retorna 1 vez</li>
+            <li>Múltiplo: 1–2× revenue</li>
+          </ul>
+        </div>
+        <div class="ns-col good">
+          <div class="ns-k ok">ARR por suscripción · firmado</div>
+          <ul>
+            <li>Predecible mes a mes</li>
+            <li>LTV calculable desde el día 1</li>
+            <li>Cada cohort es un activo</li>
+            <li>Tesis IPO 2034 descansa aquí</li>
+            <li>Cada peso retorna 6–24 veces</li>
+            <li>Múltiplo: 5–12× ARR</li>
+          </ul>
+        </div>
+      </div>
+      <p class="clause-quote">"GMV es ruido. ARR es señal.<br/>Caúa Corp se mide por la señal."</p>
+    </div>
+
+    <div class="clause">
+      <div class="clause-k">Cláusula 2 · Compromisos firmados</div>
+      <p class="clause-p">Al firmar abajo, ambos Co-CEOs se comprometen a:</p>
+      <ul class="commit-list">
+        <li>Tratar las <b>5 decisiones macro (§4)</b> como cerradas. Sin reaperturas tácticas.</li>
+        <li>Operar bajo los <b>9 guardrails (§8)</b> como reglas, no sugerencias.</li>
+        <li>Reunión <b>A × D lunes 9am Bogotá</b> · 30 min · innegociable mientras dure este sprint.</li>
+        <li><b>Welfare check semanal</b> — si Amaury o David lo declaran, se activa SA-01 y se reorganiza la carga.</li>
+        <li>No mencionar LATAM expansion en pitches hasta validar US (memoria: España pausada, BFFood NO).</li>
+        <li>Cada lunes revisar <b>ARR + dos suscriptores reales</b> entrevistados esa semana.</li>
+      </ul>
+    </div>
+
+    <div class="clause">
+      <div class="clause-k">Cláusula 3 · Estado del acuerdo en este dispositivo</div>
+      <div class="state-row">
+        <div>
+          <div class="state-label">Decisiones cerradas · §4</div>
+          <div class="meter"><div class="meter-track"><div class="meter-fill" id="bar-decisions"></div></div><span class="meter-count" id="progress-decisions">0/5</span></div>
+        </div>
+        <div>
+          <div class="state-label">Guardrails activos · §8</div>
+          <div class="meter"><div class="meter-track"><div class="meter-fill" id="bar-guardrails"></div></div><span class="meter-count" id="progress-guardrails">0/9</span></div>
+        </div>
+      </div>
+      <p class="state-rule">Las firmas se desbloquean cuando las <b>5 decisiones macro</b> estén cerradas.</p>
+    </div>
+
+    <div class="sign-block">
+      <div class="sign-card" data-party="amaury">
+        <span class="sign-stamp">Firmado</span>
+        <p class="sign-name">Amaury Amed Blanquicet R</p>
+        <p class="sign-role">Co-CEO / CTO · CauaColombia · origen + ops</p>
+        <div class="sign-line">
+          <svg class="sign-svg" viewBox="0 0 280 60" preserveAspectRatio="xMidYMid meet">
+            <path d="M15 48 C 35 5, 70 55, 110 28 S 175 50, 215 25 Q 240 18, 265 38" stroke="#4a2818" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <button class="sign-btn" onclick="sign('amaury')">Firmar el Pacto</button>
+        <p class="sign-date"></p>
+      </div>
+      <div class="sign-card" data-party="david">
+        <span class="sign-stamp">Firmado</span>
+        <p class="sign-name">David Montoya</p>
+        <p class="sign-role">Co-CEO · Cauaculture · marca + DTC global</p>
+        <div class="sign-line">
+          <svg class="sign-svg" viewBox="0 0 280 60" preserveAspectRatio="xMidYMid meet">
+            <path d="M10 40 Q 45 5, 75 38 T 145 28 Q 175 12, 220 42 L 268 30" stroke="#4a2818" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <button class="sign-btn" onclick="sign('david')">Firmar el Pacto</button>
+        <p class="sign-date"></p>
+      </div>
+    </div>
+
+    <div class="seal">
+      <div class="seal-emblem">
+        <div class="seal-line">★  Pacto Caúa Corp firmado  ★</div>
+        <div class="seal-title">North Star · ARR por suscripción</div>
+        <div class="seal-sub">Amaury × David · v1.0 · 2026-05-14</div>
+      </div>
+    </div>
+
+    <p class="pacto-foot">
+      Firmas registradas localmente en este navegador (localStorage).<br/>
+      Para validez interna: exportar a PDF y subir a la carpeta Drive del holding.<br/>
+      <button class="reset-link" onclick="resetPacto()">Reiniciar pacto</button>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>Caúa Corp · Spec-Driven Studio</span>
+  <span>cauacolombia.co + cauaculture.co · Pacto v1.0 · 2026-05-14</span>
+</footer>
+
+</div>
+
+<script>
+// ===== i18n · Spanish (default) ↔ English =====
+(function(){
+  var LKEY='caua:roadmap:lang';
+  var DICT = {
+    "Caúa Corp · Spec-Driven Strategy":"Caúa Corp · Spec-Driven Strategy",
+    "Ruta de 6 meses":"6-Month Roadmap",
+    "Autor":"Author",
+    "Co-firmante":"Co-signer",
+    "Fecha":"Date",
+    "ARR por suscripción":"ARR by subscription",
+    "Diagnóstico · dos marcas, dos estados":"Diagnosis · two brands, two states",
+    "Operativo":"Live",
+    "Qué encontré":"What I found",
+    "Tensión":"Tension",
+    "Insight central":"Core insight",
+    "Hipótesis estratégica · Caúa Corp como holding":"Strategic hypothesis · Caúa Corp as holding",
+    "Operación impecable":"Flawless operations",
+    "Brand global premium":"Global premium brand",
+    "Suscripción como producto":"Subscription as product",
+    "North Star 6 M · ARR por suscripción recurrente":"North Star 6M · ARR by recurring subscription",
+    "Ruta 6 meses · 1 sprint = 1 spec firmada":"6-month roadmap · 1 sprint = 1 signed spec",
+    "Diferenciación":"Differentiation",
+    "Qué dice cada URL":"What each URL says",
+    "Suscripción Core":"Core Subscription",
+    "Producto recurrente":"Recurring product",
+    "Tienda global activa":"Global store live",
+    "Cosecha 2":"Harvest 2",
+    "Operación continua":"Continuous operations",
+    "Storytelling":"Storytelling",
+    "Capa editorial cross":"Editorial cross-layer",
+    "Escala":"Scale",
+    "Segundo mercado o ronda":"Second market or round",
+    "Owner · A + D":"Owner · A + D",
+    "Owner · Amaury":"Owner · Amaury",
+    "Owner · David":"Owner · David",
+    "5 decisiones macro · antes de arrancar M1":"5 macro decisions · before starting M1",
+    "¿Cauaculture lanza con producto real o sigue como brand-only?":"Does Cauaculture launch with a real product or stay brand-only?",
+    "Si no vende producto, no es marca — es manifesto. Decisión binaria.":"If it doesn't sell product, it isn't a brand — it's a manifesto. Binary decision.",
+    "¿Pricing único o dual entre CO y US?":"Single pricing or dual between CO and US?",
+    "$30 DTC US vs precio CO. Misma barra, dos audiencias. Define márgenes.":"$30 DTC US vs CO price. Same bar, two audiences. Defines margins.",
+    "¿1 Guardián foco o los 5 desde el día 0?":"1 focus Guardian or all 5 from day 0?",
+    "Lucho ancla. Los otros 4 entran en M4-M6 o todos juntos. Operación vs narrativa.":"Lucho anchors. The other 4 enter in M4-M6 or all together. Operations vs narrative.",
+    "¿Quotes de Huberman/Hyman/Asprey: explícitos o se retiran?":"Huberman/Hyman/Asprey quotes: explicit or pulled?",
+    "Memoria: no inventar claims/reseñas. Riesgo legal y de marca si no son endorsements reales.":"Memory: do not invent claims/reviews. Legal and brand risk if not real endorsements.",
+    "España SL pausada · BFFood NO · sin LATAM expansion sin US validado.":"Spain SL paused · BFFood NO · no LATAM expansion without US validated.",
+    "Decisión 01 cerrada":"Decision 01 closed",
+    "Decisión 02 cerrada":"Decision 02 closed",
+    "Decisión 03 cerrada":"Decision 03 closed",
+    "Decisión 04 cerrada":"Decision 04 closed",
+    "Decisión 05 cerrada":"Decision 05 closed",
+    "Stack mínimo · lo que ya existe":"Minimum stack · what already exists",
+    "CauaColombia · tienda":"CauaColombia · store",
+    "Operativa. Mantener.":"Live. Keep.",
+    "Cauaculture · marca":"Cauaculture · brand",
+    "Conectar Shopify para producto real.":"Connect Shopify for real product.",
+    "Unificar listas entre las dos URLs.":"Unify lists across both URLs.",
+    "Suscripción":"Subscription",
+    "Core de M2.":"M2 core.",
+    "Logística":"Logistics",
+    "3PL hub US ya disponible.":"3PL US hub already available.",
+    "Agentic SEO":"Agentic SEO",
+    "Ya en CauaColombia. Replicar en Cauaculture.":"Already on CauaColombia. Replicate on Cauaculture.",
+    "El pitch · 2 minutos con David":"The pitch · 2 minutes with David",
+    "Cuatro frases":"Four sentences",
+    "No tenemos un problema de marca — tenemos un problema de simetría.":"We don't have a brand problem — we have a symmetry problem.",
+    "CauaColombia vende. Cauaculture promete. M1 es alinear las dos puertas.":"CauaColombia sells. Cauaculture promises. M1 is aligning the two doors.",
+    "6 sprints, 6 specs firmadas, 1 KPI: ARR por suscripción.":"6 sprints, 6 signed specs, 1 KPI: ARR by subscription.",
+    "Mes 1 no construimos nada — decidimos cuál puerta vende y cuál enseña.":"Month 1 we don't build — we decide which door sells and which teaches.",
+    "Por qué Spec-Driven":"Why Spec-Driven",
+    "Modo de fracaso":"Failure mode",
+    "Cómo se ve":"How it looks",
+    "Prob.":"Prob.",
+    "Daño":"Damage",
+    "Alta":"High","Media":"Medium","Letal":"Lethal","Alto":"High","Medio":"Medium","Casi cert.":"Near cert.",
+    "9 Guardrails · plan v1.1 reforzado":"9 Guardrails · reinforced plan v1.1",
+    "Welfare Guardian SA-01":"Welfare Guardian SA-01",
+    "Cosecha plan B":"Harvest plan B",
+    "URLs sin canibalización":"URLs without cannibalization",
+    "Claims auditados":"Audited claims",
+    "FDA + aduana primero":"FDA + customs first",
+    "Pricing dual firmado":"Dual pricing signed",
+    "A × D weekly":"A × D weekly",
+    "No-LATAM rule":"No-LATAM rule",
+    "Decision deadline 14d":"Decision deadline 14d",
+    "G1 activo":"G1 active","G2 activo":"G2 active","G3 activo":"G3 active","G4 activo":"G4 active","G5 activo":"G5 active","G6 activo":"G6 active","G7 activo":"G7 active","G8 activo":"G8 active","G9 activo":"G9 active",
+    "Stop-loss · cuándo se pausa todo":"Stop-loss · when everything pauses",
+    "Qué hace":"What it does",
+    "Corredor Caúa Corp":"Caúa Corp corridor",
+    "Un cacao · dos puertas · una tesis":"One cacao · two doors · one thesis",
+    "Unit economics · validadas en lote piloto":"Unit economics · validated in pilot batch",
+    "FOB Austin":"FOB Austin",
+    "Por barra 250g · costo aterrizado en WA'KA1":"Per 250g bar · landed cost at WA'KA1",
+    "DTC USA":"DTC USA",
+    "Precio consumidor final · márgen 79%":"End consumer price · 79% margin",
+    "Wholesale":"Wholesale",
+    "Canal B2B retailers premium":"B2B premium retailers channel",
+    "Estructura del holding · ya operativa":"Holding structure · already operational",
+    "USA · Top":"USA · Top",
+    "Austin TX · puerta global · USD revenue · hub fulfillment US":"Austin TX · global door · USD revenue · US fulfillment hub",
+    "Holding":"Holding",
+    "Caúa Corp":"Caúa Corp",
+    "Delaware · controla CO + paga royalty 5-8% al holding superior":"Delaware · controls CO + pays 5-8% royalty to top holding",
+    "Colombia · Ops":"Colombia · Ops",
+    "Caua Colombia SAS":"Caua Colombia SAS",
+    "Bogotá · operativa CO · origen · cosecha · cap table 15% empleados+agricultores":"Bogotá · CO ops · origin · harvest · cap table 15% employees+farmers",
+    "Visión":"Vision",
+    "La apuesta lateral · membership LatAm de bebidas/alimentos":"The side bet · LatAm membership of beverages/foods",
+    "Año 2 · expansión cross-LatAm con Caúa como hub origen":"Year 2 · cross-LatAm expansion with Caúa as origin hub",
+    "Acuerdo Caúa Corp · Spec-Driven v1.0 · 2026-05-14":"Caúa Corp Agreement · Spec-Driven v1.0 · 2026-05-14",
+    "Amaury Amed Blanquicet R × David Montoya · Roadmap 6 meses":"Amaury Amed Blanquicet R × David Montoya · 6-month Roadmap",
+    "Cláusula 1 · La base del acuerdo":"Clause 1 · Agreement baseline",
+    "GMV / pedidos sueltos · descartado":"GMV / one-off orders · discarded",
+    "Compra única no se proyecta":"One-off purchase doesn't project",
+    "Dependiente del marketing del mes":"Dependent on monthly marketing",
+    "CAC sin LTV es ruido":"CAC without LTV is noise",
+    "Inversores no valoran este número":"Investors don't value this number",
+    "Cada peso retorna 1 vez":"Each dollar returns 1 time",
+    "Múltiplo: 1–2× revenue":"Multiple: 1–2× revenue",
+    "ARR por suscripción · firmado":"ARR by subscription · signed",
+    "Predecible mes a mes":"Predictable month to month",
+    "LTV calculable desde el día 1":"LTV calculable from day 1",
+    "Cada cohort es un activo":"Each cohort is an asset",
+    "Tesis IPO 2034 descansa aquí":"IPO 2034 thesis rests here",
+    "Cada peso retorna 6–24 veces":"Each dollar returns 6–24 times",
+    "Múltiplo: 5–12× ARR":"Multiple: 5–12× ARR",
+    "Cláusula 2 · Compromisos firmados":"Clause 2 · Signed commitments",
+    "Al firmar abajo, ambos Co-CEOs se comprometen a:":"By signing below, both Co-CEOs commit to:",
+    "Cláusula 3 · Estado del acuerdo en este dispositivo":"Clause 3 · Agreement state on this device",
+    "Decisiones cerradas · §4":"Decisions closed · §4",
+    "Guardrails activos · §8":"Guardrails active · §8",
+    "Firmado":"Signed",
+    "Co-CEO / CTO · CauaColombia · origen + ops":"Co-CEO / CTO · CauaColombia · origin + ops",
+    "Co-CEO · Cauaculture · marca + DTC global":"Co-CEO · Cauaculture · brand + DTC global",
+    "Firmar el Pacto":"Sign the Pact",
+    "★  Pacto Caúa Corp firmado  ★":"★  Caúa Corp Pact signed  ★",
+    "North Star · ARR por suscripción":"North Star · ARR by subscription",
+    "Reiniciar pacto":"Reset pact",
+    "Caúa Corp · Spec-Driven Studio":"Caúa Corp · Spec-Driven Studio"
+  };
+
+  var originalCache = null;
+  function captureOriginal(){
+    if(originalCache) return originalCache;
+    var cache = [];
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var node;
+    while((node = walker.nextNode())){
+      var parent = node.parentNode;
+      if(parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
+      if(parent && parent.closest && parent.closest('.lang-toggle')) continue;
+      var txt = node.textContent;
+      if(txt && txt.trim()){ cache.push({node:node, original:txt}); }
+    }
+    originalCache = cache;
+    return cache;
+  }
+
+  function applyLang(lang){
+    var cache = captureOriginal();
+    if(lang === 'en'){
+      cache.forEach(function(item){
+        var trimmed = item.original.trim();
+        if(DICT[trimmed]){
+          item.node.textContent = item.original.replace(trimmed, DICT[trimmed]);
+        }
+      });
+    } else {
+      cache.forEach(function(item){ item.node.textContent = item.original; });
+    }
+    document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try{ localStorage.setItem(LKEY, lang); }catch(e){}
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.lang-toggle button').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
+    });
+    var saved = 'es';
+    try{ saved = localStorage.getItem(LKEY) || 'es'; }catch(e){}
+    if(saved === 'en') applyLang('en');
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var KEY='caua:roadmap:v1.0:state';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return{};}}
+  function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+  function updateProgress(){
+    ['decisions','guardrails'].forEach(function(sec){
+      var inputs=document.querySelectorAll('[data-section="'+sec+'"] input[type="checkbox"]');
+      var total=inputs.length;
+      var done=Array.prototype.filter.call(inputs,function(i){return i.checked;}).length;
+      var bar=document.getElementById('bar-'+sec);
+      var count=document.getElementById('progress-'+sec);
+      if(bar)bar.style.width=(total?done/total*100:0)+'%';
+      if(count)count.textContent=done+'/'+total;
+    });
+    var decDone=document.querySelectorAll('[data-section="decisions"] input:checked').length;
+    var block=document.querySelector('.sign-block');
+    if(block){if(decDone===5)block.classList.add('unlocked');else block.classList.remove('unlocked');}
+  }
+  function restore(){
+    var state=load();
+    document.querySelectorAll('input[type="checkbox"][data-check]').forEach(function(input){
+      if(state[input.dataset.check])input.checked=true;
+    });
+    document.querySelectorAll('.sign-card').forEach(function(card){
+      var party=card.dataset.party;
+      var signKey='sign:'+party;
+      if(state[signKey]){
+        card.classList.add('signed');
+        var d=new Date(state[signKey]);
+        card.querySelector('.sign-date').textContent='Firmado · '+d.toLocaleDateString('es-CO');
+      }
+    });
+    if(state['sign:amaury']&&state['sign:david']){
+      var seal=document.querySelector('.seal');
+      if(seal)seal.classList.add('stamp-in');
+    }
+  }
+  function bind(){
+    document.querySelectorAll('input[type="checkbox"][data-check]').forEach(function(input){
+      input.addEventListener('change',function(){
+        var s=load();
+        s[input.dataset.check]=input.checked;
+        save(s);
+        updateProgress();
+      });
+    });
+  }
+  window.sign=function(party){
+    var card=document.querySelector('.sign-card[data-party="'+party+'"]');
+    if(!card||card.classList.contains('signed'))return;
+    var block=document.querySelector('.sign-block');
+    if(!block.classList.contains('unlocked')){
+      alert('Las firmas se desbloquean cuando las 5 decisiones macro (§4) están cerradas.');
+      return;
+    }
+    card.classList.add('signing');
+    setTimeout(function(){
+      card.classList.add('signed');
+      var now=new Date();
+      card.querySelector('.sign-date').textContent='Firmado · '+now.toLocaleDateString('es-CO');
+      var s=load();
+      s['sign:'+party]=now.toISOString();
+      save(s);
+      if(s['sign:amaury']&&s['sign:david']){
+        setTimeout(function(){document.querySelector('.seal').classList.add('stamp-in');},400);
+      }
+    },1500);
+  };
+  window.resetPacto=function(){
+    if(confirm('¿Reiniciar todo el pacto en este navegador?')){
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  };
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){restore();bind();updateProgress();});
+  }else{restore();bind();updateProgress();}
+})();
+</script>
+</body>
+</html>
