@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAÚA · 1:1 Estratégico Amaury × David · 17 jun 2026</title>
+<style>
+  :root{
+    --pod:#87AA27; --heirloom:#F7F1EE; --criollo:#881C79; --amazon:#1C3B26;
+    --mazorca:#EEA110; --ink:#26302A; --muted:#6E7269; --paper:#FFFFFF;
+    --line:#E3DACF; --red:#C0392B; --red-bg:rgba(192,57,43,.10);
+    --yellow-bg:rgba(238,161,16,.13); --green-bg:rgba(135,170,39,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Inter","Helvetica Neue",Arial,sans-serif;background:var(--heirloom);
+       color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 28px 100px;}
+
+  /* HEADER */
+  header{border-bottom:3px solid var(--amazon);padding-bottom:24px;margin-bottom:32px;}
+  .brand{font-size:11px;letter-spacing:.36em;font-weight:800;text-transform:uppercase;color:var(--pod);margin-bottom:10px;}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--amazon);margin-bottom:6px;}
+  .meta{font-size:13px;color:var(--muted);}
+  .meta b{color:var(--amazon);}
+  .meta .sep{margin:0 8px;opacity:.4;}
+
+  /* PILLS */
+  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+        text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+  .ok   {background:var(--green-bg);color:#4d6312;}
+  .warn {background:var(--yellow-bg);color:#7a4f00;}
+  .urgent{background:var(--red-bg);color:var(--red);}
+  .na   {background:#ece4da;color:var(--muted);}
+  .criollo{background:rgba(136,28,121,.12);color:var(--criollo);}
+
+  /* PRE-LECTURA BANNER */
+  .pre-banner{background:var(--amazon);color:var(--heirloom);border-radius:12px;
+              padding:18px 22px;margin-bottom:32px;}
+  .pre-banner h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+                 color:var(--pod);margin-bottom:10px;}
+  .pre-banner p{font-size:13.5px;line-height:1.65;opacity:.92;}
+  .pre-banner a{color:var(--mazorca);text-decoration:none;}
+  .pre-banner table{width:100%;border-collapse:collapse;margin-top:12px;}
+  .pre-banner th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+                 color:var(--pod);padding:5px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.15);}
+  .pre-banner td{font-size:13px;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.08);
+                 color:rgba(247,241,238,.88);vertical-align:top;}
+  .pre-banner td:last-child{text-align:right;}
+  .pre-banner tr:last-child td{border-bottom:none;}
+  .pre-banner .new{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+                   background:var(--mazorca);color:var(--amazon);padding:2px 7px;border-radius:999px;}
+  .pre-banner .pend{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+                    background:rgba(255,255,255,.18);color:rgba(247,241,238,.9);padding:2px 7px;border-radius:999px;}
+
+  /* BLOQUES */
+  .block{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+         margin-bottom:20px;overflow:hidden;}
+  .block-head{display:flex;align-items:center;gap:14px;padding:16px 20px;
+              border-bottom:1px solid var(--line);}
+  .block-num{width:36px;height:36px;border-radius:50%;background:var(--amazon);
+             color:var(--heirloom);font-size:15px;font-weight:800;display:flex;
+             align-items:center;justify-content:center;flex-shrink:0;}
+  .block-num.welfare{background:var(--criollo);}
+  .block-num.cierre{background:var(--pod);color:var(--amazon);}
+  .block-title{flex:1;}
+  .block-title h2{font-size:16px;font-weight:800;color:var(--amazon);margin-bottom:2px;}
+  .block-title .dur{font-size:12px;color:var(--muted);}
+  .block-body{padding:18px 20px;}
+
+  /* SUBSECCIONES */
+  .sub{margin-bottom:22px;}
+  .sub:last-child{margin-bottom:0;}
+  .sub-title{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+             color:var(--pod);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--line);}
+  p{font-size:14px;margin-bottom:10px;}
+  p:last-child{margin-bottom:0;}
+
+  /* TABLES */
+  table.data{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px;}
+  table.data th{text-align:left;font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+                color:var(--muted);padding:7px 10px;border-bottom:2px solid var(--line);}
+  table.data td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.data tr:last-child td{border-bottom:none;}
+  table.data .em{font-weight:700;color:var(--amazon);}
+  table.data .id{font-weight:800;color:var(--criollo);white-space:nowrap;}
+
+  /* OPCIONES */
+  .opts{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .opt{border:1px solid var(--line);border-radius:10px;padding:13px 15px;
+       display:flex;align-items:flex-start;gap:12px;}
+  .opt-letter{width:28px;height:28px;border-radius:50%;background:var(--heirloom);
+              border:2px solid var(--line);font-size:13px;font-weight:800;
+              display:flex;align-items:center;justify-content:center;
+              flex-shrink:0;color:var(--amazon);}
+  .opt-body{flex:1;}
+  .opt-body strong{font-size:14px;color:var(--amazon);display:block;margin-bottom:3px;}
+  .opt-body span{font-size:13px;color:var(--muted);}
+  .opt.proposed{border-color:var(--pod);background:var(--green-bg);}
+  .opt.proposed .opt-letter{background:var(--pod);border-color:var(--pod);color:var(--amazon);}
+  .prop-tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+            background:var(--pod);color:var(--amazon);padding:2px 7px;border-radius:999px;
+            display:inline-block;margin-left:8px;vertical-align:middle;}
+
+  /* WELFARE SPECIAL */
+  .welfare-note{background:rgba(136,28,121,.07);border:1px solid rgba(136,28,121,.2);
+                border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--criollo);}
+
+  /* LEAD TABLE SEM */
+  .sem-r::before{content:"🔴 ";} .sem-y::before{content:"🟡 ";}
+
+  /* DECISIONS CLOSING */
+  .closing{background:var(--amazon);border-radius:14px;padding:24px 24px;margin-top:28px;}
+  .closing h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pod);
+              margin-bottom:16px;}
+  .closing-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .dec-item{background:rgba(247,241,238,.06);border:1px solid rgba(247,241,238,.14);
+            border-radius:10px;padding:13px 15px;display:flex;align-items:flex-start;gap:10px;}
+  .dec-box{width:18px;height:18px;border:2px solid rgba(247,241,238,.4);border-radius:4px;
+           flex-shrink:0;margin-top:2px;}
+  .dec-body strong{font-size:13px;color:var(--heirloom);display:block;margin-bottom:3px;}
+  .dec-body span{font-size:12px;color:rgba(247,241,238,.6);}
+
+  /* NOT IN MEETING */
+  .not-in{background:var(--heirloom);border:1px dashed var(--line);border-radius:10px;
+          padding:14px 18px;margin-top:16px;}
+  .not-in h3{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+             margin-bottom:8px;}
+  .not-in ul{padding-left:18px;}
+  .not-in li{font-size:13px;color:var(--muted);margin-bottom:4px;}
+
+  /* FOOTER */
+  footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);
+         font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;}
+  .disc{font-size:13px;font-style:italic;color:var(--muted);margin-top:12px;}
+
+  @media(max-width:640px){
+    .closing-grid{grid-template-columns:1fr;}
+    table.data{font-size:12.5px;}
+    h1{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">CAÚA Corp · Spec-Driven</div>
+    <h1>1:1 Estratégico · Amaury × David</h1>
+    <div class="meta">
+      <b>17 jun 2026</b><span class="sep">·</span>~60 min<span class="sep">·</span>Primera sesión de alineación post-Alimentec
+    </div>
+  </header>
+
+  <!-- PRE-LECTURA -->
+  <div class="pre-banner">
+    <h3>Pre-lectura para David — 10 min antes</h3>
+    <p>Desde el último 1:1 (18 may) pasaron 4 semanas con movimientos que necesitan tu ratificación.
+       Esta reunión decide; no ejecuta.</p>
+    <table>
+      <tr>
+        <th>Evento</th><th>Fecha</th><th></th>
+      </tr>
+      <tr>
+        <td>M0 pivot: B2B cacao España+Chile + consultoría como runway</td>
+        <td>15 may</td>
+        <td><span class="pend">Pendiente tu alineación</span></td>
+      </tr>
+      <tr>
+        <td>NIBS: acuerdo cobranding CAÚA × Zurych × Lust firmado (borrador v1.0)</td>
+        <td>7 jun</td>
+        <td><span class="new">Nuevo para David</span></td>
+      </tr>
+      <tr>
+        <td>Alimentec / Anuga Select: stand CAÚA × Zurych, lanzamiento NIBS</td>
+        <td>9–12 jun</td>
+        <td><span class="new">Nuevo para David</span></td>
+      </tr>
+      <tr>
+        <td>100 contactos B2B reales (36 stand + 64 outbound)</td>
+        <td>12 jun</td>
+        <td><span class="new">Requiere estrategia conjunta</span></td>
+      </tr>
+      <tr>
+        <td>Post-Alimentec outreach: borradores listos, sin enviar</td>
+        <td>Hoy — día 5</td>
+        <td><span class="pend">Borde del warm window</span></td>
+      </tr>
+      <tr>
+        <td>Luisa: pidió semana para meditar el acuerdo</td>
+        <td>~26 may</td>
+        <td><span class="pend">¿Qué pasó?</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- BLOQUE 0: WELFARE -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num welfare">0</div>
+      <div class="block-title">
+        <h2>Welfare check</h2>
+        <div class="dur">5 min · PRIMERO, INNEGOCIABLE</div>
+      </div>
+      <span class="pill criollo">Siempre primero</span>
+    </div>
+    <div class="block-body">
+      <div class="welfare-note">
+        ¿Cómo está cada uno — financiera y emocionalmente, honestamente?<br><br>
+        Amaury declaró bienestar como su dimensión más débil. Runway personal estaba en <strong>🟡 6.7 meses</strong> en mayo — ¿subió o bajó desde entonces?<br><br>
+        <strong>Regla:</strong> si alguno declara welfare en bajo → la agenda se acorta, se ajusta la carga. El plan se adapta a las personas, no al revés.
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOQUE 1: CIERRES DE MAYO -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num cierre">1</div>
+      <div class="block-title">
+        <h2>Cierres pendientes de mayo</h2>
+        <div class="dur">10 min · Decisiones que llevan semanas abiertas</div>
+      </div>
+    </div>
+    <div class="block-body">
+
+      <div class="sub">
+        <div class="sub-title">A1 · Postmortem v1.7 — ¿lo firmamos?</div>
+        <p>El pivote <em>"el Gruns del Cacao"</em> (D15-D18: B2C-first worldwide, funnel Meta, compra suelta antes que suscripción) fue decisión unilateral de Amaury bajo autoridad temporal. Sigue siendo <strong>provisional</strong> hasta que David lo ratifique.</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body"><strong>Sí, lo firmo</strong><span>D15-D18 pasan a decisión conjunta. Spec = fuente de verdad única.</span></div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body"><strong>Tengo ajustes</strong><span>Anotar qué sección se revierte o ajusta. ¿Cuál?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">A4 · Pentámera vs Roadmap §10</div>
+        <p>Los 3 SKUs ya usan cacao de los 5 Guardianes. El §10 del roadmap los onboardea en cascada M2-M6. ¿Se actualiza el roadmap o se aclara que un SKU multi-origen no implica Guardián onboardeado?</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body"><strong>Actualizar roadmap §10</strong><span>Ajustar el plan M2-M6 a la realidad actual de los SKUs.</span></div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body"><strong>Mantener plan M2-M6</strong><span>Aclarar en el texto que SKU multi-origen ≠ Guardián onboardeado.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">A5 · Canibalización CauaColombia ↔ Cauaculture</div>
+        <p>Cauaculture ya vende First Harvest 250 g a $33 USD vs CauaColombia a $44k COP, sin diferenciación. Es el riesgo G3 del roadmap, ahora <strong>real</strong>.</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body"><strong>Diferenciar</strong><span>Cada tienda con su geografía/formato/narrativa claramente distintos.</span></div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body"><strong>Consolidar</strong><span>Una tienda por tipo de cliente; la otra especializada en otro segmento.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BLOQUE 2: BRIEF ALIMENTEC + NIBS -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">2</div>
+      <div class="block-title">
+        <h2>Brief Alimentec + NIBS</h2>
+        <div class="dur">15 min · Informativo para David · Amaury hace el brief, David pregunta</div>
+      </div>
+      <span class="pill warn">Nuevo para David</span>
+    </div>
+    <div class="block-body">
+
+      <div class="sub">
+        <div class="sub-title">NIBS — el producto</div>
+        <table class="data">
+          <tr>
+            <th>Parte</th><th>Empresa</th><th>Aporte</th>
+          </tr>
+          <tr>
+            <td class="em">CAÚA</td>
+            <td>CAUA Colombia SAS · Amaury</td>
+            <td>Cacao fermentado de origen, liderazgo de marca, veto sobre integridad internacional</td>
+          </tr>
+          <tr>
+            <td class="em">ZURYCH</td>
+            <td>Zurych Chocolate Artesanal · Ricardo Bareño</td>
+            <td>Chocolate de origen + endulzantes inteligentes (maltitol / alulosa)</td>
+          </tr>
+          <tr>
+            <td class="em">LUST</td>
+            <td>Logotipos y Chocolates · Sandra Álvarez</td>
+            <td>Grageado, texturización, packaging, fulfillment</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;font-size:13.5px;"><strong>Dos formatos:</strong> NIBS blanco (cacao liofilizado + chocolate blanco + maltitol) · NIBS oscuro (cacao tostado al sol + chocolate + alulosa). Origen: Landázuri, Santander · fermentación bioactiva · sin azúcar añadida · 100 g / 10 porciones.</p>
+        <p style="font-size:13px;color:var(--muted);">Marca NIBS: propiedad personal de Amaury, licenciada a CAÚA Colombia SAS. Acuerdo: borrador v1.0 — falta firma efectiva y Anexos B/C/D/E.</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">Alimentec 9–12 jun · Resultados</div>
+        <p>Stand compartido CAÚA × Zurych, Pabellón Secretaría de Desarrollo Económico, Corferias. Lanzamiento público de NIBS.</p>
+        <p><strong>36 leads calificados del stand</strong> (Hellen Bareño, Dir. Marketing Zurych) <strong>+ 64 outbound = 100 contactos B2B</strong>. Categorías: fine dining, HoReCa, export (Perú, Argentina, China), distribuidores, ingrediente.</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">Estado de leads hoy — día 5 post-feria</div>
+        <p style="font-size:13px;color:var(--muted);">Los borradores están listos desde el 13-15 jun. No se enviaron por priorización. El warm window para leads de feria cierra en 48–72 h.</p>
+        <table class="data">
+          <tr>
+            <th>Sem.</th><th>Lead</th><th>Categoría</th><th>Próximo paso</th><th>Estado</th>
+          </tr>
+          <tr>
+            <td class="sem-r"></td>
+            <td class="em">Salvaje · Manuel Bolaños</td>
+            <td>Fine Dining Bogotá</td>
+            <td>Degustación para cocina</td>
+            <td><span class="pill urgent">Borrador listo · sin enviar</span></td>
+          </tr>
+          <tr>
+            <td class="sem-r"></td>
+            <td class="em">Valerio Zocarato · Firex</td>
+            <td>B2B cacao ceremonial · referido AR</td>
+            <td>Ficha + precios + muestra</td>
+            <td><span class="pill urgent">Borrador listo · sin enviar</span></td>
+          </tr>
+          <tr>
+            <td class="sem-y"></td>
+            <td>Jefrry · CIP Trading</td>
+            <td>Export China</td>
+            <td>Mercado + volúmenes → propuesta</td>
+            <td><span class="pill warn">Borrador listo</span></td>
+          </tr>
+          <tr>
+            <td class="sem-y"></td>
+            <td>María Fernández · La Peruana</td>
+            <td>Export Perú</td>
+            <td>Volúmenes + condiciones export</td>
+            <td><span class="pill warn">Borrador listo</span></td>
+          </tr>
+          <tr>
+            <td class="sem-y"></td>
+            <td>Oscar Alfonso · Hotel Campestre</td>
+            <td>HoReCa / amenity huéspedes</td>
+            <td>Muestras + propuesta amenity</td>
+            <td><span class="pill warn">Borrador listo</span></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BLOQUE 3: DECISIONES H2 -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">3</div>
+      <div class="block-title">
+        <h2>Decisiones estratégicas H2 2026</h2>
+        <div class="dur">20 min · No se pueden responder sin los dos co-CEOs</div>
+      </div>
+    </div>
+    <div class="block-body">
+
+      <div class="sub">
+        <div class="sub-title">D1 · ¿Qué motor lidera H2: B2C, B2B, o tesis dual?</div>
+        <p>El pivote v1.7 (mayo) puso el motor en <strong>B2C-first</strong> (funnel Meta + suscripción worldwide). Alimentec acaba de generar <strong>100 contactos B2B reales</strong> con un producto co-branded de canal claro (HoReCa, retail premium, export). No se pueden correr en paralelo sin quemar a los fundadores.</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body">
+              <strong>Seguimos B2C-first</strong>
+              <span>Meta ads + suscripción es el core. Los leads de Alimentec se nutren pero no se persiguen agresivamente. Riesgo: se pierde el momentum de Alimentec.</span>
+            </div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body">
+              <strong>B2B primero en H2</strong>
+              <span>NIBS + cacao a granel → HoReCa + distribuidores como motor de revenue real en 2026. B2C sigue a menor intensidad. Riesgo: ticket menor, operación más compleja.</span>
+            </div>
+          </div>
+          <div class="opt proposed">
+            <div class="opt-letter">C</div>
+            <div class="opt-body">
+              <strong>Tesis dual: B2B financia el B2C <span class="prop-tag">Propuesta Amaury</span></strong>
+              <span>NIBS + B2B generan caja real en H2 2026. Con esa caja, lanzamos Meta + suscripción en Q1 2027 con presupuesto real. Sin B2B, el B2C sale sin cash y depende de inversión externa.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">D2 · NIBS en el Spec — ¿producto core, línea satélite, o trampolín?</div>
+        <p>NIBS es un producto co-branded con su propia P&L (tres empresas), su propio canal y su propia marca. ¿Cómo entra al North Star?</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body">
+              <strong>Producto core de CAÚA</strong>
+              <span>Entra al Spec como SKU principal, al dashboard, al North Star de ARR. CAÚA lidera la estrategia de NIBS.</span>
+            </div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body">
+              <strong>Línea satélite / joint venture</strong>
+              <span>Tiene su propio P&L. No diluye el North Star de ARR suscripción. Se reporta por separado.</span>
+            </div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">C</div>
+            <div class="opt-body">
+              <strong>Trampolín B2B temporal</strong>
+              <span>Lo corremos para generar caja y tracción en H2. En 6 meses decidimos si se integra o se convierte en JV permanente.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">D3 · División de trabajo Amaury + David en H2</div>
+        <p>Con NIBS y los leads de Alimentec activos, la carga operativa subió. Hay que repartirla explícitamente o se quema tiempo de los dos en lo mismo.</p>
+        <table class="data">
+          <tr>
+            <th>Frente</th><th>Owner propuesto</th><th>Qué hace</th>
+          </tr>
+          <tr>
+            <td class="em">NIBS / B2B Colombia</td>
+            <td>Amaury</td>
+            <td>Leads Alimentec, Salvaje, Hotel Campestre, cotizaciones, pipeline HubSpot</td>
+          </tr>
+          <tr>
+            <td class="em">Austin / B2B USA</td>
+            <td>David</td>
+            <td>ATX-1 a ATX-7 (lista W2), Rolodex Austin, ceremonias + yoga studios</td>
+          </tr>
+          <tr>
+            <td class="em">España (Manuel)</td>
+            <td>Amaury</td>
+            <td>Coordinación de canal, no ventas directas</td>
+          </tr>
+          <tr>
+            <td class="em">Export intl (Perú, Argentina, China)</td>
+            <td>Amaury</td>
+            <td>Valerio, María Fernández, Jefrry — seguimiento y propuestas</td>
+          </tr>
+          <tr>
+            <td class="em">B2C suscripción + Cauaculture</td>
+            <td>David</td>
+            <td>Recharge, 6 suscriptores actuales, funnel B2C, comunidad</td>
+          </tr>
+          <tr>
+            <td class="em">Contenido de marca</td>
+            <td>David</td>
+            <td>Voice memos + insights → SA-04 distribuye</td>
+          </tr>
+          <tr>
+            <td>Consultoría runway</td>
+            <td>Amaury (solo)</td>
+            <td>No toca a David — es el buffer de runway personal de Amaury</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;font-size:13.5px;">¿Está David de acuerdo con esta distribución? ¿Hay algo que quiera mover?</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">D4 · Luisa — ¿qué pasó?</div>
+        <p>En ~26 may Luisa debía responder si firmaba el acuerdo de embajadora. Su decisión afecta la estrategia de contenido y el funnel de Caúa Lite.</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body"><strong>Firmó → activar</strong><span>Definir scorecard y arrancar flujo de contenido.</span></div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body"><strong>No firmó → siguientes pasos</strong><span>¿Esperamos más, abrimos el programa a otra persona, o cerramos ese frente en H2?</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BLOQUE 4: NIBS CONTRACTUAL -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">4</div>
+      <div class="block-title">
+        <h2>Pendientes contractuales NIBS</h2>
+        <div class="dur">5 min · No se pueden cerrar leads sin resolver esto</div>
+      </div>
+      <span class="pill urgent">Bloqueante</span>
+    </div>
+    <div class="block-body">
+      <p>El acuerdo NIBS (borrador v1.0) tiene huecos que bloquean las cotizaciones post-Alimentec:</p>
+      <table class="data">
+        <tr>
+          <th>Pendiente</th><th>Impacto</th>
+        </tr>
+        <tr>
+          <td class="em">Anexo D — precio de transferencia, volúmenes mínimos, márgenes por canal</td>
+          <td>Sin esto no se pueden enviar cotizaciones reales a ningún lead de Alimentec</td>
+        </tr>
+        <tr>
+          <td class="em">Conciliar precio: etiqueta $29.000 vs DTC $20.500 / B2B $12.300</td>
+          <td>Un lead que pregunte precio recibe dos cifras distintas según el artefacto</td>
+        </tr>
+        <tr>
+          <td>Fecha efectiva + firmas reales de las tres partes</td>
+          <td>Hoy es BORRADOR. Sin firma, no hay contrato ni obligaciones</td>
+        </tr>
+        <tr>
+          <td>Presupuesto de comarketing (CAÚA 40% / Zurych 35% / Lust 25%)</td>
+          <td>¿Es el split correcto? Ninguna parte lo ha ratificado</td>
+        </tr>
+      </table>
+      <p style="margin-top:12px;font-size:13.5px;"><strong>Propuesta:</strong> Amaury convoca a Zurych + Lust esta semana (antes del viernes 20 jun) para cerrar el Anexo D. ¿Confirma David?</p>
+    </div>
+  </div>
+
+  <!-- BLOQUE 5: PREGUNTAS DE DAVID (email 15 jun) -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">5</div>
+      <div class="block-title">
+        <h2>Preguntas de David (email 15 jun)</h2>
+        <div class="dur">10 min · David abrió estos temas; Amaury responde o asigna owner + fecha</div>
+      </div>
+      <span class="pill ok">Señal positiva de David</span>
+    </div>
+    <div class="block-body">
+
+      <div class="sub">
+        <div class="sub-title">Lo que David ratificó en su email — A1 casi cerrada</div>
+        <table class="data">
+          <tr><th>Acuerdo de David</th><th>Implicación</th></tr>
+          <tr>
+            <td>"La arquitectura del holding es exactamente correcta"</td>
+            <td>CauaColombia = motor operativo · Cauaculture = marca global. Confirma D7.</td>
+          </tr>
+          <tr>
+            <td>"La Pentámera es el activo más subvalorado del documento"</td>
+            <td>Guardianes van al centro del North Star, no solo al storytelling.</td>
+          </tr>
+          <tr>
+            <td>"El ritmo spec-driven es la disciplina correcta"</td>
+            <td>Nada se ejecuta sin Spec firmado. Ratifica el proceso.</td>
+          </tr>
+          <tr>
+            <td>"La honestidad del pre-mortem"</td>
+            <td>A1 probablemente se firma rápido — David ya procesó el pivote.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">RTD (Ready-to-Drink) — nuevo formato que David quiere entender</div>
+        <p>David pregunta por la ruta al primer sale del RTD: co-manufacturing, unit cost, packaging. Este formato <strong>no está en el Spec actual</strong>. Necesita una respuesta concreta o un owner + fecha.</p>
+        <div class="opts">
+          <div class="opt">
+            <div class="opt-letter">A</div>
+            <div class="opt-body">
+              <strong>Abrir el RTD como decisión formal en el Spec</strong>
+              <span>Crear D-RTD con: co-manufacturer candidatos, unit cost estimado, packaging, regulatory path. Amaury o David como owner con fecha.</span>
+            </div>
+          </div>
+          <div class="opt">
+            <div class="opt-letter">B</div>
+            <div class="opt-body">
+              <strong>Dejarlo en el backlog de formatos</strong>
+              <span>El Spec ya tiene 3 SKUs activos. Añadir RTD sin cerrar los pendientes actuales puede distraer. Revisarlo en Q3 cuando haya baseline de ventas B2B.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">CoA bioactivos — la acción más compuesta del Spec</div>
+        <p>David propone: <strong>panel HPLC para teobromina + flavanoles + cadmio</strong>. Costo: $400–700 en UNAL Bogotá o AGROSAVIA. Esta es la acción con mayor ROI compuesto del Spec porque:</p>
+        <ul style="margin:8px 0 10px 18px;font-size:13.5px;">
+          <li>Desbloquea todos los claims bioactivos que hoy están prohibidos por falta de lab cert.</li>
+          <li>Cumple el estándar INVIMA y abre la puerta al FDA facility registration.</li>
+          <li>Valida o refuta el posicionamiento "functional cacao" con ciencia real, no solo narrativa.</li>
+          <li>Hace los claims defensibles ante distribuidores, importadores y prensa.</li>
+        </ul>
+        <p style="font-size:13.5px;"><strong>Propuesta de decisión:</strong> Amaury gestiona el pedido del panel antes del 25 jun. Presupuesto ≤ $700 USD. Owner: Amaury. ¿Confirma David?</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">Regulatory — INVIMA + FDA facility registration</div>
+        <p>David pregunta por el estatus de registro. Hoy el Spec no documenta el estado regulatorio. Necesita respuesta honesta en la reunión:</p>
+        <table class="data">
+          <tr><th>Registro</th><th>Estado (honesto)</th><th>Siguiente paso</th></tr>
+          <tr>
+            <td class="em">INVIMA Colombia</td>
+            <td>¿Tiene notificación sanitaria?</td>
+            <td>Confirmar con Amaury antes de la reunión</td>
+          </tr>
+          <tr>
+            <td class="em">FDA facility registration (USA)</td>
+            <td>¿Aplica al 3PL o al origen?</td>
+            <td>Necesario antes de cualquier venta B2B o DTC en USA</td>
+          </tr>
+        </table>
+        <p style="margin-top:8px;font-size:13px;color:var(--muted);">Sin estos registros, los claims "functional food" son un riesgo legal en ambos mercados.</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">Nueva misión propuesta por David</div>
+        <p style="font-size:14px;font-style:italic;border-left:3px solid var(--pod);padding-left:14px;margin:10px 0;">
+          "CAÚA activates the full potential of cacao through regenerative sourcing, food innovation, and functional products that go beyond chocolate."
+        </p>
+        <p>La misión actual del Spec (Brand Framework §1) lidera con "restore human vitality" y "ancestral traditions". La de David lidera con "activates the full potential of cacao" y "beyond chocolate" — ligeramente diferente en énfasis: más producto, menos comunidad.</p>
+        <p style="font-size:13.5px;"><strong>¿Es ajuste o evolución?</strong> Propuesta: adoptar la de David como tagline operativo de producto, mantener la del Brand Framework como misión de impacto. ¿Alinean?</p>
+      </div>
+
+      <div class="sub">
+        <div class="sub-title">¿Cuáles son las decisiones más compuestas en ROI?</div>
+        <p>La pregunta de David es la pregunta correcta. Propuesta de Amaury para discutir:</p>
+        <table class="data">
+          <tr><th>Decisión</th><th>Por qué es compuesta</th><th>ROI horizonte</th></tr>
+          <tr>
+            <td class="em">CoA bioactivos ($400-700)</td>
+            <td>Desbloquea todos los claims → habilita B2B premium, export, DTC funcional</td>
+            <td>Inmediato — 30 días</td>
+          </tr>
+          <tr>
+            <td class="em">Cerrar Anexo D NIBS</td>
+            <td>Desbloquea cotizaciones → 5 leads calientes se pueden cerrar esta semana</td>
+            <td>1–2 semanas</td>
+          </tr>
+          <tr>
+            <td class="em">Motor H2 (esta reunión)</td>
+            <td>Sin decidir esto, cada acción puede ir en direcciones opuestas</td>
+            <td>Inmediato — hoy</td>
+          </tr>
+          <tr>
+            <td class="em">3PL USA seleccionado</td>
+            <td>Desbloquea ventas USA de Cauaculture + cualquier pedido B2B Austin</td>
+            <td>Q3 2026</td>
+          </tr>
+          <tr>
+            <td>INVIMA / FDA</td>
+            <td>Habilita el canal institucional (hoteles 5★, HoReCa USA, retail premium)</td>
+            <td>Q3–Q4 2026</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DECISIONES QUE DEBEN SALIR -->
+  <div class="closing">
+    <h2>Decisiones que deben salir firmadas de esta reunión</h2>
+    <div class="closing-grid">
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>A1 — Postmortem v1.7</strong>
+          <span>Firmado por David · o lista de ajustes al Spec</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>A5 — Canibalización CO ↔ CT</strong>
+          <span>Diferenciar o consolidar — ruta elegida</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>Motor H2</strong>
+          <span>B2C / B2B / tesis dual — una sola respuesta</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>NIBS en el Spec</strong>
+          <span>Core / satélite / trampolín — elegido</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>División de trabajo H2</strong>
+          <span>Tabla de owners firmada por ambos</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>Leads Alimentec</strong>
+          <span>¿Amaury envía los borradores hoy? Sí / No / ajustar</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>Luisa</strong>
+          <span>Estado real del acuerdo — aclarado</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>Cierre Anexo D NIBS</strong>
+          <span>Fecha asignada · quién convoca a Zurych + Lust</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>CoA bioactivos</strong>
+          <span>Amaury gestiona panel HPLC antes del 25 jun · presupuesto ≤ $700 USD</span>
+        </div>
+      </div>
+      <div class="dec-item">
+        <div class="dec-box"></div>
+        <div class="dec-body">
+          <strong>RTD — ¿abre al Spec o va al backlog?</strong>
+          <span>Owner + fecha si abre · o backlog Q3 explícito</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO VA EN ESTA REUNIÓN -->
+  <div class="not-in">
+    <h3>Lo que NO va en esta reunión (async / otro espacio)</h3>
+    <ul>
+      <li>Implementación técnica del funnel o de los agentes.</li>
+      <li>Detalle de los emails de nurturing (ya están listos).</li>
+      <li>Scorecard de Luisa (si firmó, se define con ella en otra sesión).</li>
+      <li>Precios exactos del Anexo D (los define el Comité de Marca con Zurych + Lust).</li>
+    </ul>
+  </div>
+
+  <p class="disc">Disciplina del postmortem: esta reunión decide, no ejecuta. Si un tema es de ejecución, sale de la agenda y se asigna con fecha.</p>
+
+  <footer>
+    <span>CAÚA Corp · Spec-Driven · <b>v2.0-pre</b></span>
+    <span>Generada 17 jun 2026 · Incorpora email DM 15 jun</span>
+  </footer>
+
+</div>
+</body>
+</html>
