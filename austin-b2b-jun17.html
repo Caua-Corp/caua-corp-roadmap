@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAÚA · Austin B2B — David's Scripts · Jun 17</title>
+<style>
+  :root{
+    --pod:#87AA27; --heirloom:#F7F1EE; --criollo:#881C79; --amazon:#1C3B26;
+    --mazorca:#EEA110; --ink:#26302A; --muted:#6E7269; --paper:#FFFFFF;
+    --line:#E3DACF; --red:#C0392B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Inter","Helvetica Neue",Arial,sans-serif;background:var(--heirloom);
+       color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:36px 22px 80px;}
+
+  header{border-bottom:3px solid var(--amazon);padding-bottom:18px;margin-bottom:28px;}
+  .brand{font-size:11px;letter-spacing:.34em;font-weight:800;text-transform:uppercase;color:var(--pod);margin-bottom:7px;}
+  h1{font-size:24px;font-weight:800;color:var(--amazon);margin-bottom:5px;}
+  .meta{font-size:13px;color:var(--muted);}
+
+  .context{background:var(--amazon);color:var(--heirloom);border-radius:12px;
+            padding:16px 20px;margin-bottom:24px;font-size:14px;line-height:1.6;}
+  .context b{color:var(--pod);}
+  .context .math{margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .m-item{background:rgba(255,255,255,.08);border-radius:8px;padding:10px 12px;}
+  .m-val{font-size:18px;font-weight:800;color:var(--heirloom);}
+  .m-label{font-size:11px;color:rgba(247,241,238,.6);margin-top:2px;}
+
+  .rule{background:var(--red);color:#fff;border-radius:8px;padding:10px 16px;
+        margin-bottom:24px;font-size:13.5px;font-weight:600;text-align:center;}
+
+  /* ACCOUNT CARDS */
+  .account{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+           margin-bottom:18px;overflow:hidden;}
+  .account-head{display:flex;align-items:center;gap:14px;padding:14px 18px;
+                border-bottom:1px solid var(--line);background:var(--heirloom);}
+  .a-num{width:34px;height:34px;border-radius:50%;background:var(--amazon);
+          color:var(--heirloom);font-size:15px;font-weight:800;
+          display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .a-info{flex:1;}
+  .a-name{font-size:15px;font-weight:800;color:var(--amazon);}
+  .a-tag{font-size:12px;color:var(--muted);}
+  .a-units{font-size:13px;font-weight:700;color:var(--pod);}
+
+  .account-body{padding:16px 18px;}
+
+  .channel-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+                 font-weight:700;color:var(--muted);margin-bottom:6px;}
+
+  .script-box{background:#f0f5e4;border:1.5px solid rgba(135,170,39,.35);
+              border-radius:10px;padding:14px 16px;margin-bottom:10px;position:relative;}
+  .script-box .ch{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+                   color:var(--pod);margin-bottom:6px;}
+  .script-box p{font-size:14px;line-height:1.6;color:var(--ink);}
+  .script-box .copy-hint{font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;}
+
+  .why{background:var(--heirloom);border:1px solid var(--line);border-radius:8px;
+       padding:10px 14px;font-size:13px;color:var(--muted);margin-top:8px;}
+  .why b{color:var(--amazon);}
+
+  /* DTC EMAIL */
+  .dtc{background:var(--paper);border:2px solid var(--pod);border-radius:14px;
+       padding:20px 22px;margin-top:24px;}
+  .dtc h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+           color:var(--pod);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--line);}
+  .dtc .subj{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px;}
+  .dtc .subj span{color:var(--amazon);}
+  .email-box{background:var(--heirloom);border:1px solid var(--line);border-radius:8px;
+             padding:14px 16px;font-size:14px;line-height:1.7;margin-top:10px;}
+
+  /* CHECKLIST */
+  .checklist{background:var(--amazon);border-radius:14px;padding:20px 22px;margin-top:24px;}
+  .checklist h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+                color:var(--pod);font-weight:700;margin-bottom:14px;}
+  .check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:14px;color:var(--heirloom);}
+  .check-item:last-child{margin-bottom:0;}
+  .chk{width:18px;height:18px;border:2px solid rgba(247,241,238,.4);border-radius:4px;
+       flex-shrink:0;margin-top:2px;}
+  .check-item .t{line-height:1.5;}
+  .check-item .t b{color:var(--heirloom);}
+  .check-item .t span{color:rgba(247,241,238,.6);font-size:12.5px;}
+
+  footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);
+         font-size:12px;color:var(--muted);display:flex;justify-content:space-between;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">CAÚA · David · Austin B2B</div>
+    <h1>Scripts listos para enviar hoy</h1>
+    <div class="meta">17 jun 2026 · 400 unidades en Healthy Life Austin · Semana 1 del plan de caja</div>
+  </header>
+
+  <div class="context">
+    <b>La math es simple:</b> tienes 400 unidades con un costo de $6.18/u ya pagado. Cada unidad que vendes hoy es ganancia neta.<br><br>
+    <div class="math">
+      <div class="m-item"><div class="m-val">$24</div><div class="m-label">Wholesale / u</div></div>
+      <div class="m-item"><div class="m-val">$35</div><div class="m-label">DTC / u</div></div>
+      <div class="m-item"><div class="m-val">$45</div><div class="m-label">Pop-up / u</div></div>
+    </div>
+  </div>
+
+  <div class="rule">Regla de esta semana: UN mensaje, UN producto, UNA acción. No decks, no catálogos, no pitches largos.</div>
+
+  <!-- ATX-1 -->
+  <div class="account">
+    <div class="account-head">
+      <div class="a-num">1</div>
+      <div class="a-info">
+        <div class="a-name">Flow Yoga — Third Eye</div>
+        <div class="a-tag">flowyogatx.com · Ya tiene "cacao elixir bar" activo</div>
+      </div>
+      <div class="a-units">25–50u · $600–$1,200</div>
+    </div>
+    <div class="account-body">
+      <div class="channel-label">Canal: DM Instagram + email de contacto del sitio</div>
+      <div class="script-box">
+        <div class="ch">DM / Email</div>
+        <p>Hi [name] — I noticed you have a cacao elixir bar. We source single-origin Colombian cacao directly from Guardian farmers in Huila — 100% pure, ceremonially processed. I'm one of the co-founders, based in Austin. I'd love to bring you a sample this week. Wholesale starts at $24/unit, no minimums for first order. Would that be helpful?</p>
+        <div class="copy-hint">→ Send today. Follow up by phone if no reply in 24h.</div>
+      </div>
+      <div class="why"><b>Por qué funciona:</b> ya está comprando cacao para su bar. No les estás presentando una categoría nueva — les estás ofreciendo un mejor origen para lo que ya hacen.</div>
+    </div>
+  </div>
+
+  <!-- ATX-2 -->
+  <div class="account">
+    <div class="account-head">
+      <div class="a-num">2</div>
+      <div class="a-info">
+        <div class="a-name">3rd Eye Meditation Lounge</div>
+        <div class="a-tag">Ofrece "cacao services" y ceremonias regulares</div>
+      </div>
+      <div class="a-units">20–30u · $480–$720</div>
+    </div>
+    <div class="account-body">
+      <div class="channel-label">Canal: DM Instagram + llamada directa</div>
+      <div class="script-box">
+        <div class="ch">DM / Llamada</div>
+        <p>Hey [name] — I'm David, co-founder of CAÚA. We grow and process single-origin cacao in Colombia with Guardian farmer families. I know you run cacao ceremonies — I'd love to bring you a sample of our 100% ceremonial paste this week, no commitment. If you like it, wholesale is $24/unit. Can I stop by Thursday or Friday?</p>
+        <div class="copy-hint">→ Offer to show up in person. You're in Austin. This is your advantage.</div>
+      </div>
+      <div class="why"><b>Por qué funciona:</b> ya corren ceremonias recurrentes — son compradores mensuales, no de una sola vez. Un cliente aquí = ARR.</div>
+    </div>
+  </div>
+
+  <!-- ATX-3 -->
+  <div class="account">
+    <div class="account-head">
+      <div class="a-num">3</div>
+      <div class="a-info">
+        <div class="a-name">Elka Yoga &amp; Wellness Center</div>
+        <div class="a-tag">Ceremonias de cacao maya · comunidad establecida</div>
+      </div>
+      <div class="a-units">20–30u · $480–$720</div>
+    </div>
+    <div class="account-body">
+      <div class="channel-label">Canal: DM Instagram + email</div>
+      <div class="script-box">
+        <div class="ch">DM / Email</div>
+        <p>Hi [name] — I saw your cacao ceremonies and love what you're doing. I'm David, co-founder of CAÚA — we work directly with indigenous Guardian farmers in Colombia to process ceremonial cacao the traditional way. Our 100% paste is single-origin, traceable by batch. I'd love to offer you a sample. Wholesale at $24/unit, MOQ 12 units. Can we connect this week?</p>
+        <div class="copy-hint">→ The "traceable by batch / Guardian farmer" angle resonates with this audience specifically.</div>
+      </div>
+      <div class="why"><b>Por qué funciona:</b> su audiencia paga premium por autenticidad y trazabilidad. Ese es el activo exacto que tienes.</div>
+    </div>
+  </div>
+
+  <!-- ATX-4 -->
+  <div class="account">
+    <div class="account-head">
+      <div class="a-num">4</div>
+      <div class="a-info">
+        <div class="a-name">Good Energy Wellness Co.</div>
+        <div class="a-tag">Ceremonias de cacao + sound healing · eventos</div>
+      </div>
+      <div class="a-units">20–30u · $480–$720</div>
+    </div>
+    <div class="account-body">
+      <div class="channel-label">Canal: DM + llamada</div>
+      <div class="script-box">
+        <div class="ch">DM / Llamada</div>
+        <p>Hi [name] — I'm David from CAÚA. We source ceremonial cacao directly from Colombia — 100% pure, single-origin, Guardian farmer. I noticed you do cacao ceremonies and sound events. I'd love to drop off a sample this week, see if our cacao fits your work. Wholesale at $24/unit. Are you free for a quick call or a drop-off Thursday?</p>
+        <div class="copy-hint">→ Offer the drop-off. Physical presence closes faster than email alone.</div>
+      </div>
+      <div class="why"><b>Por qué funciona:</b> eventos recurrentes = pedidos recurrentes. Un "sí" aquí puede convertirse en $500–$800/mes en 60 días.</div>
+    </div>
+  </div>
+
+  <!-- DTC EMAIL -->
+  <div class="dtc">
+    <h2>DTC Push — Email a los 60 compradores de Cauaculture</h2>
+    <div class="subj">Asunto: <span>"Last batch of First Harvest — 400 units left"</span></div>
+    <div class="email-box">
+      Subject: Last batch of First Harvest cacao — only 400 left<br><br>
+
+      Hey [first name],<br><br>
+
+      Quick update from CAÚA HQ.<br><br>
+
+      We just got back from Alimentec — Colombia's biggest food trade show — where our First Harvest cacao turned heads with chefs, chocolatiers, and wellness studios from across Latin America.<br><br>
+
+      The thing is: we only have <strong>400 units left of this batch</strong>. Once it's gone, the next harvest won't be ready until Q4.<br><br>
+
+      As one of our first customers, you get first access:<br>
+      → 3-pack bundle: $99 (save $6 + free shipping)<br>
+      → Single unit: $35 + shipping<br><br>
+
+      <strong>Use code HARVEST24 at checkout for an extra 5% off.</strong><br><br>
+
+      Shop here: cauaculture.co<br><br>
+
+      Thank you for being part of this from the beginning.<br><br>
+
+      David &amp; Amaury<br>
+      Co-founders, CAÚA
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px;">Enviar desde Recharge / Shopify email · Target: 30–50 unidades en 7 días = $1,050–$1,750 USD.</p>
+  </div>
+
+  <!-- CHECKLIST HOY -->
+  <div class="checklist">
+    <h2>Checklist de David — hoy, antes de cerrar la reunión</h2>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Enviar DM a ATX-1 Flow Yoga</b> <span>· Instagram o email del sitio</span></div>
+    </div>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Enviar DM a ATX-2 3rd Eye</b> <span>· + llamada si tienes el número</span></div>
+    </div>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Enviar DM a ATX-3 Elka Yoga</b> <span>· Instagram</span></div>
+    </div>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Enviar DM a ATX-4 Good Energy</b> <span>· + oferta de drop-off esta semana</span></div>
+    </div>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Programar email DTC a los 60 compradores</b> <span>· hoy o mañana a las 9am</span></div>
+    </div>
+    <div class="check-item">
+      <div class="chk"></div>
+      <div class="t"><b>Agregar los 4 studios a HubSpot</b> <span>· etiqueta "Austin B2B Jun17" · owner: David</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>CAÚA Corp · Plan de caja 30 días</span>
+    <span>Privado · 17 jun 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
