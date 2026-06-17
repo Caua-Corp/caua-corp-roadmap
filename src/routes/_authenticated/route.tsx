@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "../../integrations/supabase/client";
 import { SecretaryWidget } from "../../components/SecretaryWidget";
+import { ActionCaptureButton } from "../../components/ActionCaptureButton";
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async () => {
@@ -14,6 +15,7 @@ function AuthLayout() {
   return (
     <>
       <Outlet />
+      <ActionCaptureButton />
       <SecretaryWidget />
     </>
   );
