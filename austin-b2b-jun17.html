@@ -15,6 +15,19 @@
        color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:720px;margin:0 auto;padding:36px 22px 80px;}
 
+  /* LANG TOGGLE */
+  html[lang="en"] [data-es]{display:none;}
+  html[lang="es"] [data-en]{display:none;}
+
+  .lang-toggle{display:inline-flex;border:2px solid var(--amazon);border-radius:999px;
+               overflow:hidden;margin-bottom:18px;cursor:pointer;}
+  .lang-btn{padding:6px 18px;font-size:12px;font-weight:800;letter-spacing:.06em;
+             text-transform:uppercase;border:none;background:transparent;
+             cursor:pointer;color:var(--muted);transition:all .15s;}
+  html[lang="en"] .lang-btn[data-lang="en"],
+  html[lang="es"] .lang-btn[data-lang="es"]{
+    background:var(--amazon);color:var(--heirloom);}
+
   header{border-bottom:3px solid var(--amazon);padding-bottom:18px;margin-bottom:28px;}
   .brand{font-size:11px;letter-spacing:.34em;font-weight:800;text-transform:uppercase;color:var(--pod);margin-bottom:7px;}
   h1{font-size:24px;font-weight:800;color:var(--amazon);margin-bottom:5px;}
@@ -31,7 +44,6 @@
   .rule{background:var(--red);color:#fff;border-radius:8px;padding:10px 16px;
         margin-bottom:24px;font-size:13.5px;font-weight:600;text-align:center;}
 
-  /* ACCOUNT CARDS */
   .account{background:var(--paper);border:1px solid var(--line);border-radius:14px;
            margin-bottom:18px;overflow:hidden;}
   .account-head{display:flex;align-items:center;gap:14px;padding:14px 18px;
@@ -43,14 +55,13 @@
   .a-name{font-size:15px;font-weight:800;color:var(--amazon);}
   .a-tag{font-size:12px;color:var(--muted);}
   .a-units{font-size:13px;font-weight:700;color:var(--pod);}
-
   .account-body{padding:16px 18px;}
 
   .channel-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;
                  font-weight:700;color:var(--muted);margin-bottom:6px;}
 
   .script-box{background:#f0f5e4;border:1.5px solid rgba(135,170,39,.35);
-              border-radius:10px;padding:14px 16px;margin-bottom:10px;position:relative;}
+              border-radius:10px;padding:14px 16px;margin-bottom:10px;}
   .script-box .ch{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
                    color:var(--pod);margin-bottom:6px;}
   .script-box p{font-size:14px;line-height:1.6;color:var(--ink);}
@@ -60,7 +71,6 @@
        padding:10px 14px;font-size:13px;color:var(--muted);margin-top:8px;}
   .why b{color:var(--amazon);}
 
-  /* DTC EMAIL */
   .dtc{background:var(--paper);border:2px solid var(--pod);border-radius:14px;
        padding:20px 22px;margin-top:24px;}
   .dtc h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
@@ -70,7 +80,6 @@
   .email-box{background:var(--heirloom);border:1px solid var(--line);border-radius:8px;
              padding:14px 16px;font-size:14px;line-height:1.7;margin-top:10px;}
 
-  /* CHECKLIST */
   .checklist{background:var(--amazon);border-radius:14px;padding:20px 22px;margin-top:24px;}
   .checklist h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
                 color:var(--pod);font-weight:700;margin-bottom:14px;}
@@ -91,12 +100,26 @@
 
   <header>
     <div class="brand">CAÚA · David · Austin B2B</div>
-    <h1>Scripts listos para enviar hoy</h1>
-    <div class="meta">17 jun 2026 · 400 unidades en Healthy Life Austin · Semana 1 del plan de caja</div>
+
+    <!-- LANG TOGGLE -->
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+
+    <h1>
+      <span data-en>Ready-to-send scripts — today</span>
+      <span data-es>Scripts listos para enviar hoy</span>
+    </h1>
+    <div class="meta">
+      <span data-en>Jun 17 2026 · 400 units at Healthy Life Austin · Week 1 of the cash plan</span>
+      <span data-es>17 jun 2026 · 400 unidades en Healthy Life Austin · Semana 1 del plan de caja</span>
+    </div>
   </header>
 
   <div class="context">
-    <b>La math es simple:</b> tienes 400 unidades con un costo de $6.18/u ya pagado. Cada unidad que vendes hoy es ganancia neta.<br><br>
+    <span data-en><b>The math is simple:</b> you have 400 units with $6.18/u cost already paid. Every unit you sell today is net profit.</span>
+    <span data-es><b>La math es simple:</b> tienes 400 unidades con un costo de $6.18/u ya pagado. Cada unidad que vendes hoy es ganancia neta.</span>
     <div class="math">
       <div class="m-item"><div class="m-val">$24</div><div class="m-label">Wholesale / u</div></div>
       <div class="m-item"><div class="m-val">$35</div><div class="m-label">DTC / u</div></div>
@@ -104,7 +127,10 @@
     </div>
   </div>
 
-  <div class="rule">Regla de esta semana: UN mensaje, UN producto, UNA acción. No decks, no catálogos, no pitches largos.</div>
+  <div class="rule">
+    <span data-en>This week's rule: ONE message, ONE product, ONE action. No decks, no catalogs, no long pitches.</span>
+    <span data-es>Regla de esta semana: UN mensaje, UN producto, UNA acción. No decks, no catálogos, no pitches largos.</span>
+  </div>
 
   <!-- ATX-1 -->
   <div class="account">
@@ -112,18 +138,27 @@
       <div class="a-num">1</div>
       <div class="a-info">
         <div class="a-name">Flow Yoga — Third Eye</div>
-        <div class="a-tag">flowyogatx.com · Ya tiene "cacao elixir bar" activo</div>
+        <div class="a-tag">
+          <span data-en>flowyogatx.com · Already has an active cacao elixir bar</span>
+          <span data-es>flowyogatx.com · Ya tiene "cacao elixir bar" activo</span>
+        </div>
       </div>
       <div class="a-units">25–50u · $600–$1,200</div>
     </div>
     <div class="account-body">
-      <div class="channel-label">Canal: DM Instagram + email de contacto del sitio</div>
+      <div class="channel-label">
+        <span data-en>Channel: Instagram DM + site contact email</span>
+        <span data-es>Canal: DM Instagram + email de contacto del sitio</span>
+      </div>
       <div class="script-box">
         <div class="ch">DM / Email</div>
         <p>Hi [name] — I noticed you have a cacao elixir bar. We source single-origin Colombian cacao directly from Guardian farmers in Huila — 100% pure, ceremonially processed. I'm one of the co-founders, based in Austin. I'd love to bring you a sample this week. Wholesale starts at $24/unit, no minimums for first order. Would that be helpful?</p>
         <div class="copy-hint">→ Send today. Follow up by phone if no reply in 24h.</div>
       </div>
-      <div class="why"><b>Por qué funciona:</b> ya está comprando cacao para su bar. No les estás presentando una categoría nueva — les estás ofreciendo un mejor origen para lo que ya hacen.</div>
+      <div class="why">
+        <span data-en><b>Why it works:</b> they're already buying cacao for their bar. You're not introducing a new category — you're offering a better origin for what they already do.</span>
+        <span data-es><b>Por qué funciona:</b> ya está comprando cacao para su bar. No les estás presentando una categoría nueva — les estás ofreciendo un mejor origen para lo que ya hacen.</span>
+      </div>
     </div>
   </div>
 
@@ -133,18 +168,27 @@
       <div class="a-num">2</div>
       <div class="a-info">
         <div class="a-name">3rd Eye Meditation Lounge</div>
-        <div class="a-tag">Ofrece "cacao services" y ceremonias regulares</div>
+        <div class="a-tag">
+          <span data-en>Offers "cacao services" and regular ceremonies</span>
+          <span data-es>Ofrece "cacao services" y ceremonias regulares</span>
+        </div>
       </div>
       <div class="a-units">20–30u · $480–$720</div>
     </div>
     <div class="account-body">
-      <div class="channel-label">Canal: DM Instagram + llamada directa</div>
+      <div class="channel-label">
+        <span data-en>Channel: Instagram DM + direct call</span>
+        <span data-es>Canal: DM Instagram + llamada directa</span>
+      </div>
       <div class="script-box">
-        <div class="ch">DM / Llamada</div>
+        <div class="ch">DM / Call</div>
         <p>Hey [name] — I'm David, co-founder of CAÚA. We grow and process single-origin cacao in Colombia with Guardian farmer families. I know you run cacao ceremonies — I'd love to bring you a sample of our 100% ceremonial paste this week, no commitment. If you like it, wholesale is $24/unit. Can I stop by Thursday or Friday?</p>
         <div class="copy-hint">→ Offer to show up in person. You're in Austin. This is your advantage.</div>
       </div>
-      <div class="why"><b>Por qué funciona:</b> ya corren ceremonias recurrentes — son compradores mensuales, no de una sola vez. Un cliente aquí = ARR.</div>
+      <div class="why">
+        <span data-en><b>Why it works:</b> they run recurring ceremonies — they're monthly buyers, not one-time. One yes here = ARR.</span>
+        <span data-es><b>Por qué funciona:</b> ya corren ceremonias recurrentes — son compradores mensuales, no de una sola vez. Un cliente aquí = ARR.</span>
+      </div>
     </div>
   </div>
 
@@ -154,18 +198,27 @@
       <div class="a-num">3</div>
       <div class="a-info">
         <div class="a-name">Elka Yoga &amp; Wellness Center</div>
-        <div class="a-tag">Ceremonias de cacao maya · comunidad establecida</div>
+        <div class="a-tag">
+          <span data-en>Mayan cacao ceremonies · established community</span>
+          <span data-es>Ceremonias de cacao maya · comunidad establecida</span>
+        </div>
       </div>
       <div class="a-units">20–30u · $480–$720</div>
     </div>
     <div class="account-body">
-      <div class="channel-label">Canal: DM Instagram + email</div>
+      <div class="channel-label">
+        <span data-en>Channel: Instagram DM + email</span>
+        <span data-es>Canal: DM Instagram + email</span>
+      </div>
       <div class="script-box">
         <div class="ch">DM / Email</div>
         <p>Hi [name] — I saw your cacao ceremonies and love what you're doing. I'm David, co-founder of CAÚA — we work directly with indigenous Guardian farmers in Colombia to process ceremonial cacao the traditional way. Our 100% paste is single-origin, traceable by batch. I'd love to offer you a sample. Wholesale at $24/unit, MOQ 12 units. Can we connect this week?</p>
         <div class="copy-hint">→ The "traceable by batch / Guardian farmer" angle resonates with this audience specifically.</div>
       </div>
-      <div class="why"><b>Por qué funciona:</b> su audiencia paga premium por autenticidad y trazabilidad. Ese es el activo exacto que tienes.</div>
+      <div class="why">
+        <span data-en><b>Why it works:</b> their audience pays premium for authenticity and traceability. That's exactly what you have.</span>
+        <span data-es><b>Por qué funciona:</b> su audiencia paga premium por autenticidad y trazabilidad. Ese es el activo exacto que tienes.</span>
+      </div>
     </div>
   </div>
 
@@ -175,86 +228,132 @@
       <div class="a-num">4</div>
       <div class="a-info">
         <div class="a-name">Good Energy Wellness Co.</div>
-        <div class="a-tag">Ceremonias de cacao + sound healing · eventos</div>
+        <div class="a-tag">
+          <span data-en>Cacao ceremonies + sound healing · events</span>
+          <span data-es>Ceremonias de cacao + sound healing · eventos</span>
+        </div>
       </div>
       <div class="a-units">20–30u · $480–$720</div>
     </div>
     <div class="account-body">
-      <div class="channel-label">Canal: DM + llamada</div>
+      <div class="channel-label">
+        <span data-en>Channel: DM + call</span>
+        <span data-es>Canal: DM + llamada</span>
+      </div>
       <div class="script-box">
-        <div class="ch">DM / Llamada</div>
+        <div class="ch">DM / Call</div>
         <p>Hi [name] — I'm David from CAÚA. We source ceremonial cacao directly from Colombia — 100% pure, single-origin, Guardian farmer. I noticed you do cacao ceremonies and sound events. I'd love to drop off a sample this week, see if our cacao fits your work. Wholesale at $24/unit. Are you free for a quick call or a drop-off Thursday?</p>
         <div class="copy-hint">→ Offer the drop-off. Physical presence closes faster than email alone.</div>
       </div>
-      <div class="why"><b>Por qué funciona:</b> eventos recurrentes = pedidos recurrentes. Un "sí" aquí puede convertirse en $500–$800/mes en 60 días.</div>
+      <div class="why">
+        <span data-en><b>Why it works:</b> recurring events = recurring orders. One yes here can become $500–$800/month within 60 days.</span>
+        <span data-es><b>Por qué funciona:</b> eventos recurrentes = pedidos recurrentes. Un "sí" aquí puede convertirse en $500–$800/mes en 60 días.</span>
+      </div>
     </div>
   </div>
 
   <!-- DTC EMAIL -->
   <div class="dtc">
-    <h2>DTC Push — Email a los 60 compradores de Cauaculture</h2>
-    <div class="subj">Asunto: <span>"Last batch of First Harvest — 400 units left"</span></div>
+    <h2>
+      <span data-en>DTC Push — Email to 60 Cauaculture buyers</span>
+      <span data-es>DTC Push — Email a los 60 compradores de Cauaculture</span>
+    </h2>
+    <div class="subj">
+      <span data-en>Subject: </span><span data-es>Asunto: </span>
+      <span>"Last batch of First Harvest — 400 units left"</span>
+    </div>
     <div class="email-box">
       Subject: Last batch of First Harvest cacao — only 400 left<br><br>
-
       Hey [first name],<br><br>
-
       Quick update from CAÚA HQ.<br><br>
-
       We just got back from Alimentec — Colombia's biggest food trade show — where our First Harvest cacao turned heads with chefs, chocolatiers, and wellness studios from across Latin America.<br><br>
-
       The thing is: we only have <strong>400 units left of this batch</strong>. Once it's gone, the next harvest won't be ready until Q4.<br><br>
-
       As one of our first customers, you get first access:<br>
       → 3-pack bundle: $99 (save $6 + free shipping)<br>
       → Single unit: $35 + shipping<br><br>
-
       <strong>Use code HARVEST24 at checkout for an extra 5% off.</strong><br><br>
-
       Shop here: cauaculture.co<br><br>
-
       Thank you for being part of this from the beginning.<br><br>
-
       David &amp; Amaury<br>
       Co-founders, CAÚA
     </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:10px;">Enviar desde Recharge / Shopify email · Target: 30–50 unidades en 7 días = $1,050–$1,750 USD.</p>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px;">
+      <span data-en>Send via Recharge / Shopify email · Target: 30–50 units in 7 days = $1,050–$1,750 USD.</span>
+      <span data-es>Enviar desde Recharge / Shopify email · Target: 30–50 unidades en 7 días = $1,050–$1,750 USD.</span>
+    </p>
   </div>
 
-  <!-- CHECKLIST HOY -->
+  <!-- CHECKLIST -->
   <div class="checklist">
-    <h2>Checklist de David — hoy, antes de cerrar la reunión</h2>
+    <h2>
+      <span data-en>David's checklist — today, before the meeting ends</span>
+      <span data-es>Checklist de David — hoy, antes de cerrar la reunión</span>
+    </h2>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Enviar DM a ATX-1 Flow Yoga</b> <span>· Instagram o email del sitio</span></div>
+      <div class="t">
+        <b><span data-en>Send DM to ATX-1 Flow Yoga</span><span data-es>Enviar DM a ATX-1 Flow Yoga</span></b>
+        <span><span data-en>· Instagram or site email</span><span data-es>· Instagram o email del sitio</span></span>
+      </div>
     </div>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Enviar DM a ATX-2 3rd Eye</b> <span>· + llamada si tienes el número</span></div>
+      <div class="t">
+        <b><span data-en>Send DM to ATX-2 3rd Eye</span><span data-es>Enviar DM a ATX-2 3rd Eye</span></b>
+        <span><span data-en>· + call if you have the number</span><span data-es>· + llamada si tienes el número</span></span>
+      </div>
     </div>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Enviar DM a ATX-3 Elka Yoga</b> <span>· Instagram</span></div>
+      <div class="t">
+        <b><span data-en>Send DM to ATX-3 Elka Yoga</span><span data-es>Enviar DM a ATX-3 Elka Yoga</span></b>
+        <span>· Instagram</span>
+      </div>
     </div>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Enviar DM a ATX-4 Good Energy</b> <span>· + oferta de drop-off esta semana</span></div>
+      <div class="t">
+        <b><span data-en>Send DM to ATX-4 Good Energy</span><span data-es>Enviar DM a ATX-4 Good Energy</span></b>
+        <span><span data-en>· + offer a drop-off this week</span><span data-es>· + oferta de drop-off esta semana</span></span>
+      </div>
     </div>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Programar email DTC a los 60 compradores</b> <span>· hoy o mañana a las 9am</span></div>
+      <div class="t">
+        <b><span data-en>Schedule DTC email to 60 buyers</span><span data-es>Programar email DTC a los 60 compradores</span></b>
+        <span><span data-en>· today or tomorrow at 9am</span><span data-es>· hoy o mañana a las 9am</span></span>
+      </div>
     </div>
     <div class="check-item">
       <div class="chk"></div>
-      <div class="t"><b>Agregar los 4 studios a HubSpot</b> <span>· etiqueta "Austin B2B Jun17" · owner: David</span></div>
+      <div class="t">
+        <b><span data-en>Add the 4 studios to HubSpot</span><span data-es>Agregar los 4 studios a HubSpot</span></b>
+        <span><span data-en>· tag "Austin B2B Jun17" · owner: David</span><span data-es>· etiqueta "Austin B2B Jun17" · owner: David</span></span>
+      </div>
     </div>
   </div>
 
   <footer>
-    <span>CAÚA Corp · Plan de caja 30 días</span>
-    <span>Privado · 17 jun 2026</span>
+    <span>
+      <span data-en>CAÚA Corp · 30-day cash plan</span>
+      <span data-es>CAÚA Corp · Plan de caja 30 días</span>
+    </span>
+    <span>
+      <span data-en>Private · Jun 17 2026</span>
+      <span data-es>Privado · 17 jun 2026</span>
+    </span>
   </footer>
 
 </div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    localStorage.setItem('caualang', lang);
+  }
+  // Default EN for David; restore if previously set
+  const saved = localStorage.getItem('caualang') || 'en';
+  document.documentElement.lang = saved;
+</script>
 </body>
 </html>
