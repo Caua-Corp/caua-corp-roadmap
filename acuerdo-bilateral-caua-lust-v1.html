@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acuerdo Bilateral CAÚA × LUST — Co-desarrollo, Cobranding NIBS &amp; R&D Master Chocolatier v1.0</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 22mm 20mm 22mm 20mm;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 11pt;
+      line-height: 1.65;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 48px 60px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      border-bottom: 2.5px solid #1C3B26;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+    }
+    .header .kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8.5pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #87AA27;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .header h1 {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #1C3B26;
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+    .header .sub {
+      font-size: 10pt;
+      color: #555;
+    }
+    .header .version-badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: #FBEED0;
+      border: 1px solid #EEA110;
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8pt;
+      color: #8a6020;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* ── PARTES ── */
+    .partes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0 24px;
+    }
+    .parte-card {
+      border: 1.5px solid #1C3B26;
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .parte-card .marca {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 11pt;
+      color: #1C3B26;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .parte-card table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+    .parte-card td { padding: 2px 0; vertical-align: top; }
+    .parte-card td:first-child { font-weight: 700; width: 48%; color: #555; padding-right: 6px; }
+
+    /* ── SECCIONES ── */
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1C3B26;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 26px 0 10px;
+      border-bottom: 1px solid #c8dfc4;
+      padding-bottom: 4px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #2a2a26;
+      margin: 14px 0 6px;
+    }
+    p { margin: 7px 0; }
+    ul, ol { margin: 7px 0 7px 22px; }
+    li { margin-bottom: 4px; }
+
+    /* ── TABLA OBLIGACIONES ── */
+    .oblig-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 9.5pt;
+    }
+    .oblig-table th {
+      background: #1C3B26;
+      color: #fff;
+      padding: 7px 10px;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 8.5pt;
+      letter-spacing: 0.5px;
+    }
+    .oblig-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .oblig-table tr:nth-child(even) td { background: #f9f7f5; }
+
+    /* ── ADVERTENCIA / NOTA ── */
+    .nota {
+      background: #FBEED0;
+      border-left: 4px solid #EEA110;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 9.5pt;
+      color: #6b5a2a;
+      margin: 14px 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .nota strong { color: #8a6020; }
+
+    /* ── FIRMAS ── */
+    .firmas-section {
+      margin-top: 40px;
+      page-break-inside: avoid;
+    }
+    .firmas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+    .firma-box {
+      border-top: 1.5px solid #1C3B26;
+      padding-top: 10px;
+    }
+    .firma-box .nombre { font-weight: 700; font-size: 10pt; margin-bottom: 3px; }
+    .firma-box .cargo { font-size: 9.5pt; color: #555; }
+    .firma-box .empresa { font-size: 9pt; color: #777; }
+    .firma-box .datos { font-size: 8.5pt; color: #888; margin-top: 5px; }
+    .firma-linea {
+      height: 50px;
+      border-bottom: 1px solid #aaa;
+      margin-bottom: 8px;
+    }
+
+    /* ── ANEXO PLACEHOLDER ── */
+    .anexo {
+      background: #f4f9f1;
+      border: 1.5px dashed #87AA27;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      font-size: 9.5pt;
+    }
+    .anexo .anexo-titulo {
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1C3B26;
+      font-size: 10pt;
+      margin-bottom: 4px;
+    }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      margin-top: 36px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      font-size: 8.5pt;
+      color: #999;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    @media print {
+      body { padding: 0; }
+      .nota, .anexo { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .oblig-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     ENCABEZADO
+══════════════════════════════════════════════════════ -->
+<div class="header">
+  <span class="kicker">Acuerdo Bilateral de Co-desarrollo, Innovación Abierta y Cobranding</span>
+  <h1>CAÚA Colombia S.A.S. × Logotipos y Chocolates S.A.S.</h1>
+  <div class="sub">Producto NIBS — Grageado, Texturización, Packaging Co-branded &amp; R&amp;D Master Chocolatier</div>
+  <div class="version-badge">BORRADOR v1.0 — PARA REVISIÓN Y FIRMA · 22-JUN-2026</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PARTES
+══════════════════════════════════════════════════════ -->
+<div class="partes-grid">
+  <div class="parte-card">
+    <div class="marca">CAÚA™ — Parte A</div>
+    <table>
+      <tr><td>Empresa:</td><td>CAUA COLOMBIA S.A.S.</td></tr>
+      <tr><td>NIT:</td><td>901213846-7</td></tr>
+      <tr><td>Rep. Legal:</td><td>Amaury Amed Blanquicet Rodríguez</td></tr>
+      <tr><td>CC:</td><td>1032430162</td></tr>
+      <tr><td>Cargo:</td><td>CTO &amp; Co-Founder CAÚA™</td></tr>
+      <tr><td>Email:</td><td>amauryamed@gmail.com</td></tr>
+      <tr><td>Ciudad:</td><td>Bogotá, D.C., Colombia</td></tr>
+    </table>
+  </div>
+  <div class="parte-card">
+    <div class="marca">LUST — Parte B</div>
+    <table>
+      <tr><td>Empresa:</td><td>LOGOTIPOS Y CHOCOLATES S.A.S.</td></tr>
+      <tr><td>NIT:</td><td>830036223-2</td></tr>
+      <tr><td>Rep. Legal:</td><td>Sandra Consuelo Álvarez Rodríguez</td></tr>
+      <tr><td>CC:</td><td>39773126</td></tr>
+      <tr><td>Cargo:</td><td>Representante Legal</td></tr>
+      <tr><td>Email:</td><td>info@chocolatelust.com</td></tr>
+      <tr><td>Ciudad:</td><td>Bogotá, D.C., Colombia</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PREÁMBULO
+══════════════════════════════════════════════════════ -->
+<h2>Preámbulo</h2>
+<p>Considerando que:</p>
+<ol type="a">
+  <li><strong>CAÚA™</strong> posee expertise en fermentación bioactiva de cacao fino y de aroma colombiano con protocolo de control cinético a 45°C × 96 h que optimiza oxidación y perfiles fenólicos únicos, así como el sistema de trazabilidad Guardian Farmer con cinco productores certificados en Landázuri, Santander;</li>
+  <li><strong>LUST</strong> posee expertise en grageado de alto nivel, texturización, acabado premium y desarrollo final de producto de confitería de lujo, así como capacidad instalada de co-diseño y co-desarrollo de packaging;</li>
+  <li>Las PARTES colaboran activamente en el co-desarrollo del producto <strong>NIBS</strong> — grano de cacao liofilizado interior morado con cobertura de chocolate funcional — en el marco del Acuerdo Tripartita CAÚA × ZURYCH × LUST (Borrador v1.0, 7-jun-2026);</li>
+  <li>Las PARTES desean formalizar sus compromisos <strong>bilaterales</strong> de forma independiente, con especificidad en los roles, obligaciones, propiedad intelectual y términos comerciales propios de la relación CAÚA—LUST, complementaria al acuerdo tripartita;</li>
+  <li>La marca <strong>NIBS</strong> es propiedad personal de Amaury Amed Blanquicet Rodríguez y será licenciada a CAÚA Colombia S.A.S. como vehículo legal exclusivo de gobernanza;</li>
+  <li>Las PARTES buscan un acuerdo honesto, transparente y equitativo que proteja el trabajo colaborativo mientras habilita la internacionalización del producto NIBS bajo liderazgo de branding centralizado en CAÚA™.</li>
+</ol>
+
+<!-- ══════════════════════════════════════════════════════
+     1. DEFINICIONES
+══════════════════════════════════════════════════════ -->
+<h2>1. Definiciones</h2>
+<p><strong>1.1 "NIBS"</strong> — Marca en trámite de registro internacional, propiedad exclusiva de Amaury Amed Blanquicet Rodríguez. CAÚA Colombia S.A.S. actúa como licenciario exclusivo y administrador de la marca en comercialización, distribución y uso contractual con terceros.</p>
+<p><strong>1.2 "Formulación NIBS"</strong> — Combinación del componente de cacao fermentado CAÚA™ (fermentación cinética 45°C × 96 h, sublimado y liofilizado) con el componente de grageado, texturización y acabado desarrollado y ejecutado por LUST. La formulación puede incluir chocolate de origen de proveedor autorizado por CAÚA™.</p>
+<p><strong>1.3 "Componente LUST"</strong> — Proceso de grageado, texturización, revestimiento de chocolate, acabado premium y presentación física final del producto NIBS, incluyendo co-diseño de packaging y embalaje.</p>
+<p><strong>1.4 "Propiedad Intelectual Compartida (PIC)"</strong> — Formulación conjunta, proceso combinado, técnicas sensoriales y métodos de control de calidad desarrollados por ambas PARTES de forma colaborativa, de uso exclusivo entre CAÚA y LUST.</p>
+<p><strong>1.5 "Licencia de Formulación"</strong> — Derecho de LUST de usar la Formulación NIBS para producción, comercialización y distribución bajo marca NIBS, únicamente en asociación con CAÚA Colombia S.A.S.</p>
+<p><strong>1.6 "Cobranding"</strong> — Uso simultáneo de logos de CAÚA™ y LUST en packaging, marketing digital y material promocional, bajo directrices de gobernanza de marca definidas en Anexo A.</p>
+<p><strong>1.7 "Comité de Marca"</strong> — Instancia bilateral de decisión integrada por un representante de cada PARTE para gestión de marca, producto y campaña.</p>
+
+<!-- ══════════════════════════════════════════════════════
+     2. OBJETO Y ALCANCE
+══════════════════════════════════════════════════════ -->
+<h2>2. Objeto y Alcance</h2>
+<p><strong>2.1</strong> Las PARTES acuerdan co-desarrollar, co-producir, comercializar y distribuir conjuntamente el producto NIBS bajo modelo de co-desarrollo de innovación abierta y cobranding bilateral.</p>
+<p><strong>2.2</strong> Cada PARTE contribuye con:</p>
+<ul>
+  <li><strong>CAÚA™ (Parte A):</strong> cacao fermentado certificado bajo protocolo cinético 45°C × 96 h, control de calidad sensorial, trazabilidad del modelo Guardian Farmer, administración y liderazgo de marca NIBS, representación internacional.</li>
+  <li><strong>LUST (Parte B):</strong> grageado, texturización, revestimiento, presentación final, co-diseño de packaging, fulfillment y aseguramiento de calidad confitería.</li>
+</ul>
+<p><strong>2.3</strong> El producto NIBS se ofrecerá bajo marca compartida con liderazgo visual de CAÚA™ para internacionalización. LUST figura como <em>"Aliada Estratégica de Producción &amp; Acabado"</em> en packaging secundario y materiales digitales.</p>
+<p><strong>2.4</strong> El alcance geográfico incluye: Colombia, Estados Unidos (Texas), España (Madrid), y expansión futura a mercados de LATAM, Europa y Asia bajo acuerdo de internacionalización separado.</p>
+<p><strong>2.5</strong> Las PARTES aunarán recursos tecnológicos y humanos para co-desarrollar estrategias de producto innovadoras basadas en la cadena de valor de cacao de especialidad.</p>
+<p><strong>2.6 Línea de Bombonería de Vanguardia para HORECA.</strong> Dentro del objeto del presente acuerdo, las PARTES co-desarrollarán una <strong>línea de bombonería de vanguardia</strong> destinada al canal HORECA (hoteles, restaurantes y catering), con las siguientes características:</p>
+<ul>
+  <li><strong>Propuesta de valor:</strong> bombones de alta confitería que integran cacao bioactivo de origen CAÚA™ —con trazabilidad Guardian Farmer— en cuerpos, rellenos o coberturas grageadas de precisión por LUST, orientados a experiencias gastronómicas de lujo.</li>
+  <li><strong>Segmentos objetivo:</strong> hoteles cinco estrellas, restaurantes fine dining, spas con menú de bienestar, catering de eventos premium y aerolíneas de primera clase.</li>
+  <li><strong>Formato:</strong> presentaciones individuales (unitarios porciones), cajas regalo curadas (6, 12 y 24 unidades) y formatos a granel para pastelería y cocina de autor. Gramajes y formatos específicos se definen en Anexo D y en los Registros de Prototipo (§6.4.3).</li>
+  <li><strong>Estándar de acabado:</strong> acabado de lujo con brillo de alta especificación, decoración con elementos de origen (cacao en polvo, nibs, flor de sal de cacao u otros validados por el panel sensorial), packaging unboxing premium alineado al código de marca NIBS (Anexo A).</li>
+  <li><strong>Aptitud exportable:</strong> toda referencia de la línea HORECA debe cumplir los criterios de §6.4.2 antes de ofertarse a clientes internacionales.</li>
+  <li><strong>Gobernanza comercial:</strong> CAÚA™ lidera la prospección y negociación con cuentas HORECA nacionales e internacionales; LUST garantiza la producción, fulfillment y estándares de calidad confitería para ese canal. Las condiciones comerciales específicas (precios, volúmenes mínimos por referencia, márgenes por canal) se detallan en Anexo D.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════
+     3. PROPIEDAD INTELECTUAL Y LICENCIAS
+══════════════════════════════════════════════════════ -->
+<h2>3. Propiedad Intelectual y Licencias</h2>
+<h3>3.1 Marca NIBS — Propiedad Exclusiva de Amaury Amed Blanquicet Rodríguez</h3>
+<ul>
+  <li>Licenciada a CAÚA Colombia S.A.S. bajo Acuerdo de Licencia de Marca Personal (Anexo B).</li>
+  <li>CAÚA™ actúa como administrador exclusivo de la marca y licenciante a LUST para uso en el marco de este acuerdo.</li>
+  <li>LUST no puede sublicenciar NIBS a terceros sin consentimiento escrito de CAÚA™ y Amaury Amed Blanquicet Rodríguez.</li>
+</ul>
+<h3>3.2 Formulación NIBS — Propiedad Intelectual Compartida</h3>
+<ul>
+  <li>Los métodos, proporciones, técnicas de control y especificaciones de la Formulación NIBS son secreto comercial de ambas PARTES.</li>
+  <li>CAÚA™ retiene derechos exclusivos sobre el conocimiento de fermentación bioactiva y perfiles fenólicos.</li>
+  <li>LUST retiene derechos de mejora sobre su componente específico (grageado, texturización, revestimiento). Mejoras que impacten la Formulación global requieren consentimiento escrito de CAÚA™ antes de implementación comercial.</li>
+</ul>
+<h3>3.3 Datos y Know-How Técnico</h3>
+<ul>
+  <li><strong>CAÚA™:</strong> fermentación cinética, perfiles de oxidación, parámetros sensoriales — CONFIDENCIAL.</li>
+  <li><strong>LUST:</strong> especificaciones de grageado, dureza, revestimiento, acabado — CONFIDENCIAL.</li>
+  <li>Acceso limitado a máximo dos (2) personas por PARTE, bajo Acuerdo de Confidencialidad (Anexo C).</li>
+</ul>
+<h3>3.4 Patentes y Registros de Propiedad Industrial</h3>
+<ul>
+  <li>Cualquier patente relacionada con el cacao bioactivo y su proceso de fermentación es <strong>propiedad exclusiva al 100% de CAÚA™</strong> (Amaury Amed Blanquicet Rodríguez y CAUA Colombia S.A.S.). LUST no adquiere derecho, participación ni coinvención sobre dichas patentes.</li>
+  <li>Patentes derivadas de innovaciones exclusivas de grageado o texturización aportadas por LUST son propiedad exclusiva de LUST. Cualquier patente sobre la integración conjunta de ambos componentes (proceso combinado) requiere acuerdo escrito bilateral previo a la solicitud.</li>
+  <li>Los gastos de solicitud y mantenimiento de patentes son responsabilidad de la PARTE titular. En caso de patente conjunta sobre proceso combinado, los gastos se dividen según participación acordada en ese momento.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════
+     4. GOBERNANZA DE MARCA Y COBRANDING
+══════════════════════════════════════════════════════ -->
+<h2>4. Gobernanza de Marca y Cobranding</h2>
+<h3>4.1 Liderazgo de Branding para Internacionalización</h3>
+<p>CAÚA™ asume liderazgo visual primario de la marca NIBS en packaging, web y materiales de pitch investor. Esto refleja el repositorio estratégico del cacao y la fermentación bioactiva como diferenciador científico clave. LUST figura como <em>"Aliada Estratégica de Producción &amp; Acabado"</em> con logo en posición secundaria.</p>
+<h3>4.2 Comité de Marca Bilateral</h3>
+<ul>
+  <li>Integrado por: CTO/Founder CAÚA™ y Representante Legal LUST.</li>
+  <li>Reuniones mensuales (videoconferencia y/o presencial) para revisar: alineación de messaging, cambios en packaging, nuevas campañas.</li>
+  <li>Decisiones por <strong>consenso bilateral</strong>. En caso de empate irresoluble, CAÚA™ retiene <strong>veto sobre integridad de marca NIBS a nivel internacional</strong>.</li>
+</ul>
+<h3>4.3 Código de Marca NIBS (ver Anexo A)</h3>
+<ul>
+  <li>Paleta de color: Pod Green <code>#87AA27</code>, Heirloom White <code>#F7F1EE</code>, Cosmic Criollo <code>#881C79</code>, Mazorca <code>#EEA110</code>, Amazon Green <code>#1C3B26</code>.</li>
+  <li>Tipografía: Acumin Pro UltraBlack (display), Gelica (UI/web).</li>
+  <li>Símbolo: jaguar + cacao (propiedad de CAÚA™ y Amaury Amed Blanquicet Rodríguez). No recrear sin autorización.</li>
+  <li>Baseline: <em>"Cacao Vivo &amp; Bioactivo · Chocolate Inteligente · Acabado Premium"</em>.</li>
+</ul>
+<h3>4.4 Prohibiciones de Uso No Autorizado</h3>
+<ul>
+  <li>LUST no puede usar el logo NIBS ni el logo CAÚA™ de forma independiente sin autorización escrita del Comité de Marca.</li>
+  <li>CAÚA™ no puede usar el logo LUST de forma independiente sin autorización escrita de LUST.</li>
+  <li>Ninguna PARTE puede usar NIBS en productos ajenos al presente acuerdo.</li>
+  <li>La violación resulta en suspensión inmediata de derechos de cobranding y acciones legales por infracción de marca.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════
+     5. COLABORACIÓN TECNOLÓGICA Y CRM
+══════════════════════════════════════════════════════ -->
+<h2>5. Colaboración Tecnológica y CRM Integrado</h2>
+<h3>5.1 CRM Colaborativo (HubSpot)</h3>
+<p>Las PARTES mantienen acceso compartido a instancia HubSpot con roles de usuario diferenciados para gestión de leads, pipeline y clientes NIBS conjuntos.</p>
+<ul>
+  <li>Contactos: leads y clientes NIBS etiquetados por PARTE responsable (<em>CAÚA™ lead / LUST fulfillment</em>).</li>
+  <li>Datos sensibles (márgenes, costos de producción) anonimizados entre PARTES.</li>
+  <li>Cada PARTE retiene confidencialidad sobre sus contactos privados (distribuidores, proveedores propios).</li>
+</ul>
+<h3>5.2 Comarketing — Fondos Compartidos</h3>
+<ul>
+  <li>Presupuesto anual de marketing NIBS (monto a definir en Anexo D): <strong>CAÚA™ 60% / LUST 40%</strong>.</li>
+  <li>Aprobación colectiva de campañas principales vía Comité de Marca.</li>
+  <li>ROI y performance reportados mensualmente en dashboard HubSpot centralizado.</li>
+  <li>Landing pages integradas: <code>cauacolombia.co/nibs</code> · <code>chocolatelust.com/nibs</code>.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════
+     6. R&D MASTER CHOCOLATIER
+══════════════════════════════════════════════════════ -->
+<h2>6. R&amp;D Master Chocolatier — Alianza Estratégica de Co-creación</h2>
+
+<h3>6.1 Naturaleza de la Alianza</h3>
+<p>Las PARTES establecen una <strong>Alianza Estratégica de Co-creación</strong> bajo la figura de <em>R&amp;D Master Chocolatier</em>, cuyo objeto es el co-diseño, formulación, prototipado y validación de productos exportables que integren la expertise de fermentación bioactiva de CAÚA™ con las capacidades de grageado, cobertura y acabado de LUST. Esta alianza opera de forma continua y paralela al desarrollo del producto NIBS, generando un pipeline de innovación de largo plazo entre las marcas.</p>
+
+<h3>6.2 Espacio de Trabajo Compartido — Planta Rionegro</h3>
+<p><strong>6.2.1</strong> LUST habilitará un espacio físico dedicado en su planta ubicada en <strong>Rionegro, Antioquia</strong>, para uso conjunto de las PARTES en sesiones de R&amp;D Master Chocolatier. Las condiciones de uso serán:</p>
+<ul>
+  <li>Acceso coordinado mediante agenda mensual aprobada por el Comité de Marca.</li>
+  <li>Limpieza, sanidad y condiciones BPM garantizadas por LUST antes de cada sesión.</li>
+  <li>Registro fotográfico y de trazabilidad de cada sesión de prototipado a cargo de CAÚA™.</li>
+  <li>Inventario de materias primas consumidas en sesión: a cargo de la PARTE que las aporte, con reposición acordada entre las PARTES.</li>
+</ul>
+<p><strong>6.2.2</strong> Los costos de servicios públicos (energía, agua, gas) consumidos durante sesiones R&amp;D se distribuyen: <strong>CAÚA™ 50% / LUST 50%</strong>, liquidados mensualmente con base en registro de horas de uso. LUST no cobra arrendamiento por el espacio en tanto CAÚA™ aporte los implementos descritos en §6.3.</p>
+
+<h3>6.3 Implementos y Equipos — Bodega Oikos (CAÚA™)</h3>
+<p><strong>6.3.1</strong> CAÚA™ aportará los implementos de experimentación disponibles en su bodega de <strong>Oikos, Bogotá</strong>, para uso compartido en la planta Rionegro durante sesiones R&amp;D. El inventario específico se formaliza en <strong>Anexo F — Inventario de Implementos R&amp;D</strong> y se actualiza por acuerdo de ambas PARTES.</p>
+<p><strong>6.3.2</strong> Condiciones de los implementos aportados:</p>
+<ul>
+  <li>CAÚA™ mantiene la titularidad de los implementos en todo momento. No constituyen aporte de capital ni transferencia de propiedad.</li>
+  <li>LUST responde por el cuidado, limpieza y correcto uso de los implementos durante su permanencia en Rionegro. Daño o pérdida por negligencia de LUST activa reposición al valor de mercado.</li>
+  <li>CAÚA™ puede retirar los implementos con aviso de treinta (30) días, salvo emergencia operativa que justifique retiro inmediato.</li>
+  <li>Mantenimiento preventivo: responsabilidad de CAÚA™. Mantenimiento correctivo por mal uso: responsabilidad de LUST.</li>
+</ul>
+
+<h3>6.4 Pipeline de Prototipado Exportable</h3>
+<p><strong>6.4.1</strong> Cada ciclo trimestral de R&amp;D Master Chocolatier deberá generar mínimo <strong>dos (2) prototipos</strong> con potencial de exportación a Estados Unidos (Texas), España u otro mercado del plan M0 de internacionalización de CAÚA™. Los prototipos se clasifican en:</p>
+
+<table class="oblig-table">
+  <tr>
+    <th>Categoría</th>
+    <th>Descripción</th>
+    <th>Liderazgo</th>
+  </tr>
+  <tr>
+    <td><strong>Prototipo Core NIBS</strong></td>
+    <td>Variaciones de formato, recubrimiento o gramaje del producto NIBS existente</td>
+    <td>Comité bilateral</td>
+  </tr>
+  <tr>
+    <td><strong>Extensión de Marca</strong></td>
+    <td>Nuevas presentaciones co-branded CAÚA™ × LUST fuera del paraguas NIBS</td>
+    <td>CAÚA™ (branding) + LUST (técnica)</td>
+  </tr>
+  <tr>
+    <td><strong>Cobertura Técnica</strong></td>
+    <td>Desarrollos de chocolate funcional de LUST con cacao CAÚA™ como materia prima</td>
+    <td>LUST (formulación) + CAÚA™ (insumo)</td>
+  </tr>
+  <tr>
+    <td><strong>Ingrediente B2B</strong></td>
+    <td>Insumo semielaborado para hoteles, repostería y gastronomía con origen CAÚA™</td>
+    <td>CAÚA™ (sensorial) + LUST (acabado)</td>
+  </tr>
+</table>
+
+<p><strong>6.4.2 Criterios de aptitud exportable.</strong> Un prototipo se considera exportable cuando cumple:</p>
+<ul>
+  <li>Estabilidad sensorial mínima de noventa (90) días a temperatura ambiente controlada (18–20 °C).</li>
+  <li>Cumplimiento de normativa de etiquetado del mercado destino (FDA 21 CFR, EFSA, INVIMA según corresponda).</li>
+  <li>Ficha técnica completa: composición, vida útil, condiciones de almacenamiento y transporte.</li>
+  <li>Costo de producción unitario compatible con margen mínimo del <strong>60%</strong> en canal D2C del mercado destino.</li>
+  <li>Aprobación de panel sensorial interno (mínimo tres evaluadores entre las PARTES).</li>
+</ul>
+
+<p><strong>6.4.3 Registro de prototipado.</strong> Cada sesión genera un <em>Registro de Prototipo</em> (formato Anexo F) que incluye: fecha, lugar, formulación, proporciones, tiempo de proceso, notas sensoriales, fotografías y decisión de avance o descarte. Los registros son PIC de ambas PARTES y se archivan de forma conjunta.</p>
+
+<h3>6.5 Propiedad Intelectual de Prototipos</h3>
+<p><strong>6.5.1</strong> Todo prototipo generado en sesiones R&amp;D Master Chocolatier es <strong>Propiedad Intelectual Compartida (PIC)</strong> de CAÚA™ y LUST en partes iguales (50%/50%), independientemente de quién lideró su desarrollo en cada sesión.</p>
+<p><strong>6.5.2</strong> La comercialización de cualquier prototipo que alcance aptitud exportable requiere acuerdo escrito bilateral sobre marca, canal, precio y distribución de márgenes. Si el prototipo se lanza bajo marca NIBS, se aplican los términos del presente acuerdo. Si se lanza bajo una nueva marca co-creada, requiere acuerdo de marca separado con CAÚA™ como guardián de integridad de marca.</p>
+<p><strong>6.5.3</strong> LUST no puede comercializar de forma unilateral ningún prototipo generado en sesiones conjuntas —incluso bajo su propia marca— sin autorización escrita de CAÚA™. CAÚA™ retiene el derecho exclusivo de representar los prototipos en eventos internacionales, ferias de innovación y pitch investor como desarrollos del ecosistema CAÚA™.</p>
+
+<h3>6.6 Roles en el Laboratorio R&amp;D</h3>
+
+<table class="oblig-table">
+  <tr>
+    <th style="width:30%">Rol</th>
+    <th style="width:35%">CAÚA™</th>
+    <th style="width:35%">LUST</th>
+  </tr>
+  <tr>
+    <td><strong>Director de Origen &amp; Fermentación</strong></td>
+    <td>Amaury Amed Blanquicet Rodríguez</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>Master Chocolatier &amp; Acabado</strong></td>
+    <td>—</td>
+    <td>Sandra Consuelo Álvarez Rodríguez</td>
+  </tr>
+  <tr>
+    <td><strong>Control sensorial</strong></td>
+    <td>Evaluador designado por sesión</td>
+    <td>Evaluador designado por sesión</td>
+  </tr>
+  <tr>
+    <td><strong>Documentación</strong></td>
+    <td>Responsable del Registro de Prototipo</td>
+    <td>Revisión y firma del Registro</td>
+  </tr>
+  <tr>
+    <td><strong>Seguridad alimentaria</strong></td>
+    <td>Cumplimiento de protocolos BPM de LUST</td>
+    <td>Habilitación de condiciones BPM en planta</td>
+  </tr>
+  <tr>
+    <td><strong>Custodia de implementos</strong></td>
+    <td>Titularidad y mantenimiento preventivo</td>
+    <td>Custodia operativa y mantenimiento correctivo</td>
+  </tr>
+</table>
+
+<h3>6.7 Calendario y Gobernanza R&amp;D</h3>
+<ul>
+  <li><strong>Frecuencia mínima:</strong> una (1) sesión R&amp;D mensual en planta Rionegro, duración mínima cuatro (4) horas.</li>
+  <li><strong>Agenda:</strong> propuesta por CAÚA™ con siete (7) días de anticipación; confirmada por LUST con cinco (5) días de anticipación.</li>
+  <li><strong>Revisión trimestral:</strong> el Comité de Marca evalúa el pipeline, decide avances a prototipo exportable y archiva o descarta los que no califican.</li>
+  <li><strong>Reporte anual:</strong> resumen de prototipos generados, aptitud exportable y decisiones de comercialización, archivado como PIC del acuerdo.</li>
+</ul>
+
+<div class="nota">
+  <strong>Nota operativa — Traslado Oikos → Rionegro:</strong> La traslación de los implementos de la bodega Oikos (Bogotá) a la planta Rionegro se coordina con mínimo quince (15) días de anticipación a la primera sesión. Fletes y seguros del traslado inicial: a cargo de CAÚA™. Costos de retorno o reubicación posterior: acordados entre las PARTES caso a caso. El inventario físico se verifica y firma por ambas PARTES al momento de la entrega en Rionegro (Acta de Entrega — Anexo F).
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     7. OBLIGACIONES DE CADA PARTE
+══════════════════════════════════════════════════════ -->
+<h2>7. Obligaciones de Cada Parte</h2>
+
+<table class="oblig-table">
+  <tr>
+    <th style="width:50%">CAÚA™ (Parte A)</th>
+    <th style="width:50%">LUST (Parte B)</th>
+  </tr>
+  <tr>
+    <td>Suministro garantizado de cacao fermentado bajo especificaciones de Formulación NIBS</td>
+    <td>Grageado y texturización del producto final bajo especificaciones conjuntas</td>
+  </tr>
+  <tr>
+    <td>Certificación y trazabilidad de origen Guardian Farmer (productores Landázuri)</td>
+    <td>Aseguramiento de calidad confitería: dureza, brillo, revestimiento</td>
+  </tr>
+  <tr>
+    <td>Control de calidad sensorial de cada lote (perfiles fenólicos, oxidación cinética)</td>
+    <td>Co-diseño y co-desarrollo de packaging: embalaje, diseño gráfico, insertos, cajas</td>
+  </tr>
+  <tr>
+    <td>Administración de marca NIBS (registros internacionales, defensa de marca, licencias)</td>
+    <td>Control de trazabilidad y lotes en sistema integrado con HubSpot</td>
+  </tr>
+  <tr>
+    <td>Liderazgo de gobernanza en Comité de Marca y estrategia internacional</td>
+    <td>Cumplimiento de normativas de etiquetado alimentario (Colombia, USA, UE)</td>
+  </tr>
+  <tr>
+    <td>Representación de NIBS en eventos, pitch investor y conferencias de innovación</td>
+    <td>Participación en eventos B2B, demostraciones de producto y campañas de comarketing</td>
+  </tr>
+  <tr>
+    <td>Provisión de materiales de marca y assets de campaña a LUST</td>
+    <td>Fulfillment y logística de órdenes en mercado minorista moderno</td>
+  </tr>
+</table>
+
+<!-- ══════════════════════════════════════════════════════
+     7. CONFIDENCIALIDAD
+══════════════════════════════════════════════════════ -->
+<h2>8. Confidencialidad y Protección de Secretos Comerciales</h2>
+<p><strong>8.1 Información Confidencial.</strong> Cada PARTE reconoce que la información técnica, formulaciones, procesos y datos comerciales intercambiados bajo este acuerdo son SECRETO COMERCIAL de ambas PARTES.</p>
+<p><strong>8.2 Obligaciones de Confidencialidad:</strong></p>
+<ul>
+  <li>Acceso limitado a máximo dos (2) personas clave por PARTE, nombradas explícitamente en Anexo C.</li>
+  <li>Uso exclusivo para propósitos de desarrollo, producción y distribución de NIBS.</li>
+  <li>Prohibición absoluta de divulgación a competidores, proveedores o terceros no autorizados.</li>
+  <li>Duración: cinco (5) años después de terminación del acuerdo.</li>
+</ul>
+<p><strong>8.3 Excepciones:</strong> divulgación requerida por ley o corte judicial (con notificación previa); información ya de dominio público por causa ajena a las PARTES; información desarrollada independientemente sin acceso a información confidencial de la otra PARTE.</p>
+<p><strong>8.4 Violación:</strong> incumplimiento resulta en daños liquidados de <strong>USD $50,000</strong> por infracción, orden de injunction inmediata para prevenir divulgación continua, y derecho a acción legal por daños adicionales (lucro cesante, daño reputacional).</p>
+
+<!-- ══════════════════════════════════════════════════════
+     8. TÉRMINOS COMERCIALES Y DISTRIBUCIÓN
+══════════════════════════════════════════════════════ -->
+<h2>9. Términos Comerciales y Distribución</h2>
+<p><strong>9.1 Modelo de Distribución</strong> (detalles en Anexo D):</p>
+<ul>
+  <li>Volumen mínimo de producción anual: [<em>____ unidades — a definir por Comité de Marca</em>]</li>
+  <li>Precio de transferencia CAÚA™ → LUST (componente cacao): [<em>____ COP/kg — Anexo D</em>]</li>
+  <li>Precio de transferencia LUST → Canal (producto terminado): [<em>____ COP/unidad — Anexo D</em>]</li>
+  <li>Márgenes y precios de venta al público: a definir por canal en Anexo D.</li>
+</ul>
+<p><strong>9.2 Responsabilidades de Distribución:</strong></p>
+<ul>
+  <li><strong>CAÚA™:</strong> liderazgo comercial, branding y negociación con distribuidores nacionales e internacionales.</li>
+  <li><strong>LUST:</strong> logística, empaque y fulfillment de órdenes; mercado minorista moderno y demostraciones.</li>
+</ul>
+<p><strong>9.3 Canales de Venta Autorizados:</strong></p>
+<ul>
+  <li>E-commerce directo (D2C): <code>cauacolombia.co/nibs</code></li>
+  <li>Retail premium: tiendas gourmet, delis, farmacias de lujo</li>
+  <li>B2B institucional: hoteles 5★, spas, centros de bienestar, instituciones educativas</li>
+  <li>Distribuidores exclusivos: asignados por Comité de Marca bilateral</li>
+</ul>
+<p><strong>9.4 Prohibición de Canal Directo No Autorizado.</strong> Ninguna PARTE venderá directamente a canal que compita con acuerdos de exclusividad pactados entre las PARTES.</p>
+
+<!-- ══════════════════════════════════════════════════════
+     9. RESOLUCIÓN DE CONFLICTOS
+══════════════════════════════════════════════════════ -->
+<h2>10. Resolución de Conflictos y Cláusulas Especiales</h2>
+<p><strong>10.1 Negociación Amistosa.</strong> Ante desacuerdo, las PARTES acuerdan negociar de buena fe por período mínimo de treinta (30) días, con reunión presencial o virtual para resolver el conflicto antes de escalación legal.</p>
+<p><strong>10.2 Mediación y Arbitraje.</strong> Si la negociación fracasa: mediador independiente (seleccionado por acuerdo mutuo), costo dividido en partes iguales. Si la mediación fracasa: arbitraje vinculante bajo Reglas de la Cámara de Comercio de Bogotá, en español, sujeto a ley colombiana, sede Bogotá.</p>
+<p><strong>10.3 Causales de Terminación por Causa:</strong></p>
+<ul>
+  <li>Incumplimiento material de obligaciones no remediado en sesenta (60) días de aviso escrito.</li>
+  <li>Quiebra, insolvencia o liquidación de una PARTE.</li>
+  <li>Violación de confidencialidad o uso no autorizado de marca.</li>
+  <li>Acción que perjudique la reputación de NIBS o la otra PARTE.</li>
+</ul>
+<p><strong>10.4 Terminación Sin Causa.</strong> Cualquier PARTE puede terminar el acuerdo con <strong>seis (6) meses</strong> de aviso previo escrito. Obligación de cooperación en transición y transferencia de clientes a CAÚA™ (como administrador de marca).</p>
+<p><strong>10.5 Consecuencias de Terminación:</strong></p>
+<ul>
+  <li>Cese inmediato de uso de marca NIBS y logos de la otra PARTE.</li>
+  <li>Transferencia de datos de clientes HubSpot a CAÚA™.</li>
+  <li>Inventario de producto NIBS en almacén LUST se liquida bajo acuerdo de transición (noventa días).</li>
+  <li>Secretos comerciales permanecen bajo confidencialidad indefinidamente.</li>
+</ul>
+
+<!-- ══════════════════════════════════════════════════════
+     10. GARANTÍAS Y REPRESENTACIONES
+══════════════════════════════════════════════════════ -->
+<h2>11. Garantías y Representaciones</h2>
+<p><strong>11.1 Garantías Generales de Cada Parte:</strong></p>
+<ul>
+  <li>Posee autoridad legal para celebrar este acuerdo sin conflicto con otros compromisos contractuales.</li>
+  <li>El producto ni los procesos infringen derechos de propiedad intelectual de terceros.</li>
+  <li>Datos técnicos y formulaciones suministradas son precisos y completos.</li>
+  <li>Cumplimiento de regulaciones alimentarias aplicables (INVIMA, FDA, EFSA según mercado).</li>
+</ul>
+<p><strong>11.2 Garantía de Inocuidad Alimentaria.</strong> Cada PARTE garantiza que su componente cumple: normativas HACCP y BPM (Buenas Prácticas de Manufactura); límites de contaminantes (metales pesados, aflatoxinas, patógenos); alergénicos declarados en etiquetado; registros sanitarios en jurisdicciones de comercialización.</p>
+<p><strong>11.3 Responsabilidad Civil.</strong> Cada PARTE es responsable de los daños derivados de su componente. Seguro de responsabilidad civil recomendado (mínimo <strong>USD $1,000,000</strong> por evento).</p>
+
+<!-- ══════════════════════════════════════════════════════
+     11. VIGENCIA Y ENMIENDAS
+══════════════════════════════════════════════════════ -->
+<h2>12. Vigencia y Enmiendas</h2>
+<p><strong>12.1 Vigencia:</strong></p>
+<ul>
+  <li>Fecha efectiva: _____ / _____ / 2026</li>
+  <li>Plazo inicial: tres (3) años (36 meses).</li>
+  <li>Renovación automática por tres (3) años adicionales, salvo notificación de no-renovación noventa (90) días antes del vencimiento.</li>
+</ul>
+<p><strong>12.2 Enmiendas.</strong> Cambios sustanciales requieren acuerdo escrito de ambas PARTES. Cambios menores (actualizaciones de contacto, clarificaciones) pueden realizarlos el Comité de Marca.</p>
+
+<!-- ══════════════════════════════════════════════════════
+     12. DISPOSICIONES GENERALES
+══════════════════════════════════════════════════════ -->
+<h2>13. Disposiciones Generales</h2>
+<p><strong>13.1 Ley Aplicable.</strong> Este acuerdo se rige por la ley colombiana, en particular el Código de Comercio y las leyes de Propiedad Intelectual vigentes.</p>
+<p><strong>13.2 Idioma.</strong> Documento en español. Versiones en inglés pueden prepararse con fines informativos, pero el español prevalece en caso de conflicto.</p>
+<p><strong>13.3 Aseverabilidad.</strong> Si alguna cláusula es declarada inválida, las demás permanecen en pleno vigor.</p>
+<p><strong>13.4 Integralidad.</strong> Este acuerdo constituye el entendimiento completo entre las PARTES respecto a la colaboración bilateral CAÚA™—LUST. Los acuerdos previos verbales o escritos sobre este objeto específico quedan sin efecto, sin perjuicio del Acuerdo Tripartita CAÚA × ZURYCH × LUST que permanece vigente como instrumento complementario.</p>
+<p><strong>13.5 Notificaciones.</strong> Comunicaciones dirigidas a las direcciones de correo electrónico listadas en el encabezado, con acuse de recibo, o mediante correo certificado a las sedes registradas.</p>
+
+<!-- ══════════════════════════════════════════════════════
+     RELACIÓN CON ACUERDO TRIPARTITA
+══════════════════════════════════════════════════════ -->
+<div class="nota">
+  <strong>Nota de complementariedad:</strong> El presente acuerdo bilateral es <strong>complementario</strong>, no sustituto, del Acuerdo Tripartita de Co-desarrollo CAÚA × ZURYCH × LUST (Borrador v1.0, 7-jun-2026). En caso de conflicto entre ambos instrumentos sobre derechos o deberes de LUST, prevalece el instrumento más específico. Cualquier obligación de LUST hacia ZURYCH o viceversa queda regulada exclusivamente por el acuerdo tripartita.
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     ANEXOS
+══════════════════════════════════════════════════════ -->
+<h2>Anexos (a Desarrollar)</h2>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo A — Directrices de Cobranding y Código de Marca NIBS</div>
+  Paleta de color, tipografía, símbolo gráfico, proporciones de logos CAÚA™ y LUST, ejemplos de packaging correcto e incorrecto, reglas de uso en web, redes sociales y materiales impresos. Archivo canónico: <code>assets/nibs-logo.png</code>, <code>assets/lockup-logos.png</code>.
+</div>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo B — Acuerdo de Licencia de Marca NIBS</div>
+  Amaury Amed Blanquicet Rodríguez → CAÚA Colombia S.A.S. (marca personal a empresa) → LUST (sublicencia de uso bajo este acuerdo). Términos de exclusividad, duración, restricciones de sublicencia.
+</div>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo C — Acuerdo de Confidencialidad Ampliado</div>
+  Definiciones precisas de secretos comerciales de cada PARTE, lista nominada de personas autorizadas (máx. 2 por PARTE), procedimientos de acceso seguro, auditoría anual de cumplimiento.
+</div>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo D — Términos Comerciales y Precio de Transferencia</div>
+  Volúmenes mínimos y máximos por período; precios de transferencia de componente cacao CAÚA™ → LUST y producto terminado LUST → canal; margen de venta al público por canal (D2C, retail, B2B); distribución comarketing CAÚA™ 60% / LUST 40%.
+</div>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo E — Cronograma de Desarrollo del Producto</div>
+  Fase 1: Validación de Formulación bilateral · Fase 2: Escala Piloto · Fase 3: Producción Comercial. Hitos, responsables y fechas límite.
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     FIRMAS
+══════════════════════════════════════════════════════ -->
+<div class="firmas-section">
+  <h2>Firma y Aceptación</h2>
+  <p>Por este medio, las PARTES acuerdan vincularse a los términos y condiciones anteriores, en fe de lo cual firman a los _____ días del mes de _________________ de 2026, en Bogotá, D.C., Colombia.</p>
+
+  <div class="firmas-grid">
+    <div class="firma-box">
+      <div class="firma-linea"></div>
+      <div class="nombre">Amaury Amed Blanquicet Rodríguez</div>
+      <div class="cargo">Representante Legal / CTO &amp; Co-Founder</div>
+      <div class="empresa">CAUA COLOMBIA S.A.S.</div>
+      <div class="datos">NIT 901213846-7 · CC 1032430162<br>amauryamed@gmail.com</div>
+    </div>
+    <div class="firma-box">
+      <div class="firma-linea"></div>
+      <div class="nombre">Sandra Consuelo Álvarez Rodríguez</div>
+      <div class="cargo">Representante Legal</div>
+      <div class="empresa">LOGOTIPOS Y CHOCOLATES S.A.S. (LUST)</div>
+      <div class="datos">NIT 830036223-2 · CC 39773126<br>info@chocolatelust.com</div>
+    </div>
+  </div>
+</div>
+
+<div class="anexo">
+  <div class="anexo-titulo">Anexo F — Inventario de Implementos R&amp;D y Acta de Entrega Oikos → Rionegro</div>
+  Lista detallada de equipos e implementos de experimentación aportados por CAÚA™ desde bodega Oikos (Bogotá): descripción, modelo/referencia, estado y valoración de reposición. Incluye Acta de Entrega con firmas de recibido de ambas PARTES, fecha de traslado y condición verificada al ingreso a planta Rionegro. Se actualiza ante cualquier entrada o salida de implementos.
+</div>
+
+<div class="doc-footer">
+  Acuerdo Bilateral CAÚA × LUST — Co-desarrollo, Innovación Abierta y Cobranding NIBS · Borrador v1.0 · 22 jun 2026 · Preparado por CAÚA Colombia S.A.S. para revisión de las partes. Este documento no constituye asesoría jurídica formal; se recomienda revisión por abogado antes de la firma definitiva.
+</div>
+
+</body>
+</html>
