@@ -152,9 +152,17 @@ canvas.sig.has-sig{border-color:var(--amazon);}
 }
 
 /* ── PRINT INDEX ── */
-.btn-print{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--amazon);color:var(--white);border:none;border-radius:8px;font-family:"Arial",sans-serif;font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:20px;}
-.btn-print:hover{background:#142c1c;}
-.btn-print svg{flex-shrink:0;}
+.print-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--mazorca);border-radius:12px;padding:16px 22px;margin-bottom:28px;cursor:pointer;border:none;width:100%;text-align:left;transition:background .15s,transform .1s;box-shadow:0 3px 12px rgba(238,161,16,.35);}
+.print-cta:hover{background:#d4920e;transform:translateY(-1px);}
+.print-cta:active{transform:translateY(0);}
+.print-cta-left{display:flex;align-items:center;gap:14px;}
+.print-cta-icon{background:rgba(0,0,0,.14);border-radius:8px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.print-cta-texts{}
+.print-cta-label{font-family:"Arial",sans-serif;font-size:15px;font-weight:900;color:#1A1A18;letter-spacing:.3px;display:block;}
+.print-cta-sub{font-family:"Arial",sans-serif;font-size:12px;color:rgba(26,26,24,.65);margin-top:2px;display:block;}
+.print-cta-arrow{font-size:22px;color:rgba(26,26,24,.45);flex-shrink:0;}
+/* legacy btn kept for @media print hide target */
+.btn-print{display:none;}
 #index-pdf{background:var(--paper);border:1.5px solid var(--amazon);border-radius:16px;padding:36px 36px 32px;margin-top:48px;}
 .idx-header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
 .idx-title-block .idx-kicker{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;font-weight:800;color:var(--pod);margin-bottom:6px;}
@@ -212,6 +220,19 @@ canvas.sig.has-sig{border-color:var(--amazon);}
 
 <!-- INDEX IMPRIMIBLE -->
 <section id="index-pdf">
+  <button class="print-cta" onclick="window.print()">
+    <div class="print-cta-left">
+      <div class="print-cta-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#1A1A18" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z"/></svg>
+      </div>
+      <div class="print-cta-texts">
+        <span class="print-cta-label">Guardar acuerdo como PDF</span>
+        <span class="print-cta-sub">Haz clic → Imprimir → Destino: "Guardar como PDF" · solo se imprime este índice</span>
+      </div>
+    </div>
+    <span class="print-cta-arrow">↓</span>
+  </button>
+
   <div class="idx-header">
     <div class="idx-title-block">
       <div class="idx-kicker">Acuerdo Bilateral · Índice Oficial</div>
@@ -285,10 +306,6 @@ canvas.sig.has-sig{border-color:var(--amazon);}
     <strong>Para guardar como PDF:</strong> Archivo → Imprimir → Destino: "Guardar como PDF" → Diseño horizontal (opcional) · solo se imprime este índice.
   </div>
 
-  <button class="btn-print" onclick="window.print()">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z"/></svg>
-    Imprimir / Guardar PDF
-  </button>
 </section>
 
 <hr class="divider">
