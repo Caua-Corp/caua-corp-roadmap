@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAÚA × LUST — Alianza Estratégica · Borrador v1.0</title>
+<style>
+:root {
+  --pod:#87AA27; --pod-l:rgba(135,170,39,.13);
+  --white:#F7F1EE; --criollo:#881C79; --criollo-l:rgba(136,28,121,.10);
+  --amazon:#1C3B26; --mazorca:#EEA110; --mazorca-l:rgba(238,161,16,.15);
+  --ink:#1A1A18; --muted:#6B6860; --line:#DDD5CB; --paper:#FFFFFF; --bg:#F2EDE8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"Georgia",serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* HERO */
+.hero{background:var(--amazon);color:var(--white);padding:64px 40px 56px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 120%,rgba(135,170,39,.18) 0%,transparent 70%);}
+.hero .kicker{font-family:"Arial",sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--pod);font-weight:800;display:block;margin-bottom:14px;position:relative;}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px;position:relative;}
+.hero h1 em{color:var(--mazorca);font-style:normal;}
+.hero .tagline{font-size:15px;color:rgba(247,241,238,.72);max-width:560px;margin:14px auto 0;font-family:"Arial",sans-serif;position:relative;}
+.hero .badge{display:inline-block;margin-top:22px;background:rgba(238,161,16,.18);border:1px solid rgba(238,161,16,.4);border-radius:999px;padding:5px 16px;font-family:"Arial",sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mazorca);position:relative;}
+
+/* LAYOUT */
+.wrap{max-width:840px;margin:0 auto;padding:0 28px 100px;}
+section{margin-top:56px;}
+.section-label{font-family:"Arial",sans-serif;font-size:9.5px;letter-spacing:4px;text-transform:uppercase;font-weight:800;color:var(--pod);margin-bottom:10px;}
+h2{font-size:22px;font-weight:700;color:var(--amazon);line-height:1.2;margin-bottom:18px;}
+h3{font-size:16px;font-weight:700;color:var(--amazon);margin:24px 0 8px;}
+p{font-size:14.5px;margin-bottom:12px;}
+ul{padding-left:20px;margin-bottom:12px;}
+li{font-size:14.5px;margin-bottom:6px;}
+.divider{border:none;border-top:1px solid var(--line);margin:44px 0;}
+
+/* PARTES */
+.partes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+.parte{background:var(--paper);border:1.5px solid var(--amazon);border-radius:12px;padding:20px 22px;}
+.parte .brand-tag{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--pod);margin-bottom:8px;}
+.parte .rep{font-size:15px;font-weight:700;color:var(--amazon);margin-bottom:4px;}
+.parte .rol{font-size:12.5px;color:var(--muted);font-family:"Arial",sans-serif;}
+.parte .nit{font-size:11px;color:var(--muted);font-family:"Arial",sans-serif;margin-top:6px;}
+
+/* PRODUCTS */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+.prod-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 16px;}
+.prod-card.nibs{border-top:3px solid var(--pod);}
+.prod-card.horeca{border-top:3px solid var(--criollo);}
+.prod-card .pc-tag{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;margin-bottom:6px;}
+.prod-card.nibs .pc-tag{color:var(--pod);}
+.prod-card.horeca .pc-tag{color:var(--criollo);}
+.prod-card .pc-name{font-size:15px;font-weight:700;color:var(--amazon);line-height:1.2;margin-bottom:6px;}
+.prod-card .pc-desc{font-size:12.5px;color:var(--muted);font-family:"Arial",sans-serif;line-height:1.5;}
+
+/* CALLOUTS */
+.hbox{border-left:3px solid var(--mazorca);background:var(--mazorca-l);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0;font-family:"Arial",sans-serif;font-size:13px;color:#5a3d00;}
+.hbox strong{color:#8a5a00;}
+.ibox{border-left:3px solid var(--pod);background:var(--pod-l);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0;font-family:"Arial",sans-serif;font-size:13px;color:#3a4d10;}
+.ibox strong{color:var(--amazon);}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:12px;}
+.tbl th{background:var(--amazon);color:var(--white);padding:8px 12px;text-align:left;font-family:"Arial",sans-serif;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:rgba(247,241,238,.6);}
+.tbl td:first-child{font-weight:700;color:var(--amazon);white-space:nowrap;}
+
+/* TERMINOS */
+.terminos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+.term{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+.term .t-label{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--muted);margin-bottom:5px;}
+.term .t-val{font-size:14px;font-weight:700;color:var(--amazon);}
+.term .t-note{font-size:11.5px;color:var(--muted);font-family:"Arial",sans-serif;margin-top:3px;}
+
+/* ROADMAP */
+.roadmap{display:flex;flex-direction:column;gap:0;margin-top:16px;position:relative;}
+.roadmap::before{content:'';position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:var(--line);}
+.rm-step{display:flex;gap:16px;align-items:flex-start;}
+.rm-dot{flex-shrink:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Arial",sans-serif;font-weight:800;font-size:13px;border:2px solid;z-index:1;background:var(--bg);}
+.rm-dot.done{background:var(--pod);border-color:var(--pod);color:#fff;}
+.rm-dot.active{background:var(--mazorca);border-color:var(--mazorca);color:#fff;}
+.rm-dot.pending{background:var(--paper);border-color:var(--line);color:var(--muted);}
+.rm-body{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;flex:1;}
+.rm-body .rm-tag{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;margin-bottom:6px;}
+.rm-body.done-b .rm-tag{color:var(--pod);}
+.rm-body.active-b{border-color:var(--mazorca);}
+.rm-body.active-b .rm-tag{color:var(--mazorca);}
+.rm-body.pending-b .rm-tag{color:var(--muted);}
+.rm-body .rm-title{font-size:16px;font-weight:700;color:var(--amazon);margin-bottom:6px;}
+.rm-body .rm-desc{font-size:13px;color:var(--muted);font-family:"Arial",sans-serif;line-height:1.5;}
+
+/* OPTIONS */
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.opt-card{background:var(--paper);border:2px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;transition:border-color .2s,background .2s;user-select:none;}
+.opt-card:hover{border-color:var(--pod);background:var(--pod-l);}
+.opt-card.selected{border-color:var(--pod);background:var(--pod-l);}
+.opt-card .oc-check{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);display:inline-block;vertical-align:middle;margin-right:8px;background:var(--paper);transition:all .2s;position:relative;}
+.opt-card.selected .oc-check{background:var(--pod);border-color:var(--pod);}
+.opt-card.selected .oc-check::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:10px;font-weight:800;}
+.opt-card .oc-label{font-size:14px;font-weight:700;color:var(--amazon);vertical-align:middle;}
+.opt-card .oc-desc{font-size:12px;color:var(--muted);font-family:"Arial",sans-serif;margin-top:6px;padding-left:26px;line-height:1.4;}
+.date-opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.date-btn{font-family:"Arial",sans-serif;font-size:12px;font-weight:700;padding:8px 18px;border-radius:999px;border:2px solid var(--line);background:var(--paper);cursor:pointer;transition:all .2s;color:var(--ink);}
+.date-btn:hover{border-color:var(--pod);color:var(--amazon);}
+.date-btn.selected{border-color:var(--pod);background:var(--pod);color:#fff;}
+#resumen-box{display:none;background:var(--mazorca-l);border:1px solid rgba(238,161,16,.35);border-radius:10px;padding:14px 16px;margin-top:16px;font-family:"Arial",sans-serif;font-size:13px;color:#5a3d00;}
+
+/* FIRMA */
+.firma-section{background:var(--paper);border:2px solid var(--amazon);border-radius:16px;padding:36px 32px;margin-top:32px;}
+.firma-section .fs-sub{font-family:"Arial",sans-serif;font-size:13px;color:var(--muted);margin-bottom:28px;}
+.firmas-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px;}
+.firmante{background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:20px 18px;}
+.firmante .fw-tag{font-family:"Arial",sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:800;color:var(--pod);margin-bottom:12px;display:block;}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.field label{font-family:"Arial",sans-serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800;color:var(--muted);}
+.field input{border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:"Georgia",serif;color:var(--amazon);background:var(--paper);outline:none;transition:border-color .2s;width:100%;}
+.field input:focus{border-color:var(--amazon);}
+.field input[readonly]{background:#eee8e2;color:var(--muted);cursor:default;}
+.sig-label{font-family:"Arial",sans-serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:800;color:var(--muted);margin-bottom:7px;display:block;}
+canvas.sig{width:100%;height:120px;border:1.5px solid var(--line);border-radius:9px;background:var(--paper);cursor:crosshair;display:block;touch-action:none;}
+canvas.sig.has-sig{border-color:var(--amazon);}
+.sig-clear{font-family:"Arial",sans-serif;font-size:11px;color:var(--muted);text-decoration:underline;cursor:pointer;background:none;border:none;padding:3px 0;margin-top:5px;display:block;}
+.sig-clear:hover{color:var(--criollo);}
+.sig-status{display:inline-block;margin-top:6px;font-family:"Arial",sans-serif;font-size:11px;font-weight:700;}
+.sig-status.ok{color:var(--pod);}
+.sig-status.no{color:var(--muted);}
+
+.accept-wrap{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:10px;padding:14px 16px;margin:24px 0;}
+.accept-wrap input[type=checkbox]{width:18px;height:18px;accent-color:var(--amazon);flex-shrink:0;margin-top:2px;cursor:pointer;}
+.accept-wrap label{font-family:"Arial",sans-serif;font-size:13px;color:var(--ink);line-height:1.5;cursor:pointer;}
+.btn-firmar{width:100%;padding:16px;background:var(--amazon);color:var(--white);border:none;border-radius:10px;font-family:"Arial",sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.btn-firmar:hover:not(:disabled){background:#142c1c;}
+.btn-firmar:disabled{background:var(--line);color:var(--muted);cursor:not-allowed;}
+
+#confirmacion{display:none;background:var(--pod-l);border:2px solid var(--pod);border-radius:12px;padding:28px;text-align:center;margin-top:24px;}
+#confirmacion .conf-icon{font-size:40px;margin-bottom:10px;}
+#confirmacion h3{color:var(--amazon);font-size:20px;margin-bottom:8px;}
+#confirmacion p{font-family:"Arial",sans-serif;font-size:13px;color:#3a4d10;margin-bottom:0;}
+.conf-details{background:var(--paper);border-radius:8px;padding:14px 16px;margin-top:14px;text-align:left;font-family:"Arial",sans-serif;font-size:13px;color:var(--ink);line-height:1.7;}
+.conf-details b{color:var(--amazon);}
+
+.doc-footer{margin-top:60px;border-top:1px solid var(--line);padding-top:16px;font-family:"Arial",sans-serif;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.6;}
+
+@media(max-width:640px){
+  .partes,.products,.options-grid,.terminos,.firmas-grid{grid-template-columns:1fr;}
+  .hero{padding:48px 20px 40px;}
+  .wrap{padding:0 16px 80px;}
+  .firma-section{padding:22px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="kicker">Alianza Estratégica de Co-creación · Bogotá, Colombia · 2026</span>
+  <h1>CAÚA <em>×</em> LUST</h1>
+  <p class="tagline">Co-desarrollo de cacao bioactivo de lujo · R&D Master Chocolatier · Bombonería de Vanguardia HORECA · Exportación USA &amp; España</p>
+  <span class="badge">Borrador v1.0 · 22 Jun 2026 · Para revisión y firma</span>
+</div>
+
+<div class="wrap">
+
+<!-- PARTES -->
+<section>
+  <div class="section-label">Las Partes</div>
+  <h2>Una alianza entre dos expertises únicos</h2>
+  <p>CAÚA aporta el cacao bioactivo más singular de Colombia — origen Guardian Farmer, fermentación cinética de control científico — y LUST aporta el grageado de precisión, el acabado de lujo y la capacidad instalada en Rionegro. Juntas producimos algo que ninguna puede hacer sola.</p>
+  <div class="partes">
+    <div class="parte">
+      <div class="brand-tag">CAÚA™ · Parte A</div>
+      <div class="rep">Amaury Amed Blanquicet R.</div>
+      <div class="rol">CTO &amp; Co-Founder · Director de Origen &amp; Fermentación</div>
+      <div class="nit">CAUA COLOMBIA S.A.S. · NIT 901213846-7</div>
+    </div>
+    <div class="parte">
+      <div class="brand-tag">LUST · Parte B</div>
+      <div class="rep">Sandra Consuelo Álvarez R.</div>
+      <div class="rol">Representante Legal · Master Chocolatier &amp; Acabado</div>
+      <div class="nit">LOGOTIPOS Y CHOCOLATES S.A.S. · NIT 830036223-2</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRODUCTOS -->
+<section>
+  <div class="section-label">Portafolio Co-desarrollado</div>
+  <h2>Tres líneas de producto en co-creación</h2>
+  <div class="products">
+    <div class="prod-card nibs">
+      <div class="pc-tag">NIBS · Cacao Vivo</div>
+      <div class="pc-name">NIBS Blanco</div>
+      <div class="pc-desc">Grano liofilizado interior morado · cobertura chocolate blanco · endulzante maltitol · sin azúcar añadida · 100 g / 10 porciones.</div>
+    </div>
+    <div class="prod-card nibs">
+      <div class="pc-tag">NIBS · Cacao Tostado</div>
+      <div class="pc-name">NIBS Oscuro</div>
+      <div class="pc-desc">Grano tostado al sol suavemente · cobertura chocolate oscuro · endulzante alulosa · sin azúcar añadida · 100 g / 10 porciones.</div>
+    </div>
+    <div class="prod-card horeca">
+      <div class="pc-tag">R&amp;D · HORECA</div>
+      <div class="pc-name">Bombonería de Vanguardia</div>
+      <div class="pc-desc">Bombones de alta confitería con cacao bioactivo CAÚA™ y acabado premium LUST para hoteles 5★, fine dining, spas y catering de lujo.</div>
+    </div>
+  </div>
+  <div class="hbox" style="margin-top:18px;">
+    <strong>Origen:</strong> Landázuri, Santander · Guardián Farmer certificado · fermentación cinética 45°C × 96 h · trazabilidad completa del árbol al producto final.
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- R&D -->
+<section>
+  <div class="section-label">R&amp;D Master Chocolatier</div>
+  <h2>El laboratorio donde nace la innovación</h2>
+  <p>Sesiones mensuales en la planta de Rionegro, con los implementos de experimentación que CAÚA aporta desde Bodega Oikos. Meta: mínimo 2 prototipos exportables por trimestre.</p>
+  <table class="tbl">
+    <tr><th>Parámetro</th><th>Condición</th></tr>
+    <tr><td>Sede</td><td>Planta LUST · Rionegro, Antioquia</td></tr>
+    <tr><td>Implementos</td><td>CAÚA™ aporta equipos desde Bodega Oikos, Bogotá · titularidad CAÚA, custodia LUST en planta</td></tr>
+    <tr><td>Director de Origen</td><td>Amaury Amed Blanquicet R. (CAÚA™)</td></tr>
+    <tr><td>Master Chocolatier</td><td>Sandra Consuelo Álvarez R. (LUST)</td></tr>
+    <tr><td>Frecuencia mínima</td><td>1 sesión mensual · mínimo 4 horas</td></tr>
+    <tr><td>Meta trimestral</td><td>2 prototipos exportables / trimestre</td></tr>
+    <tr><td>Costos servicios</td><td>CAÚA 50% / LUST 50% · LUST no cobra arriendo mientras CAÚA aporte implementos</td></tr>
+    <tr><td>Propiedad prototipos R&amp;D</td><td>PIC 50% / 50% · comercialización requiere acuerdo bilateral escrito</td></tr>
+    <tr><td>Patente cacao bioactivo</td><td><strong>100% CAÚA™</strong> — LUST sin participación ni coinvención</td></tr>
+  </table>
+  <div class="ibox" style="margin-top:16px;">
+    <strong>Pipeline:</strong> variaciones NIBS core · extensiones co-branded CAÚA × LUST · cobertura técnica con cacao CAÚA · insumos B2B para gastronomía de autor.
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TÉRMINOS -->
+<section>
+  <div class="section-label">Términos del Acuerdo</div>
+  <h2>Lo que protege a las dos partes</h2>
+  <div class="terminos">
+    <div class="term"><div class="t-label">Vigencia inicial</div><div class="t-val">3 años (36 meses)</div><div class="t-note">Renovación automática +3 años · 90 días de aviso para no-renovar</div></div>
+    <div class="term"><div class="t-label">Terminación sin causa</div><div class="t-val">6 meses de aviso</div><div class="t-note">Ambas partes protegidas con tiempo para transición</div></div>
+    <div class="term"><div class="t-label">Confidencialidad</div><div class="t-val">5 años post-terminación</div><div class="t-note">Máximo 2 personas autorizadas por parte · secreto comercial mutuo</div></div>
+    <div class="term"><div class="t-label">Daños por infracción</div><div class="t-val">USD $50,000 / evento</div><div class="t-note">Protege de uso no autorizado de marca o formulaciones</div></div>
+    <div class="term"><div class="t-label">Comarketing</div><div class="t-val">CAÚA 60% / LUST 40%</div><div class="t-note">CAÚA lidera prospección HORECA · LUST garantiza producción y fulfillment</div></div>
+    <div class="term"><div class="t-label">Arbitraje</div><div class="t-val">CCB · Ley colombiana</div><div class="t-note">30 días negociación → mediación → árbitros Cámara de Comercio Bogotá</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ROADMAP -->
+<section>
+  <div class="section-label">Roadmap</div>
+  <h2>Del borrador al primer prototipo exportable</h2>
+  <div class="roadmap">
+    <div class="rm-step">
+      <div class="rm-dot done">✓</div>
+      <div class="rm-body done-b">
+        <div class="rm-tag">Completado · Junio 2026</div>
+        <div class="rm-title">Alimentec 2026 — lanzamiento NIBS</div>
+        <div class="rm-desc">Presentación del producto en feria · clip de marca · emails B2B · leads calificados generados. Acuerdo tripartita CAÚA × ZURYCH × LUST (borrador v1.0).</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-dot active">→</div>
+      <div class="rm-body active-b">
+        <div class="rm-tag">Ahora · Julio 2026</div>
+        <div class="rm-title">Firma del acuerdo bilateral CAÚA × LUST</div>
+        <div class="rm-desc">Revisión de este documento · firma digital de ambas partes · completar Anexo D (precios y márgenes) + Anexo F (inventario implementos Oikos → Rionegro). <strong>Kick-off de la alianza.</strong></div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-dot active">→</div>
+      <div class="rm-body active-b">
+        <div class="rm-tag">Julio 2026 · Kick-off R&amp;D</div>
+        <div class="rm-title">Primera sesión R&amp;D Master Chocolatier en Rionegro</div>
+        <div class="rm-desc">Traslado de implementos Oikos → planta Rionegro · acta de entrega firmada · definición y comienzo del primer prototipo de la alianza.</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-dot pending">1</div>
+      <div class="rm-body pending-b">
+        <div class="rm-tag">Ago–Oct 2026 · Trimestre 1</div>
+        <div class="rm-title">Pipeline Q1 — 2 prototipos exportables</div>
+        <div class="rm-desc">Sesiones mensuales · mínimo 2 prototipos que superen criterios de aptitud exportable (90 días estabilidad · ficha técnica · margen ≥ 60% DTC · panel sensorial ≥ 3 evaluadores).</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-dot pending">2</div>
+      <div class="rm-body pending-b">
+        <div class="rm-tag">Oct 2026 – Ene 2027</div>
+        <div class="rm-title">Línea Bombonería HORECA — primer SKU comercial</div>
+        <div class="rm-desc">Referencia ancla para canal HORECA · prueba piloto con hotel 5★ o restaurante fine dining en Bogotá · validación de precio, empaque y presentación.</div>
+      </div>
+    </div>
+    <div class="rm-step">
+      <div class="rm-dot pending">3</div>
+      <div class="rm-body pending-b">
+        <div class="rm-tag">Q1 2027</div>
+        <div class="rm-title">Exportación NIBS + Bombonería · Texas &amp; España</div>
+        <div class="rm-desc">Primer lote exportable bajo marca NIBS a Austin (TX) y Madrid · distribución en España · ficha técnica FDA-ready · cobranding CAÚA × LUST en mercado internacional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OPCIONES -->
+<section>
+  <div class="section-label">Configuración de la Alianza</div>
+  <h2>Define tus preferencias antes de firmar</h2>
+  <p>Selecciona las opciones que reflejen tu visión. Se usan para priorizar el Anexo D y la agenda de R&D en Rionegro.</p>
+
+  <h3>¿En qué producto enfocamos primero?</h3>
+  <div class="options-grid" id="opt-productos">
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">NIBS Blanco &amp; Oscuro</span><div class="oc-desc">Consolidar los dos formatos actuales, escalar producción y preparar para exportación.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Bombonería HORECA primero</span><div class="oc-desc">Arrancar con la línea premium para hoteles y restaurantes — mayor margen, cliente B2B más claro.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Ambas líneas en paralelo</span><div class="oc-desc">NIBS para retail/DTC y bombonería para HORECA desde el inicio.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Ingrediente B2B primero</span><div class="oc-desc">Cobertura técnica o insumo para repostería y cocina de autor — mayor volumen.</div></div>
+  </div>
+
+  <h3 style="margin-top:28px;">Primera sesión R&D en Rionegro</h3>
+  <div class="date-opts" id="opt-fecha">
+    <button class="date-btn" onclick="selDate(this)">Julio 2026</button>
+    <button class="date-btn" onclick="selDate(this)">Agosto 2026</button>
+    <button class="date-btn" onclick="selDate(this)">Septiembre 2026</button>
+    <button class="date-btn" onclick="selDate(this)">Lo coordinamos tras la firma</button>
+  </div>
+
+  <h3 style="margin-top:28px;">¿Qué Anexo completamos primero?</h3>
+  <div class="options-grid" id="opt-anexos">
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Anexo D · Precios</span><div class="oc-desc">Precios de transferencia, volúmenes mínimos y márgenes por canal.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Anexo F · Implementos</span><div class="oc-desc">Inventario equipos Oikos → Rionegro · Acta de Entrega.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Ambos en una reunión</span><div class="oc-desc">Reunión de trabajo presencial o videollamada para completar los dos.</div></div>
+    <div class="opt-card" onclick="toggleOpt(this)"><span class="oc-check"></span><span class="oc-label">Firmo y luego completamos</span><div class="oc-desc">Firmo el acuerdo marco hoy y completamos los anexos en los siguientes 30 días.</div></div>
+  </div>
+
+  <div id="resumen-box"></div>
+</section>
+
+<hr class="divider">
+
+<!-- FIRMA DIGITAL -->
+<section>
+  <div class="firma-section">
+    <div class="section-label">Firma Digital</div>
+    <h2>Aceptar y firmar el acuerdo</h2>
+    <p class="fs-sub">Ambas partes firman digitalmente el Acuerdo Bilateral de Co-desarrollo, Innovación Abierta y Cobranding NIBS — CAÚA Colombia S.A.S. × Logotipos y Chocolates S.A.S. · Borrador v1.0 · 22 junio 2026.</p>
+
+    <div class="firmas-grid">
+
+      <!-- Firma Amaury -->
+      <div class="firmante">
+        <span class="fw-tag">CAÚA™ · Parte A</span>
+        <div class="field"><label>Nombre</label><input type="text" id="a-nombre" value="Amaury Amed Blanquicet Rodríguez" readonly></div>
+        <div class="field"><label>Cédula</label><input type="text" id="a-cc" value="1032430162" readonly></div>
+        <div class="field"><label>Cargo</label><input type="text" id="a-cargo" value="CTO & Co-Founder · CAUA COLOMBIA S.A.S." readonly></div>
+        <div class="field"><label>Fecha</label><input type="date" id="a-fecha"></div>
+        <span class="sig-label">Firma</span>
+        <canvas class="sig" id="sig-a" width="380" height="120"></canvas>
+        <button class="sig-clear" onclick="clearSig('a')">Borrar</button>
+        <span class="sig-status no" id="status-a">Pendiente</span>
+      </div>
+
+      <!-- Firma Sandra -->
+      <div class="firmante">
+        <span class="fw-tag">LUST · Parte B</span>
+        <div class="field"><label>Nombre</label><input type="text" id="s-nombre" placeholder="Sandra Consuelo Álvarez Rodríguez"></div>
+        <div class="field"><label>Cédula</label><input type="text" id="s-cc" placeholder="39773126"></div>
+        <div class="field"><label>Cargo</label><input type="text" id="s-cargo" placeholder="Representante Legal · LOGOTIPOS Y CHOCOLATES S.A.S."></div>
+        <div class="field"><label>Fecha</label><input type="date" id="s-fecha"></div>
+        <span class="sig-label">Firma</span>
+        <canvas class="sig" id="sig-s" width="380" height="120"></canvas>
+        <button class="sig-clear" onclick="clearSig('s')">Borrar</button>
+        <span class="sig-status no" id="status-s">Pendiente</span>
+      </div>
+
+    </div><!-- /firmas-grid -->
+
+    <div class="accept-wrap" style="margin-top:24px;">
+      <input type="checkbox" id="acepto" onchange="checkBtn()">
+      <label for="acepto">Ambas partes declaran haber leído y aceptar los términos del <strong>Acuerdo Bilateral CAÚA × LUST — Co-desarrollo, Innovación Abierta y Cobranding NIBS (Borrador v1.0)</strong>, incluyendo las cláusulas de propiedad intelectual (patente cacao bioactivo 100% CAÚA™), R&D Master Chocolatier en planta Rionegro, bombonería de vanguardia HORECA y confidencialidad. Este borrador queda pendiente de la suscripción formal para plena vigencia jurídica.</label>
+    </div>
+
+    <button class="btn-firmar" id="btn-firmar" onclick="firmar()" disabled>Confirmar ambas firmas y cerrar acuerdo</button>
+
+    <div id="confirmacion">
+      <div class="conf-icon">✅</div>
+      <h3>Acuerdo aceptado por ambas partes</h3>
+      <p>Las firmas digitales han sido registradas. Este documento queda como referencia de aceptación del Borrador v1.0 mientras se coordina la suscripción formal.</p>
+      <div class="conf-details" id="conf-details"></div>
+      <p style="margin-top:14px;font-family:'Arial',sans-serif;font-size:12px;color:#3a4d10;"><em>Para la firma con plena validez jurídica, las partes coordinarán la suscripción presencial o digital certificada en Bogotá, D.C., Colombia.</em></p>
+    </div>
+  </div>
+</section>
+
+<div class="doc-footer">
+  CAÚA Colombia S.A.S. × Logotipos y Chocolates S.A.S. · Acuerdo Bilateral Borrador v1.0 · 22 jun 2026<br>
+  Documento preparado por CAÚA Corp. Este documento no constituye asesoría jurídica formal — se recomienda revisión por abogado antes de la firma definitiva con plena validez legal.<br>
+  <a href="https://github.com/Caua-Corp/caua-corp-spec/blob/main/12-ALIANZA-CAUA-LUST/acuerdo-bilateral-caua-lust-v1.html" style="color:var(--amazon);">Ver acuerdo completo en GitHub</a>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── Opciones ── */
+function toggleOpt(el) {
+  const grid = el.closest('.options-grid');
+  grid.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  updateResumen();
+}
+function selDate(el) {
+  document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  updateResumen();
+}
+function updateResumen() {
+  const prod  = document.querySelector('#opt-productos .selected .oc-label');
+  const fecha = document.querySelector('.date-btn.selected');
+  const anx   = document.querySelector('#opt-anexos .selected .oc-label');
+  if (!prod && !fecha && !anx) return;
+  let html = '<strong>Preferencias seleccionadas:</strong><ul style="margin-top:8px;padding-left:18px;">';
+  if (prod)  html += `<li>Foco de producto: <b>${prod.textContent}</b></li>`;
+  if (fecha) html += `<li>Primera sesión R&D Rionegro: <b>${fecha.textContent}</b></li>`;
+  if (anx)   html += `<li>Primer Anexo: <b>${anx.textContent}</b></li>`;
+  html += '</ul>';
+  const box = document.getElementById('resumen-box');
+  box.innerHTML = html;
+  box.style.display = 'block';
+}
+
+/* ── Canvas helper ── */
+function initCanvas(id, stateKey) {
+  const c = document.getElementById('sig-' + id);
+  const ctx = c.getContext('2d');
+  ctx.strokeStyle = '#1C3B26';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  let drawing = false;
+  const state = { has: false };
+  window['sigState_' + id] = state;
+
+  function pos(e) {
+    const r = c.getBoundingClientRect();
+    const sx = c.width / r.width, sy = c.height / r.height;
+    if (e.touches) return { x:(e.touches[0].clientX-r.left)*sx, y:(e.touches[0].clientY-r.top)*sy };
+    return { x:(e.clientX-r.left)*sx, y:(e.clientY-r.top)*sy };
+  }
+  c.addEventListener('mousedown', e => { drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); });
+  c.addEventListener('mousemove', e => { if(!drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); state.has=true; c.classList.add('has-sig'); document.getElementById('status-'+id).textContent='✓ Firmado'; document.getElementById('status-'+id).className='sig-status ok'; checkBtn(); });
+  c.addEventListener('mouseup', ()=>{ drawing=false; });
+  c.addEventListener('mouseleave', ()=>{ drawing=false; });
+  c.addEventListener('touchstart', e=>{ e.preventDefault(); drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); },{passive:false});
+  c.addEventListener('touchmove', e=>{ e.preventDefault(); if(!drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); state.has=true; c.classList.add('has-sig'); document.getElementById('status-'+id).textContent='✓ Firmado'; document.getElementById('status-'+id).className='sig-status ok'; checkBtn(); },{passive:false});
+  c.addEventListener('touchend', ()=>{ drawing=false; });
+}
+
+function clearSig(id) {
+  const c = document.getElementById('sig-' + id);
+  c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  window['sigState_' + id].has = false;
+  c.classList.remove('has-sig');
+  document.getElementById('status-' + id).textContent = 'Pendiente';
+  document.getElementById('status-' + id).className = 'sig-status no';
+  checkBtn();
+}
+
+initCanvas('a');
+initCanvas('s');
+
+/* ── Fecha default ── */
+const hoy = new Date().toISOString().split('T')[0];
+document.getElementById('a-fecha').value = hoy;
+document.getElementById('s-fecha').value = hoy;
+
+/* ── Validación ── */
+function checkBtn() {
+  const sNombre = document.getElementById('s-nombre').value.trim();
+  const acepto  = document.getElementById('acepto').checked;
+  const sigA    = window['sigState_a'] && window['sigState_a'].has;
+  const sigS    = window['sigState_s'] && window['sigState_s'].has;
+  document.getElementById('btn-firmar').disabled = !(sNombre && acepto && sigA && sigS);
+}
+document.getElementById('s-nombre').addEventListener('input', checkBtn);
+document.getElementById('acepto').addEventListener('change', checkBtn);
+
+/* ── Firma ── */
+function firmar() {
+  const aNombre = document.getElementById('a-nombre').value;
+  const aFecha  = document.getElementById('a-fecha').value;
+  const sNombre = document.getElementById('s-nombre').value.trim();
+  const sCC     = document.getElementById('s-cc').value.trim();
+  const sCargo  = document.getElementById('s-cargo').value.trim();
+  const sFecha  = document.getElementById('s-fecha').value;
+  const prod    = document.querySelector('#opt-productos .selected .oc-label');
+  const fechaRD = document.querySelector('.date-btn.selected');
+  const anx     = document.querySelector('#opt-anexos .selected .oc-label');
+  const ts      = new Date().toLocaleString('es-CO', {timeZone:'America/Bogota', dateStyle:'long', timeStyle:'medium'});
+
+  let d = `<b>Acuerdo:</b> Bilateral CAÚA × LUST — Borrador v1.0<br>`;
+  d += `<b>Firmante A (CAÚA™):</b> ${aNombre} · fecha: ${aFecha}<br>`;
+  d += `<b>Firmante B (LUST):</b> ${sNombre}${sCC?' · CC '+sCC:''}${sCargo?' · '+sCargo:''} · fecha: ${sFecha}<br>`;
+  d += `<b>Timestamp:</b> ${ts} (hora Colombia)<br>`;
+  if (prod)    d += `<b>Foco de producto:</b> ${prod.textContent}<br>`;
+  if (fechaRD) d += `<b>Primera sesión R&D:</b> ${fechaRD.textContent}<br>`;
+  if (anx)     d += `<b>Primer Anexo:</b> ${anx.textContent}<br>`;
+
+  document.getElementById('conf-details').innerHTML = d;
+  document.getElementById('confirmacion').style.display = 'block';
+  document.getElementById('btn-firmar').disabled = true;
+  document.getElementById('btn-firmar').textContent = '✓ Firmado por ambas partes';
+  document.getElementById('confirmacion').scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+</body>
+</html>
