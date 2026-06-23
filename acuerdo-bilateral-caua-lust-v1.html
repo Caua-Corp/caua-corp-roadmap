@@ -201,9 +201,15 @@
     }
 
     @media print {
-      body { padding: 0; }
+      @page { size: A4; margin: 22mm 20mm 22mm 20mm; }
+      body { padding: 0; background: #fff; }
+      .header, .header h1, .partes-box, .clausula, .firma-box, .anexo { page-break-inside: avoid; }
+      .clausula { page-break-before: auto; }
+      h2.clausula-title { page-break-after: avoid; }
       .nota, .anexo { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .oblig-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { border-bottom-color: #1C3B26 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: inherit; text-decoration: none; }
     }
   </style>
 </head>
